@@ -17,10 +17,5 @@
             string name = Console.ReadLine();
             Console.WriteLine("{0}, welcome to my first console application", name);
         }
-
-        private static void Welcome2735()
-        {
-
-        }
     }
 }
