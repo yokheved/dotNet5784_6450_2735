@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Stage0"
+    "\\DalFacade",
+    "\\DalList\\obj"
   ],
-  "SelectedNode": "\\doNet5784_6450_2735.sln",
+  "SelectedNode": "\\DalList",
   "PreviewInSolutionExplorer": false
 }
