@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\DalFacade",
+    "\\DalList",
     "\\DalList\\obj"
   ],
-  "SelectedNode": "\\DalList",
+  "SelectedNode": "\\DalList\\Class1.cs",
   "PreviewInSolutionExplorer": false
 }
