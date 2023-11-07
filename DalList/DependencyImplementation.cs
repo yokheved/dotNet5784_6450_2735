@@ -6,6 +6,10 @@ internal class DependencyImplementation : IDependency
 {
     public int Create(Dependency item)
     {
+        if (DataSource.Dependencies.Contains(item))
+        {
+            throw new Exception($"Object of type Dependency with ID {item.Id} exists.");
+        }
         int id = DataSource.Config.NextDependencyId;
         Dependency tempItem = new Dependency(id, item.DependentTask, item.DependsOnTask);
         DataSource.Dependencies.Add(tempItem);
@@ -21,7 +25,7 @@ internal class DependencyImplementation : IDependency
 
         if (deleteIt == null)
         {
-            throw new Exception($"Object of type T with ID {id} does not exist.");
+            throw new Exception($"Object of type Dependency with ID {id} does not exist.");
         }
         else
         {
@@ -38,7 +42,7 @@ internal class DependencyImplementation : IDependency
 
         if (existingItem == null)
         {
-            throw new Exception($"Object of type T with ID {item.Id} does not exist.");
+            throw new Exception($"Object of type Dependency with ID {item.Id} does not exist.");
         }
         else
         {

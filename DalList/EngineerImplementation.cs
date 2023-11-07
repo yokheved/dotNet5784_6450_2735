@@ -6,6 +6,10 @@ public class EngineerImplementation : IEngineer
 {
     public int Create(Engineer item)
     {
+        if (DataSource.Engineers.Contains(item))
+        {
+            throw new Exception($"Object of type Engineer with ID {item.Id} exists.");
+        }
         Engineer tempItem = new Engineer(item.Id, item.Name, item.Email, item.Level, item.Cost);
         DataSource.Engineers.Add(tempItem);
         return item.Id;
@@ -17,7 +21,7 @@ public class EngineerImplementation : IEngineer
 
         if (deleteIt == null)
         {
-            throw new Exception($"Object of type T with ID {id} does not exist.");
+            throw new Exception($"Object of type Engineer with ID {id} does not exist.");
         }
         else
         {
@@ -41,7 +45,7 @@ public class EngineerImplementation : IEngineer
 
         if (existingItem == null)
         {
-            throw new Exception($"Object of type T with ID {item.Id} does not exist.");
+            throw new Exception($"Object of type Engineer with ID {item.Id} does not exist.");
         }
         else
         {

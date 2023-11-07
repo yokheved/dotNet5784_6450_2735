@@ -5,6 +5,10 @@ public class TaskImplementation : DO.ITask
 {
     public int Create(DO.Task item)
     {
+        if (DataSource.Tasks.Contains(item))
+        {
+            throw new Exception($"Object of type Task with ID {item.Id} exists.");
+        }
         int id = DataSource.Config.NextTaskId;
         DO.Task tempItem = new DO.Task(id, item.Discription, item.Alias, item.IsMilestone,
             item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.ForecastDate, item.DeadlineDate,
@@ -22,24 +26,20 @@ public class TaskImplementation : DO.ITask
 
         if (deleteIt == null)
         {
-            throw new Exception($"Object of type T with ID {id} does not exist.");
+            throw new Exception($"Object of type Task with ID {id} does not exist.");
         }
         else
         {
             DataSource.Tasks.Remove(deleteIt);
         }
     }
-
-
-
-
     public void Update(DO.Task item)
     {
         DO.Task? existingItem = DataSource.Tasks.Find(Task => Task.Id == item.Id);
 
         if (existingItem == null)
         {
-            throw new Exception($"Object of type T with ID {item.Id} does not exist.");
+            throw new Exception($"Object of type Task with ID {item.Id} does not exist.");
         }
         else
         {
