@@ -18,4 +18,5 @@ internal static class DataSource
     internal static List<DO.Engineer> Engineers { get; } = new();
     internal static List<DO.EngineerExperience> EngineerExperiences { get; } = new();
     internal static List<DO.Task> Tasks { get; } = new();
+    public static object Dependency { get; internal set; }
 }

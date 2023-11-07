@@ -11,7 +11,7 @@
         "projectName": "DalFacade",
         "projectPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalFacade\\DalFacade.csproj",
         "packagesPath": "C:\\Users\\יעל\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\יעל\\Source\\Repos\\yokheved\\doNet5784_6450_2735\\DalFacade\\obj\\",
+        "outputPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalFacade\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -133,7 +133,7 @@
         "projectName": "DalTest",
         "projectPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalTest\\DalTest.csproj",
         "packagesPath": "C:\\Users\\יעל\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\יעל\\Source\\Repos\\yokheved\\doNet5784_6450_2735\\DalTest\\obj\\",
+        "outputPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
