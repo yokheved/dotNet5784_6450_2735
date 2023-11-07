@@ -1,43 +1,45 @@
 ﻿using DO;
 
 namespace Dal;
-public class TaskImplementation : Task
+public class TaskImplementation : DO.ITask
 {
-    public int Create(ITask item)
+    public int Create(DO.Task item)
     {
+        if (DataSource.Tasks.Contains(item))
+        {
+            throw new Exception($"Object of type Task with ID {item.Id} exists.");
+        }
         int id = DataSource.Config.NextTaskId;
-        Dependency tempItem = new Dependency(id, item.DependentTask, item.DependsOnTask);
+        DO.Task tempItem = new DO.Task(id, item.Discription, item.Alias, item.IsMilestone,
+            item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.ForecastDate, item.DeadlineDate,
+            item.CompleteDate, item.Deliverables, item.Remarks, item.EngineerId, item.ComplexityLevel);
         DataSource.Tasks.Add(tempItem);
         return id;
     }
-    public ITask? Read(int id)
+    public DO.Task? Read(int id)
     {
-        return DataSource.Tasks.Find(ID => Item.id == ID);
+        return DataSource.Tasks.Find(Item => Item.Id == id);
     }
     public void Delete(int id)
     {
-        ITask deleteIt = DataSource.Tasks.Find(item => item.id == id);
+        DO.Task? deleteIt = DataSource.Tasks.Find(item => item.Id == id);
 
         if (deleteIt == null)
         {
-            throw new Exception($"Object of type T with ID {id} does not exist.");
+            throw new Exception($"Object of type Task with ID {id} does not exist.");
         }
         else
         {
             DataSource.Tasks.Remove(deleteIt);
         }
     }
-
-
-
-
-    public void Update(ITask item)
+    public void Update(DO.Task item)
     {
-        ITask existingItem = DataSource.Tasks.Find(dependency => dependency.Id == item.Id);
+        DO.Task? existingItem = DataSource.Tasks.Find(Task => Task.Id == item.Id);
 
         if (existingItem == null)
         {
-            throw new Exception($"Object of type T with ID {item.id} does not exist.");
+            throw new Exception($"Object of type Task with ID {item.Id} does not exist.");
         }
         else
         {
@@ -45,6 +47,9 @@ public class TaskImplementation : Task
             DataSource.Tasks.Add(item);
         }
     }
-   
 
-   
+    public List<DO.Task> ReadAll()
+    {
+        return new List<DO.Task>(DataSource.Tasks);
+    }
+}

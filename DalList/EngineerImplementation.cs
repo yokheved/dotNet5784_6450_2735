@@ -1,32 +1,56 @@
 ﻿using DO;
 
-namespace Dal
+namespace Dal;
+
+public class EngineerImplementation : IEngineer
 {
-    public class EngineerImplementation : IEngineer
+    public int Create(Engineer item)
     {
-        public int Create(IEngineer item)
+        if (DataSource.Engineers.Contains(item))
         {
-            throw new NotImplementedException();
+            throw new Exception($"Object of type Engineer with ID {item.Id} exists.");
         }
+        Engineer tempItem = new Engineer(item.Id, item.Name, item.Email, item.Level, item.Cost);
+        DataSource.Engineers.Add(tempItem);
+        return item.Id;
+    }
 
-        public void Delete(int id)
+    public void Delete(int id)
+    {
+        Engineer? deleteIt = DataSource.Engineers.Find(item => item.Id == id);
+
+        if (deleteIt == null)
         {
-            throw new NotImplementedException();
+            throw new Exception($"Object of type Engineer with ID {id} does not exist.");
         }
-
-        public IEngineer? Read(int id)
+        else
         {
-            throw new NotImplementedException();
+            DataSource.Engineers.Remove(deleteIt);
         }
+    }
 
-        public List<IEngineer> ReadAll()
+    public Engineer? Read(int id)
+    {
+        return DataSource.Engineers.Find(Item => Item.Id == id);
+    }
+
+    public List<Engineer> ReadAll()
+    {
+        return new List<Engineer>(DataSource.Engineers);
+    }
+
+    public void Update(Engineer item)
+    {
+        Engineer? existingItem = DataSource.Engineers.Find(Engineer => Engineer.Id == item.Id);
+
+        if (existingItem == null)
         {
-            throw new NotImplementedException();
+            throw new Exception($"Object of type Engineer with ID {item.Id} does not exist.");
         }
-
-        public void Update(IEngineer item)
+        else
         {
-            throw new NotImplementedException();
+            DataSource.Engineers.Remove(existingItem);
+            DataSource.Engineers.Add(item);
         }
     }
 }

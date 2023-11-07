@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Dal;
+﻿namespace Dal;
 internal static class DataSource
 {
     internal static class Config
@@ -14,9 +12,9 @@ internal static class DataSource
         internal static int NextTaskId { get => nextTaskId++; }
     }
 
-    internal static List<DO.Dependency> Dependencys { get; } = new();
+    internal static List<DO.Dependency> Dependencies { get; } = new();
     internal static List<DO.Engineer> Engineers { get; } = new();
     internal static List<DO.EngineerExperience> EngineerExperiences { get; } = new();
     internal static List<DO.Task> Tasks { get; } = new();
-    public static object Dependency { get; internal set; }
+    //public static object Dependency { get; internal set; }
 }
