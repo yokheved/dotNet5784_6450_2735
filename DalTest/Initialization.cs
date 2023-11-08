@@ -3,7 +3,7 @@
 namespace DalTest;
 public static class Initialization
 {
-    private static IDependency s_dalDependency; //stage 1 40
+    private static IDependency? s_dalDependency; //stage 1 40
     private static IEngineer? s_dalEngineer; //stage 1 5
     private static ITask? s_dalTask; //stage 1 20
 

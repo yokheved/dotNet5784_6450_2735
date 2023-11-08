@@ -8,3 +8,11 @@ public enum EngineerExperience
     Proficient,
     Expert
 }
+public enum CRUD
+{
+    Create,
+    Read,
+    ReadAll,
+    Update,
+    Delete
+}
