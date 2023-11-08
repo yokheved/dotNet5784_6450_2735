@@ -1,7 +1,7 @@
 ﻿using DO;
 
 namespace Dal;
-public class TaskImplementation : DO.ITask
+public class TaskImplementation : ITask
 {
     public int Create(DO.Task item)
     {
