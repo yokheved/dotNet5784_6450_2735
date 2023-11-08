@@ -22,7 +22,7 @@ public record Task
     String? Discription,
     String? Alias,
     bool? IsMilestone,
-    DateTime? CreatedAtDate,
+    DateTime CreatedAtDate,
     DateTime StartDate,
     DateTime ScheduledDate,
     DateTime ForecastDate,

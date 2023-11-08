@@ -71,12 +71,12 @@ public static class Initialization
             for (int j = 0; j < 6; j++)
             {
                 if (j == 0)
-                    dates[j] = new DateTime(s_rand.Next(2023, 2026), s_rand.Next(1, 13), s_rand.Next(1, 30));
+                    dates[j] = new DateTime(s_rand.Next(2023, 2026), s_rand.Next(1, 13), s_rand.Next(1, 29));
                 else
                     dates[j] = new DateTime(
                         s_rand.Next(dates[j - 1].Year, 2026),
                         s_rand.Next(dates[j - 1].Month, 13),
-                        s_rand.Next(dates[j - 1].Day, 30));
+                        s_rand.Next(dates[j - 1].Day, 29));
             }
             int taskDescriptionIndex = s_rand.Next(0, 10);
             //no need to check if exists, because automatic id (config)
@@ -107,8 +107,8 @@ public static class Initialization
         {
             int id = 0;
             do
-                s_rand.Next(150000000, 400000000);
-            while (s_dalEngineer.Read(id) is null);
+                id = s_rand.Next(150000000, 400000000);
+            while (s_dalEngineer.Read(id) is not null);
             Engineer engineer = new Engineer(
                 id,
                 names[i],
@@ -149,9 +149,9 @@ public static class Initialization
 
     public static void Do(ITask? taskDal, IEngineer? engineerDal, IDependency? dependencyDal)
     {
-        s_dalTask = taskDal ?? throw new NullReferenceException("DAL (task) can not be null!");
-        s_dalEngineer = engineerDal ?? throw new NullReferenceException("DAL (engineer) can not be null!");
-        s_dalDependency = dependencyDal ?? throw new NullReferenceException("DAL (dependency) can not be null!");
+        s_dalTask = taskDal ?? throw new Exception("DAL (task) can not be null!");
+        s_dalEngineer = engineerDal ?? throw new Exception("DAL (engineer) can not be null!");
+        s_dalDependency = dependencyDal ?? throw new Exception("DAL (dependency) can not be null!");
         createTasks();
         createEngineers();
         createDependencies();
