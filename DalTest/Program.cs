@@ -14,7 +14,7 @@ internal class Program
         try
         {
             Initialization.Do(s_dalTask, s_dalEngineer, s_dalDependency);
-            Console.WriteLine("Enter your choice: 1-Task, 2-Engineer, 3-Dependency, 0-exit");
+            Console.WriteLine("\n Enter your choice: 1-Task, 2-Engineer, 3-Dependency, 0-exit");
             int? choice;
             do
             {
@@ -124,7 +124,7 @@ internal class Program
 
         // Assuming s_dalTask.Read(taskId) method exists to read the task from your data source
         DO.Task task = s_dalTask.Read(taskId);
-        PrintTaskDetails(task);
+        Console.WriteLine(task);
     }
     private static void TaskReadAll()
     {
@@ -132,7 +132,7 @@ internal class Program
 
         foreach (var task in tasks)
         {
-            PrintTaskDetails(task);
+            Console.WriteLine(task);
             Console.WriteLine("------------");
         }
     }
@@ -143,7 +143,7 @@ internal class Program
 
         DO.Task task = s_dalTask.Read(taskId);
         Console.WriteLine("Current Task Details:");
-        PrintTaskDetails(task);
+        Console.WriteLine(task);
 
         Console.WriteLine("Enter Task Description:");
         string? description = Console.ReadLine();
@@ -177,7 +177,7 @@ internal class Program
         bool levelSucceeded = Enum.TryParse<EngineerExperience>(Console.ReadLine(), out EngineerExperience complexityLevel);
 
         DO.Task taskUpdate = new DO.Task(
-            0,
+            task.Id,
             description ?? task.Discription,
             alias ?? task.Alias,
             succidedIs ? isMilestone : task.IsMilestone,
@@ -205,25 +205,6 @@ internal class Program
         s_dalTask.Delete(taskId);
         Console.WriteLine("Task deleted successfully.");
     }
-
-    private static void PrintTaskDetails(DO.Task task)
-    {
-        Console.WriteLine($"Task ID: {task.Id}");
-        Console.WriteLine($"Description: {task.Discription}");
-        Console.WriteLine($"Alias: {task.Alias}");
-        Console.WriteLine($"Is Milestone: {task.IsMilestone}");
-        Console.WriteLine($"Created At Date: {task.CreatedAtDate}");
-        Console.WriteLine($"Start Date: {task.StartDate}");
-        Console.WriteLine($"Scheduled Date: {task.ScheduledDate}");
-        Console.WriteLine($"Forecast Date: {task.ForecastDate}");
-        Console.WriteLine($"Deadline Date: {task.DeadlineDate}");
-        Console.WriteLine($"Complete Date: {task.CompleteDate}");
-        Console.WriteLine($"Deliverables: {task.Deliverables}");
-        Console.WriteLine($"Remarks: {task.Remarks}");
-        Console.WriteLine($"Engineer ID: {task.EngineerId}");
-        Console.WriteLine($"Complexity Level: {task.ComplexityLevel}");
-    }
-
     #endregion
 
     #region Engineer - option 2 in main
@@ -253,7 +234,7 @@ internal class Program
     private static void EngineerCreate()
     {
         int engineerId;
-        Console.WriteLine("Enter Engineer Name:");
+        Console.WriteLine("Enter Engineer Id:");
         int.TryParse(Console.ReadLine(), out engineerId);
 
         Console.WriteLine("Enter Engineer Name:");
@@ -279,7 +260,7 @@ internal class Program
         // Assuming s_dalEngineer.Read(engineerId) method exists to read the engineer from your data source
         DO.Engineer engineer = s_dalEngineer.Read(engineerId);
 
-        PrintEngineerDetails(engineer);
+        Console.WriteLine(engineer);
     }
     private static void EngineerReadAll()
     {
@@ -287,7 +268,7 @@ internal class Program
 
         foreach (var engineer in engineers)
         {
-            PrintEngineerDetails(engineer);
+            Console.WriteLine(engineer);
             Console.WriteLine("------------");
         }
     }
@@ -298,7 +279,7 @@ internal class Program
 
         DO.Engineer engineer = s_dalEngineer.Read(engineerId);
         Console.WriteLine("Current Engineer Details:");
-        PrintEngineerDetails(engineer);
+        Console.WriteLine(engineer);
 
         Console.WriteLine("Enter Engineer Name:");
         string? name = Console.ReadLine();
@@ -307,17 +288,17 @@ internal class Program
         string? email = Console.ReadLine();
 
         Console.WriteLine("Enter Engineer Level (Novice, AdvancedBeginner, Competent, Proficient, Expert):");
-        EngineerExperience? level = Enum.Parse<EngineerExperience>(Console.ReadLine());
+        bool levelSucceeded = Enum.TryParse<EngineerExperience>(Console.ReadLine(), out EngineerExperience level);
 
         Console.WriteLine("Enter Engineer Cost:");
         bool successCost = double.TryParse(Console.ReadLine(), out double cost);
 
         DO.Engineer engineerUpdate = new DO.Engineer(
             engineerId,
-            name ?? engineer.Name,
-            email ?? engineer.Email,
-            level ?? engineer.Level,
-            successCost ? cost : engineer.Cost);
+            name ?? engineer!.Name,
+            email ?? engineer!.Email,
+            levelSucceeded ? level : engineer!.Level,
+            successCost ? cost : engineer!.Cost);
 
         // Update the engineer using s_dalEngineer.Update(engineer)
         s_dalEngineer.Update(engineerUpdate);
@@ -330,14 +311,6 @@ internal class Program
         // Delete the engineer using s_dalEngineer.Delete(engineerId)
         s_dalEngineer.Delete(engineerId);
         Console.WriteLine("Engineer deleted successfully.");
-    }
-    private static void PrintEngineerDetails(DO.Engineer engineer)
-    {
-        Console.WriteLine($"Engineer ID: {engineer.Id}");
-        Console.WriteLine($"Name: {engineer.Name}");
-        Console.WriteLine($"Email: {engineer.Email}");
-        Console.WriteLine($"Level: {engineer.Level}");
-        Console.WriteLine($"Cost: {engineer.Cost}");
     }
 
     #endregion
@@ -384,7 +357,7 @@ internal class Program
         // Assuming s_dalDependency.Read(dependencyId) method exists to read the dependency from your data source
         DO.Dependency dependency = s_dalDependency.Read(dependencyId);
 
-        PrintDependencyDetails(dependency);
+        Console.WriteLine(dependency);
     }
     private static void DependencyReadAll()
     {
@@ -392,7 +365,7 @@ internal class Program
 
         foreach (var dependency in dependencies)
         {
-            PrintDependencyDetails(dependency);
+            Console.WriteLine(dependency);
             Console.WriteLine("------------");
         }
     }
@@ -401,9 +374,9 @@ internal class Program
         Console.WriteLine("Enter Dependency ID to update:");
         int dependencyId = int.Parse(Console.ReadLine());
 
-        DO.Dependency dependency = s_dalDependency.Read(dependencyId);
+        DO.Dependency? dependency = s_dalDependency!.Read(dependencyId);
         Console.WriteLine("Current Dependency Details:");
-        PrintDependencyDetails(dependency);
+        Console.WriteLine(dependency);
 
         Console.WriteLine("Enter Dependent Task ID:");
         bool dependentSucceed = int.TryParse(Console.ReadLine(), out int dependentTask);
@@ -412,7 +385,7 @@ internal class Program
         bool dependentOnSucceed = int.TryParse(Console.ReadLine(), out int dependsOnTask);
         // Update the dependency using s_dalDependency.Update(dependency)
         s_dalDependency.Update(new DO.Dependency(
-            0,
+            dependency!.Id,
             dependentSucceed ? dependentTask : dependency.DependentTask,
             dependentOnSucceed ? dependsOnTask : dependency.DependsOnTask)
         );
@@ -426,16 +399,14 @@ internal class Program
         s_dalDependency.Delete(dependencyId);
         Console.WriteLine("Dependency deleted successfully.");
     }
-    private static void PrintDependencyDetails(DO.Dependency dependency)
-    {
-        Console.WriteLine($"Dependency ID: {dependency.Id}");
-        Console.WriteLine($"Dependent Task ID: {dependency.DependentTask}");
-        Console.WriteLine($"Depends On Task ID: {dependency.DependsOnTask}");
-    }
 
     #endregion
 
     #region additional functions
+    /// <summary>
+    /// gets choice of action from the user : create, read, read all, update, delete
+    /// </summary>
+    /// <returns>returns type CRUD enum, users choice</returns>
     private static CRUD EntityChoice()///accepts a choice from a menu from the user and returns the choice as a CRUD value.
     {
         int choice;
@@ -448,20 +419,29 @@ internal class Program
         int.TryParse(Console.ReadLine(), out choice);
         return (CRUD)choice;
     }
+    /// <summary>
+    /// gets useres date time object inputed
+    /// </summary>
+    /// <param name="prompt">message to show befor input as label</param>
+    /// <param name="allowNull">bool if should allow user give no input</param>
+    /// <returns>returns date time object from user, if no inputt returns null</returns>
     private static DateTime? GetDateTimeFromUser(string prompt, bool allowNull)
     {
         Console.WriteLine(prompt);
         bool success = DateTime.TryParse(Console.ReadLine(), out DateTime result);
         return !success && allowNull ? null : result;
     }
-    private static int? MainChoice()///The user is asked to choose from the displayed choices
+    /// <summary>
+    /// gets action from user, which entity to deal with
+    /// </summary>
+    /// <returns>int choice from user</returns>
+    private static int? MainChoice()
     {
-        int choice;
         Console.WriteLine("task: press 1");
         Console.WriteLine("engineer: press 2");
         Console.WriteLine("dependency: press 3");
         Console.WriteLine("exit: press 0");
-        int.TryParse(Console.ReadLine(), out choice);
+        int choice = int.Parse(Console.ReadLine()!);
         return choice;
     }
 
