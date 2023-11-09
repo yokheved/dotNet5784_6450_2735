@@ -1,6 +1,6 @@
 ﻿namespace DO;
 
-public enum EngineerExperience
+public enum EngineerExperience/// list of values ​​that represent different levels of experience for engineers.
 {
     Novice,
     AdvancedBeginner,
@@ -8,7 +8,7 @@ public enum EngineerExperience
     Proficient,
     Expert
 }
-public enum CRUD
+public enum CRUD///list of values ​​that represent various operations in a database
 {
     Create,
     Read,

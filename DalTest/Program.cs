@@ -9,7 +9,7 @@ internal class Program
     private static IEngineer? s_dalEngineer = new EngineerImplementation(); //stage 1
     private static ITask? s_dalTask = new TaskImplementation(); //stage 1
     private static Random s_rand = new Random();
-    static void Main(string[] args)
+    static void Main(string[] args)///Performs various actions according to the user's choice
     {
         try
         {
@@ -40,7 +40,7 @@ internal class Program
         }
         Console.WriteLine("Bye Bye!");
     }
-    private static int? MainChoice()
+    private static int? MainChoice()///The user is asked to choose from the displayed choices
     {
         int choice;
         Console.WriteLine("task: press 1");
@@ -50,7 +50,7 @@ internal class Program
         int.TryParse(Console.ReadLine(), out choice);
         return choice;
     }
-    private static void TaskHandle()
+    private static void TaskHandle()///The TaskHandle function performs actions on tasks selected by the user.
     {
         CRUD? choice;
         choice = EntityChoice();
@@ -73,7 +73,7 @@ internal class Program
                 break;
         }
     }
-    private static void EngineerHandle()
+    private static void EngineerHandle()///The EngineerHandle function performs actions on engineers of the user's choice.
     {
         CRUD? choice;
         choice = EntityChoice();
@@ -96,7 +96,7 @@ internal class Program
                 break;
         }
     }
-    private static void DependencyHandle()
+    private static void DependencyHandle()///performs actions on dependencies of the user's choice.
     {
         CRUD? choice;
         choice = EntityChoice();
@@ -119,7 +119,7 @@ internal class Program
                 break;
         }
     }
-    private static CRUD EntityChoice()
+    private static CRUD EntityChoice()///accepts a choice from a menu from the user and returns the choice as a CRUD value.
     {
         int choice;
         Console.WriteLine("create: press 0");
@@ -131,7 +131,7 @@ internal class Program
         int.TryParse(Console.ReadLine(), out choice);
         return (CRUD)choice;
     }
-    private static void TaskCreate()
+    private static void TaskCreate()///creates a new task by receiving details from the user such as a description, alias and whether or not it is a milestone.
     {
         Console.WriteLine("Enter Task Description:");
         string description = Console.ReadLine();

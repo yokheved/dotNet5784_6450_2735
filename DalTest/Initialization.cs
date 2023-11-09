@@ -11,6 +11,7 @@ public static class Initialization
 
     private static void createTasks()
     {
+        ///An array of strings that describe different tasks
         string[] taskDescriptions = {
             "Implementing Data Structures and Algorithms",
             "Developing Scalable Software Applications",
@@ -23,7 +24,7 @@ public static class Initialization
             "Integrating Third-party APIs and Libraries",
             "Developing User-friendly GUI Applications"
         };//size of 10
-
+        ///Strings representing various descriptions or nicknames for positions in the field of programming and engineering
         string[] aliases = {
             "1 Algorithm Specialist",
             "2 Software Developer",
@@ -63,7 +64,7 @@ public static class Initialization
             "Task completed with minor issues, pending review."
         };
 
-
+        ///The code creates an array of 6 dates in chronological order and fills the dates with random values ​​between the current year and 2026.
         for (int i = 0; i < 20; i++)
         {//create task
             //makes an array of dates in cronoligical order
@@ -93,7 +94,7 @@ public static class Initialization
         }
     }
 
-    private static void createEngineers()
+    private static void createEngineers()///The code creates and initializes an array of 5 engineer names. It then generates a unique ID number for each engineer and creates a new Engineer object with the ID number, name, and email address.
     {
         string[] names = {
             "Alice",
@@ -120,7 +121,7 @@ public static class Initialization
         }
     }
 
-    private static void createDependencies()
+    private static void createDependencies()///The code gets the list of tasks from the database and performs actions on each task in the list.
     {
         List<DO.Task>? tasks = s_dalTask.ReadAll();
         foreach (DO.Task task in tasks)
@@ -147,7 +148,7 @@ public static class Initialization
         }
     }
 
-    public static void Do(ITask? taskDal, IEngineer? engineerDal, IDependency? dependencyDal)
+    public static void Do(ITask? taskDal, IEngineer? engineerDal, IDependency? dependencyDal)///The Do function checks and freezes the object
     {
         s_dalTask = taskDal ?? throw new Exception("DAL (task) can not be null!");
         s_dalEngineer = engineerDal ?? throw new Exception("DAL (engineer) can not be null!");

@@ -4,7 +4,7 @@ namespace Dal;
 
 public class DependencyImplementation : IDependency
 {
-    public int Create(Dependency item)
+    public int Create(Dependency item)///Creates a new dependency and returns its identifier
     {
         if (DataSource.Dependencies.Contains(item))
         {
@@ -15,11 +15,11 @@ public class DependencyImplementation : IDependency
         DataSource.Dependencies.Add(tempItem);
         return id;
     }
-    public Dependency? Read(int id)
+    public Dependency? Read(int id)///Reads the dependency with the given identifier
     {
         return DataSource.Dependencies.Find(Item => Item.Id == id);
     }
-    public void Delete(int id)
+    public void Delete(int id)///Deletes the dependency with the given identifier
     {
         Dependency? deleteIt = DataSource.Dependencies.Find(item => item.Id == id);
 
@@ -36,7 +36,7 @@ public class DependencyImplementation : IDependency
 
 
 
-    public void Update(Dependency item)
+    public void Update(Dependency item)/// Updates the dependency with the new details
     {
         Dependency? existingItem = DataSource.Dependencies.Find(dependency => dependency.Id == item.Id);
 
@@ -51,7 +51,7 @@ public class DependencyImplementation : IDependency
         }
     }
 
-    public List<Dependency> ReadAll()
+    public List<Dependency> ReadAll()///Reads all dependencies and returns them in a list
     {
         return new List<Dependency>(DataSource.Dependencies);
     }
