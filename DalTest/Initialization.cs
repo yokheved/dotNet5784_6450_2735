@@ -9,6 +9,9 @@ public static class Initialization
 
     private static Random s_rand = new();
 
+    /// <summary>
+    /// creates a new list of tasks and initializes it
+    /// </summary>
     private static void createTasks()
     {
         ///An array of strings that describe different tasks
@@ -64,7 +67,6 @@ public static class Initialization
             "Task completed with minor issues, pending review."
         };
 
-        ///The code creates an array of 6 dates in chronological order and fills the dates with random values ​​between the current year and 2026.
         for (int i = 0; i < 20; i++)
         {//create task
             //makes an array of dates in cronoligical order
@@ -94,7 +96,10 @@ public static class Initialization
         }
     }
 
-    private static void createEngineers()///The code creates and initializes an array of 5 engineer names. It then generates a unique ID number for each engineer and creates a new Engineer object with the ID number, name, and email address.
+    /// <summary>
+    /// creates and initializes an array of 5 engineer names. It then generates a unique ID number for each engineer and creates a new Engineer object with the ID number, name, and email address.
+    /// </summary>
+    private static void createEngineers()
     {
         string[] names = {
             "Alice",
@@ -121,7 +126,10 @@ public static class Initialization
         }
     }
 
-    private static void createDependencies()///The code gets the list of tasks from the database and performs actions on each task in the list.
+    /// <summary>
+    /// gets the list of tasks from the database and performs actions on each task in the list.
+    /// </summary>
+    private static void createDependencies()
     {
         List<DO.Task>? tasks = s_dalTask.ReadAll();
         foreach (DO.Task task in tasks)
@@ -130,17 +138,17 @@ public static class Initialization
             int taskId2 = tasks.Find(x => x.Alias[0] + 1 == task.Alias[0])?.Id ?? -1;
             int taskId3 = tasks.Find(x => x.Alias[0] + 2 == task.Alias[0])?.Id ?? -1;
             int taskId4 = tasks.Find(x => x.Alias[0] + 3 == task.Alias[0])?.Id ?? -1;
-            if (taskId2 > -1)
+            if (taskId2 > -1)//if found a task 1 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId2);
                 s_dalDependency.Create(dependency);
             }
-            if (taskId3 > -1)
+            if (taskId3 > -1)//if found a task 2 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId3);
                 s_dalDependency.Create(dependency);
             }
-            if (taskId4 > -1)
+            if (taskId4 > -1)//if found a task 3 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId4);
                 s_dalDependency.Create(dependency);
@@ -148,7 +156,14 @@ public static class Initialization
         }
     }
 
-    public static void Do(ITask? taskDal, IEngineer? engineerDal, IDependency? dependencyDal)///The Do function checks and freezes the object
+    /// <summary>
+    /// creates and initializes entity lists with the param interface variables
+    /// </summary>
+    /// <param name="taskDal"></param>
+    /// <param name="engineerDal"></param>
+    /// <param name="dependencyDal"></param>
+    /// <exception cref="Exception"></exception>
+    public static void Do(ITask? taskDal, IEngineer? engineerDal, IDependency? dependencyDal)
     {
         s_dalTask = taskDal ?? throw new Exception("DAL (task) can not be null!");
         s_dalEngineer = engineerDal ?? throw new Exception("DAL (engineer) can not be null!");

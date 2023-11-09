@@ -4,7 +4,8 @@ namespace Dal;
 
 public class EngineerImplementation : IEngineer
 {
-    public int Create(Engineer item)///The function checks if there is already an engineer with the same ID in the list. If so, it throws an exception. Otherwise, it adds the engineer to the list and returns their ID.
+    //function declarations and comants in IEngineer
+    public int Create(Engineer item)
     {
         if (DataSource.Engineers.Contains(item))
         {
@@ -15,7 +16,7 @@ public class EngineerImplementation : IEngineer
         return item.Id;
     }
 
-    public void Delete(int id)///The function searches for the engineer with the given ID in the list and removes them if found. Otherwise, it throws an exception.
+    public void Delete(int id)
     {
         Engineer? deleteIt = DataSource.Engineers.Find(item => item.Id == id);
 
@@ -29,17 +30,17 @@ public class EngineerImplementation : IEngineer
         }
     }
 
-    public Engineer? Read(int id)/// The function searches for the engineer with the given ID in the list and returns them if found. Otherwise, it returns null.
+    public Engineer? Read(int id)
     {
         return DataSource.Engineers.Find(Item => Item.Id == id);
     }
 
-    public List<Engineer> ReadAll()///The function returns a list of all the engineers in the database
+    public List<Engineer> ReadAll()
     {
         return new List<Engineer>(DataSource.Engineers);
     }
 
-    public void Update(Engineer item)///The function updates the engineer in the list if it exists, and throws an exception if it doesn't
+    public void Update(Engineer item)
     {
         Engineer? existingItem = DataSource.Engineers.Find(Engineer => Engineer.Id == item.Id);
 
