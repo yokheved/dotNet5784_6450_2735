@@ -3,7 +3,8 @@
 namespace Dal;
 public class TaskImplementation : ITask
 {
-    public int Create(DO.Task item)///The "Create" function checks if there is already a task with the same ID in the list of tasks. If there is, it throws an exception. If not, it creates a new task with a new ID.
+    //function declarations and comants in ITask
+    public int Create(DO.Task item)
     {
         if (DataSource.Tasks.Contains(item))
         {
@@ -16,11 +17,11 @@ public class TaskImplementation : ITask
         DataSource.Tasks.Add(tempItem);
         return id;
     }
-    public DO.Task? Read(int id)/// The "Read" function searches for and returns the task with the given ID from the list of tasks
+    public DO.Task? Read(int id)
     {
         return DataSource.Tasks.Find(Item => Item.Id == id);
     }
-    public void Delete(int id)/// The "Delete" function searches for the task with the given ID from the list of tasks and removes it. If the task is not found, it throws an exception.
+    public void Delete(int id)
     {
         DO.Task? deleteIt = DataSource.Tasks.Find(item => item.Id == id);
 
@@ -33,7 +34,7 @@ public class TaskImplementation : ITask
             DataSource.Tasks.Remove(deleteIt);
         }
     }
-    public void Update(DO.Task item)///The "Update" function updates the task with the given ID from the list of tasks
+    public void Update(DO.Task item)
     {
         DO.Task? existingItem = DataSource.Tasks.Find(Task => Task.Id == item.Id);
 
@@ -48,7 +49,7 @@ public class TaskImplementation : ITask
         }
     }
 
-    public List<DO.Task> ReadAll()///The "ReadAll" function returns all tasks from the list of tasks as a new list
+    public List<DO.Task> ReadAll()
     {
         return new List<DO.Task>(DataSource.Tasks);
     }
