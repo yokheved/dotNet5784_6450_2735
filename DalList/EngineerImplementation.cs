@@ -2,7 +2,7 @@
 
 namespace Dal;
 
-public class EngineerImplementation : IEngineer
+internal class EngineerImplementation : IEngineer
 {
     //function declarations and comants in IEngineer
     public int Create(Engineer item)
