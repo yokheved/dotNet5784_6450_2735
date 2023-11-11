@@ -11,3 +11,16 @@ C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalList\obj\Debug\refint\DalList.dll
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalList\obj\Debug\DalList.pdb
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalList\obj\Debug\ref\DalList.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalList.deps.json
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalList.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalList.pdb
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.csproj.AssemblyReference.cache
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.AssemblyInfoInputs.cache
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.AssemblyInfo.cs
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.csproj.CoreCompileInputs.cache
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.csproj.CopyComplete
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\refint\DalList.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.pdb
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\ref\DalList.dll

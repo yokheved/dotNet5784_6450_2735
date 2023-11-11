@@ -2,7 +2,7 @@
 
 namespace Dal;
 
-public class DependencyImplementation : IDependency
+internal class DependencyImplementation : IDependency
 {
     //function declarations and comants in IDependency
     public int Create(Dependency item)

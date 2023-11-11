@@ -9,3 +9,14 @@ C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalFacade\obj\Debug\refint\DalFacade.dll
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalFacade\obj\Debug\DalFacade.pdb
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalFacade\obj\Debug\ref\DalFacade.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalFacade.deps.json
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalFacade.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalFacade.pdb
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalFacade\obj\Debug\DalFacade.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalFacade\obj\Debug\DalFacade.AssemblyInfoInputs.cache
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalFacade\obj\Debug\DalFacade.AssemblyInfo.cs
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalFacade\obj\Debug\DalFacade.csproj.CoreCompileInputs.cache
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalFacade\obj\Debug\DalFacade.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalFacade\obj\Debug\refint\DalFacade.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalFacade\obj\Debug\DalFacade.pdb
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalFacade\obj\Debug\ref\DalFacade.dll

@@ -1,7 +1,7 @@
 ﻿using DO;
 
 namespace Dal;
-public class TaskImplementation : ITask
+internal class TaskImplementation : ITask
 {
     //function declarations and comants in ITask
     public int Create(DO.Task item)

@@ -3,15 +3,11 @@
 namespace DalTest;
 public static class Initialization
 {
-    private static IDependency? s_dalDependency; //stage 1 40
-    private static IEngineer? s_dalEngineer; //stage 1 5
-    private static ITask? s_dalTask; //stage 1 20
+    private static IDal? s_dal; //stage 2
+    
 
     private static Random s_rand = new();
 
-    /// <summary>
-    /// creates a new list of tasks and initializes it
-    /// </summary>
     private static void createTasks()
     {
         ///An array of strings that describe different tasks
@@ -92,7 +88,7 @@ public static class Initialization
                 taskDeliverables[taskDescriptionIndex],
                 taskRemarks[taskDescriptionIndex],
                 s_rand.Next(1, 6));
-            s_dalTask.Create(task);
+            s_dal!.Task.Create(task);
         }
     }
 
@@ -114,7 +110,7 @@ public static class Initialization
             int id = 0;
             do
                 id = s_rand.Next(150000000, 400000000);
-            while (s_dalEngineer.Read(id) is not null);
+            while (s_dal!.Engineer.Read(id) is not null);
             Engineer engineer = new Engineer(
                 id,
                 names[i],
@@ -122,7 +118,7 @@ public static class Initialization
                 (DO.EngineerExperience)s_rand.Next(1, 6),
                 (double)s_rand.Next(50, 200)
                 );
-            s_dalEngineer.Create(engineer);
+            s_dal!.Engineer.Create(engineer);
         }
     }
 
@@ -131,7 +127,7 @@ public static class Initialization
     /// </summary>
     private static void createDependencies()
     {
-        List<DO.Task>? tasks = s_dalTask.ReadAll();
+        List<DO.Task>? tasks = s_dal!.Task.ReadAll();
         foreach (DO.Task task in tasks)
         {
             int taskId1 = task.Id;
@@ -141,17 +137,17 @@ public static class Initialization
             if (taskId2 > -1)//if found a task 1 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId2);
-                s_dalDependency.Create(dependency);
+                s_dal!.Dependency.Create(dependency);
             }
             if (taskId3 > -1)//if found a task 2 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId3);
-                s_dalDependency.Create(dependency);
+                s_dal!.Dependency.Create(dependency);
             }
             if (taskId4 > -1)//if found a task 3 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId4);
-                s_dalDependency.Create(dependency);
+                s_dal!.Dependency.Create(dependency);
             }
         }
     }
@@ -163,11 +159,9 @@ public static class Initialization
     /// <param name="engineerDal"></param>
     /// <param name="dependencyDal"></param>
     /// <exception cref="Exception"></exception>
-    public static void Do(ITask? taskDal, IEngineer? engineerDal, IDependency? dependencyDal)
+    public static void Do(IDal dal)
     {
-        s_dalTask = taskDal ?? throw new Exception("DAL (task) can not be null!");
-        s_dalEngineer = engineerDal ?? throw new Exception("DAL (engineer) can not be null!");
-        s_dalDependency = dependencyDal ?? throw new Exception("DAL (dependency) can not be null!");
+        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
         createTasks();
         createEngineers();
         createDependencies();
