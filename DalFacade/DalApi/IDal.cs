@@ -1,6 +1,6 @@
 ﻿namespace DO;
 
-internal class IDal
+public class IDal
 {
     IDependency? Dependency { get; }
     IEngineer? Engineer { get; }
