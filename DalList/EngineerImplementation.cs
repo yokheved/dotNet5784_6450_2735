@@ -11,7 +11,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns>integer - new Engineer item id</returns>
     public int Create(Engineer item)
     {
-        if (DataSource.Engineers.Contains(item))
+        if (DataSource.Engineers.Any(e => e.Id == item.Id))
         {
             throw new DalAlreadyExistsException($"Object of type Engineer with ID {item.Id} exists.");
         }
@@ -25,7 +25,9 @@ internal class EngineerImplementation : IEngineer
     /// <param name="id">id of Engineer to delete</param>
     public void Delete(int id)
     {
-        Engineer? deleteIt = DataSource.Engineers.Find(item => item.Id == id);
+        Engineer? deleteIt = (from e in DataSource.Engineers
+                              where e.Id == id
+                              select e).ToList()[0];
 
         if (deleteIt == null)
         {
@@ -43,7 +45,9 @@ internal class EngineerImplementation : IEngineer
     /// <returns>Engineer object with param id, if not found - null</returns>
     public Engineer? Read(int id)
     {
-        return DataSource.Engineers.Find(Item => Item.Id == id);
+        return (from e in DataSource.Engineers
+                where e.Id == id
+                select e).ToList()[0];
     }
     /// <summary>
     /// Reads all Engineer entity objects
@@ -51,7 +55,9 @@ internal class EngineerImplementation : IEngineer
     /// <returns> list type Engineer of all Engineers</returns>
     public List<Engineer> ReadAll()
     {
-        return new List<Engineer>(DataSource.Engineers);
+        return (from e in DataSource.Engineers
+                where true
+                select e).ToList();
     }
     /// <summary>
     /// Updates Engineer entity object
@@ -59,7 +65,9 @@ internal class EngineerImplementation : IEngineer
     /// <param name="item">new Engineer item - the item with id to update, and values to update</param>
     public void Update(Engineer item)
     {
-        Engineer? existingItem = DataSource.Engineers.Find(Engineer => Engineer.Id == item.Id);
+        Engineer? existingItem = (from e in DataSource.Engineers
+                                  where e.Id == item.Id
+                                  select e).ToList()[0];
 
         if (existingItem == null)
         {

@@ -11,7 +11,7 @@ internal class TaskImplementation : ITask
     /// <returns>integer - new Task item id</returns>
     public int Create(DO.Task item)
     {
-        if (DataSource.Tasks.Contains(item))
+        if (DataSource.Tasks.Any(t => t == item))
         {
             throw new DalAlreadyExistsException($"Object of type Task with ID {item.Id} exists.");
         }
@@ -29,7 +29,9 @@ internal class TaskImplementation : ITask
     /// <returns>Task object with param id, if not found - null</returns>
     public DO.Task? Read(int id)
     {
-        return DataSource.Tasks.Find(Item => Item.Id == id);
+        return (from t in DataSource.Tasks
+                where t.Id == id
+                select t).ToList()[0];
     }
     /// <summary>
     /// Deletes a Task object by its Id
@@ -37,7 +39,9 @@ internal class TaskImplementation : ITask
     /// <param name="id">id of Task to delete</param>
     public void Delete(int id)
     {
-        DO.Task? deleteIt = DataSource.Tasks.Find(item => item.Id == id);
+        DO.Task? deleteIt = (from t in DataSource.Tasks
+                             where t.Id == id
+                             select t).ToList()[0];
 
         if (deleteIt == null)
         {
@@ -54,7 +58,9 @@ internal class TaskImplementation : ITask
     /// <param name="item">new Task item - the item with id to update, and values to update</param>
     public void Update(DO.Task item)
     {
-        DO.Task? existingItem = DataSource.Tasks.Find(Task => Task.Id == item.Id);
+        DO.Task? existingItem = (from t in DataSource.Tasks
+                                 where t.Id == item.Id
+                                 select t).ToList()[0];
 
         if (existingItem == null)
         {
@@ -72,6 +78,8 @@ internal class TaskImplementation : ITask
     /// <returns> list type Task of all Tasks</returns>
     public List<DO.Task> ReadAll()
     {
-        return new List<DO.Task>(DataSource.Tasks);
+        return (from t in DataSource.Tasks
+                where true
+                select t).ToList();
     }
 }

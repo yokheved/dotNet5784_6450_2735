@@ -1,10 +1,9 @@
-﻿using Dal;
-using DO;
+﻿using DO;
 
 namespace DalTest;
 public static class Initialization
 {
-    private static DalList? s_dal; //stage 2 not the type as instructions, but pretty sure the correct one
+    private static IDal? s_dal; //stage 2 not the type as instructions, but pretty sure the correct one
 
 
     private static Random s_rand = new();
