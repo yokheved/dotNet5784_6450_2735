@@ -50,14 +50,20 @@ internal class EngineerImplementation : IEngineer
                 select e).ToList()[0];
     }
     /// <summary>
-    /// Reads all Engineer entity objects
+    /// Reads all entity objects by lambda function returning bool if wanted
     /// </summary>
-    /// <returns> list type Engineer of all Engineers</returns>
-    public List<Engineer> ReadAll()
+    /// <param name="filter">not needed parameter of filtering list function, return true or false for object</param>
+    /// <returns>return list filterd by filter, or full list</returns>
+    public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null) //stage 2
     {
-        return (from e in DataSource.Engineers
-                where true
-                select e).ToList();
+        if (filter != null)
+        {
+            return from item in DataSource.Engineers
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Engineers
+               select item;
     }
     /// <summary>
     /// Updates Engineer entity object

@@ -126,7 +126,7 @@ internal class Program
     }
     private static void TaskReadAll()
     {
-        List<DO.Task> tasks = s_dal!.Task!.ReadAll();
+        List<DO.Task> tasks = s_dal!.Task!.ReadAll().ToList();
 
         foreach (var task in tasks)
         {
@@ -262,7 +262,7 @@ internal class Program
     }
     private static void EngineerReadAll()
     {
-        List<Engineer> engineers = s_dal!.Engineer!.ReadAll();
+        List<Engineer> engineers = s_dal!.Engineer!.ReadAll().ToList();
 
         foreach (var engineer in engineers)
         {
@@ -359,7 +359,7 @@ internal class Program
     }
     private static void DependencyReadAll()
     {
-        List<Dependency> dependencies = s_dal!.Dependency!.ReadAll();
+        List<Dependency> dependencies = s_dal!.Dependency!.ReadAll().ToList();
 
         foreach (var dependency in dependencies)
         {

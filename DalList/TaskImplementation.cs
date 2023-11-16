@@ -73,13 +73,19 @@ internal class TaskImplementation : ITask
         }
     }
     /// <summary>
-    /// Reads all Task entity objects
+    /// Reads all entity objects by lambda function returning bool if wanted
     /// </summary>
-    /// <returns> list type Task of all Tasks</returns>
-    public List<DO.Task> ReadAll()
+    /// <param name="filter">not needed parameter of filtering list function, return true or false for object</param>
+    /// <returns>return list filterd by filter, or full list</returns>
+    public IEnumerable<DO.Task> ReadAll(Func<DO.Task, bool>? filter = null) //stage 2
     {
-        return (from t in DataSource.Tasks
-                where true
-                select t).ToList();
+        if (filter != null)
+        {
+            return from item in DataSource.Tasks
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Tasks
+               select item;
     }
 }

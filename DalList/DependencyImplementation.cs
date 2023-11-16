@@ -71,17 +71,12 @@ internal class DependencyImplementation : IDependency
             DataSource.Dependencies.Add(item);
         }
     }
+
     /// <summary>
-    /// Reads all entity objects
+    /// Reads all entity objects by lambda function returning bool if wanted
     /// </summary>
-    /// <returns> list type Dependency of all dependencies</returns>
-    public List<Dependency> ReadAll()
-    {
-        return (from d in DataSource.Dependencies
-                where true
-                select d).ToList();
-    }
-    /*
+    /// <param name="filter">not needed parameter of filtering list function, return true or false for object</param>
+    /// <returns>return list filterd by filter, or full list</returns>
     public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null) //stage 2
     {
         if (filter != null)
@@ -92,6 +87,6 @@ internal class DependencyImplementation : IDependency
         }
         return from item in DataSource.Dependencies
                select item;
-    }*/
+    }
 
 }
