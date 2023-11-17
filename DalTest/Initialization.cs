@@ -3,8 +3,8 @@
 namespace DalTest;
 public static class Initialization
 {
-    private static IDal? s_dal; //stage 2
-    
+    private static IDal? s_dal; //stage 2 not the type as instructions, but pretty sure the correct one
+
 
     private static Random s_rand = new();
 
@@ -88,7 +88,7 @@ public static class Initialization
                 taskDeliverables[taskDescriptionIndex],
                 taskRemarks[taskDescriptionIndex],
                 s_rand.Next(1, 6));
-            s_dal!.Task.Create(task);
+            s_dal!.Task!.Create(task);
         }
     }
 
@@ -127,27 +127,27 @@ public static class Initialization
     /// </summary>
     private static void createDependencies()
     {
-        List<DO.Task>? tasks = s_dal!.Task.ReadAll();
+        List<DO.Task>? tasks = s_dal!.Task!.ReadAll().ToList();
         foreach (DO.Task task in tasks)
         {
             int taskId1 = task.Id;
-            int taskId2 = tasks.Find(x => x.Alias[0] + 1 == task.Alias[0])?.Id ?? -1;
-            int taskId3 = tasks.Find(x => x.Alias[0] + 2 == task.Alias[0])?.Id ?? -1;
-            int taskId4 = tasks.Find(x => x.Alias[0] + 3 == task.Alias[0])?.Id ?? -1;
+            int taskId2 = tasks.Find(x => x.Alias?[0] + 1 == task.Alias?[0])?.Id ?? -1;
+            int taskId3 = tasks.Find(x => x.Alias?[0] + 2 == task.Alias?[0])?.Id ?? -1;
+            int taskId4 = tasks.Find(x => x.Alias?[0] + 3 == task.Alias?[0])?.Id ?? -1;
             if (taskId2 > -1)//if found a task 1 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId2);
-                s_dal!.Dependency.Create(dependency);
+                s_dal!.Dependency!.Create(dependency);
             }
             if (taskId3 > -1)//if found a task 2 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId3);
-                s_dal!.Dependency.Create(dependency);
+                s_dal!.Dependency!.Create(dependency);
             }
             if (taskId4 > -1)//if found a task 3 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId4);
-                s_dal!.Dependency.Create(dependency);
+                s_dal!.Dependency!.Create(dependency);
             }
         }
     }

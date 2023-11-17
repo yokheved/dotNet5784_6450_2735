@@ -11,7 +11,8 @@ internal class DependencyImplementation : IDependency
     /// <returns>integer - new item id</returns>
     public int Create(Dependency item)
     {
-        if (DataSource.Dependencies.Contains(item))
+        if (DataSource.Dependencies.Any(dep => dep.Id == item.Id)
+)
         {
             throw new DalAlreadyExistsException($"Object of type Dependency with ID {item.Id} exists.");
         }
@@ -27,7 +28,9 @@ internal class DependencyImplementation : IDependency
     /// <returns>Dependency object with param id, if not found - null</returns>
     public Dependency? Read(int id)
     {
-        return DataSource.Dependencies.Find(Item => Item.Id == id);
+        return (from d in DataSource.Dependencies
+                where d.Id == id
+                select d).ToList()[0];
     }
     /// <summary>
     /// Deletes an object by its Id
@@ -35,7 +38,9 @@ internal class DependencyImplementation : IDependency
     /// <param name="id">id of dependency to delete</param>
     public void Delete(int id)
     {
-        Dependency? deleteIt = DataSource.Dependencies.Find(item => item.Id == id);
+        Dependency? deleteIt = (from d in DataSource.Dependencies
+                                where d.Id == id
+                                select d).ToList()[0];
 
         if (deleteIt == null)
         {
@@ -52,7 +57,9 @@ internal class DependencyImplementation : IDependency
     /// <param name="item">new item - the item with id to update, and values to update</param>
     public void Update(Dependency item)
     {
-        Dependency? existingItem = DataSource.Dependencies.Find(dependency => dependency.Id == item.Id);
+        Dependency? existingItem = (from d in DataSource.Dependencies
+                                    where d.Id == item.Id
+                                    select d).ToList()[0];
 
         if (existingItem == null)
         {
@@ -64,12 +71,22 @@ internal class DependencyImplementation : IDependency
             DataSource.Dependencies.Add(item);
         }
     }
+
     /// <summary>
-    /// Reads all entity objects
+    /// Reads all entity objects by lambda function returning bool if wanted
     /// </summary>
-    /// <returns> list type Dependency of all dependencies</returns>
-    public List<Dependency> ReadAll()
+    /// <param name="filter">not needed parameter of filtering list function, return true or false for object</param>
+    /// <returns>return list filterd by filter, or full list</returns>
+    public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null) //stage 2
     {
-        return new List<Dependency>(DataSource.Dependencies);
+        if (filter != null)
+        {
+            return from item in DataSource.Dependencies
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Dependencies
+               select item;
     }
+
 }
