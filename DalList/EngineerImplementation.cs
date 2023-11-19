@@ -85,4 +85,9 @@ internal class EngineerImplementation : IEngineer
             DataSource.Engineers.Add(item);
         }
     }
+    public Engineer? Read(Func<Engineer, bool> filter)
+    {
+        return DataSource.Engineers
+            .FirstOrDefault(filter);
+    }
 }

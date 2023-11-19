@@ -88,5 +88,10 @@ internal class DependencyImplementation : IDependency
         return from item in DataSource.Dependencies
                select item;
     }
+    public Dependency? Read(Func<Dependency, bool> filter)
+    {
+        return DataSource.Dependencies
+            .FirstOrDefault(filter);
+    }
 
 }
