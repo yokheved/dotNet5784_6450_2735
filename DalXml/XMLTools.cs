@@ -1,7 +1,6 @@
 namespace Dal;
 
 using DO;
-using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -24,9 +23,9 @@ static class XMLTools
     public static double? ToDoubleNullable(this XElement element, string name) =>
         double.TryParse((string?)element.Element(name), out var result) ? (double?)result : null;
 
-    public static int? ToIntNullable(this XElement element, string name)=>
+    public static int? ToIntNullable(this XElement element, string name) =>
         int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
-    
+
     #endregion
 
     #region XmlConfig
@@ -67,7 +66,7 @@ static class XMLTools
             return rootElem;
         }
         catch (Exception ex)
-        {            
+        {
             throw new DalXMLFileLoadCreateException($"fail to load xml file: {s_xml_dir + filePath}, {ex.Message}");
         }
     }

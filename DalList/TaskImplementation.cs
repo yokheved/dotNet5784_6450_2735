@@ -1,21 +1,19 @@
 ﻿using DO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Dal;
 internal class TaskImplementation : ITask
 {
-    //function declarations and comants in ITask
-    /// <summary>
-    /// Creates new Task entity object in DAL
-    /// </summary>
-    /// <param name="item">Task type</param>
-    /// <returns>integer - new Task item id</returns>
+
     public DO.Task? Read(Func<DO.Task, bool> filter)
     {
         return DataSource.Tasks
             .FirstOrDefault(filter);
     }
+    /// <summary>
+    /// Creates new Task entity object in DAL
+    /// </summary>
+    /// <param name="item">Task type</param>
+    /// <returns>integer - new Task item id</returns>
     public int Create(DO.Task item)
     {
         if (DataSource.Tasks.Any(t => t == item))
@@ -95,5 +93,5 @@ internal class TaskImplementation : ITask
         return from item in DataSource.Tasks
                select item;
     }
-   
+
 }
