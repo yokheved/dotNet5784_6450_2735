@@ -8,6 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DalTest
-build_property.ProjectDir = C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalTest\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = H:\GIT\doNet5784_6450_2735\DalTest\
