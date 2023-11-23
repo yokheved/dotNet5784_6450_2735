@@ -11,6 +11,19 @@
         "runtime": {
           "bin/placeholder/DalFacade.dll": {}
         }
+      },
+      "DalList/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DalFacade": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DalList.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DalList.dll": {}
+        }
       }
     }
   },
@@ -19,11 +32,17 @@
       "type": "project",
       "path": "../DalFacade/DalFacade.csproj",
       "msbuildProject": "../DalFacade/DalFacade.csproj"
+    },
+    "DalList/1.0.0": {
+      "type": "project",
+      "path": "../DalList/DalList.csproj",
+      "msbuildProject": "../DalList/DalList.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "DalFacade >= 1.0.0"
+      "DalFacade >= 1.0.0",
+      "DalList >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -60,6 +79,9 @@
           "projectReferences": {
             "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalFacade\\DalFacade.csproj": {
               "projectPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalFacade\\DalFacade.csproj"
+            },
+            "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalList\\DalList.csproj": {
+              "projectPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalList\\DalList.csproj"
             }
           }
         }
