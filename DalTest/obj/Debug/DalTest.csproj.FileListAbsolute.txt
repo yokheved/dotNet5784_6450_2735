@@ -30,3 +30,4 @@ C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalTest\obj\Debug\refi
 C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalTest\obj\Debug\DalTest.pdb
 C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalTest\obj\Debug\DalTest.genruntimeconfig.cache
 C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalTest\obj\Debug\ref\DalTest.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalTest\obj\Debug\DalTest.sourcelink.json

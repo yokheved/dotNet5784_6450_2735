@@ -24,3 +24,4 @@ C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalL
 C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\refint\DalList.dll
 C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.pdb
 C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\ref\DalList.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalList\obj\Debug\DalList.sourcelink.json

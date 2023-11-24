@@ -11,6 +11,19 @@
         "runtime": {
           "bin/placeholder/DalFacade.dll": {}
         }
+      },
+      "DalList/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DalFacade": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DalList.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DalList.dll": {}
+        }
       }
     }
   },
@@ -19,31 +32,37 @@
       "type": "project",
       "path": "../DalFacade/DalFacade.csproj",
       "msbuildProject": "../DalFacade/DalFacade.csproj"
+    },
+    "DalList/1.0.0": {
+      "type": "project",
+      "path": "../DalList/DalList.csproj",
+      "msbuildProject": "../DalList/DalList.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "DalFacade >= 1.0.0"
+      "DalFacade >= 1.0.0",
+      "DalList >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yokhe\\.nuget\\packages\\": {},
+    "C:\\Users\\יעל\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalXml\\DalXml.csproj",
+      "projectUniqueName": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalXml\\DalXml.csproj",
       "projectName": "DalXml",
-      "projectPath": "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalXml\\DalXml.csproj",
-      "packagesPath": "C:\\Users\\yokhe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalXml\\obj\\",
+      "projectPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalXml\\DalXml.csproj",
+      "packagesPath": "C:\\Users\\יעל\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalXml\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\yokhe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\יעל\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -58,8 +77,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalFacade\\DalFacade.csproj": {
-              "projectPath": "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalFacade\\DalFacade.csproj"
+            "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalFacade\\DalFacade.csproj": {
+              "projectPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalFacade\\DalFacade.csproj"
+            },
+            "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalList\\DalList.csproj": {
+              "projectPath": "C:\\Users\\יעל\\source\\repos\\yokheved\\doNet5784_6450_2735\\DalList\\DalList.csproj"
             }
           }
         }
@@ -89,7 +111,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
