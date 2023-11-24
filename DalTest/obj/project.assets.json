@@ -24,6 +24,19 @@
         "runtime": {
           "bin/placeholder/DalList.dll": {}
         }
+      },
+      "DalXml/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DalFacade": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DalXml.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DalXml.dll": {}
+        }
       }
     }
   },
@@ -37,12 +50,18 @@
       "type": "project",
       "path": "../DalList/DalList.csproj",
       "msbuildProject": "../DalList/DalList.csproj"
+    },
+    "DalXml/1.0.0": {
+      "type": "project",
+      "path": "../DalXml/DalXml.csproj",
+      "msbuildProject": "../DalXml/DalXml.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "DalFacade >= 1.0.0",
-      "DalList >= 1.0.0"
+      "DalList >= 1.0.0",
+      "DalXml >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -82,6 +101,9 @@
             },
             "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalList\\DalList.csproj": {
               "projectPath": "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalList\\DalList.csproj"
+            },
+            "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalXml\\DalXml.csproj": {
+              "projectPath": "C:\\Users\\yokhe\\OneDrive\\מסמכים\\עבודות\\סמינר\\תשפד\\סמסטר א\\c#\\project git\\doNet5784_6450_2735\\DalXml\\DalXml.csproj"
             }
           }
         }

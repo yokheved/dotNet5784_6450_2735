@@ -5,7 +5,8 @@ using DO;
 internal class Program
 {
 
-    static readonly IDal s_dal = new DalList();
+    //static readonly IDal s_dal = new DalList(); //stage 2 
+    static readonly IDal s_dal = new DalXml();
     private static Random s_rand = new Random();
     static void Main(string[] args)///Performs various actions according to the user's choice
     {
