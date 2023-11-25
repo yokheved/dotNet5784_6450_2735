@@ -1,17 +1,18 @@
 ﻿namespace DalTest;
 using Dal;
 using DO;
-
 internal class Program
 {
 
-    static readonly IDal s_dal = new DalXml(); //stage 3    private static Random s_rand = new Random();
+    //static readonly IDal s_dal = new DalList(); //stage 2 
+    static readonly IDal s_dal = new DalXml();
+    private static Random s_rand = new Random();
     static void Main(string[] args)///Performs various actions according to the user's choice
     {
         try
         {
             Initialization.Do(s_dal);
-            Console.WriteLine("\n Enter your choice: 1-Task, 2-Engineer, 3-Dependency, 0-exit");
+            Console.WriteLine("\n Enter your choice:");
             int? choice;
             do
             {
@@ -93,8 +94,8 @@ internal class Program
         Console.WriteLine("Enter Task Engineer Id:");
         bool? succidedId = int.TryParse(Console.ReadLine(), out engineerId);
 
-        Console.WriteLine("Enter Complexity Level (Novice, Intermediate, or Expert):");
-        EngineerExperience? complexityLevel = Enum.Parse<EngineerExperience>(Console.ReadLine());
+        Console.WriteLine("Enter Complexity Level (Novice, AdvancedBeginner, Competent, Proficient, Expert):");
+        Enum.TryParse<EngineerExperience>(Console.ReadLine(), out EngineerExperience complexityLevel);
 
         Task task = new Task(
             0,

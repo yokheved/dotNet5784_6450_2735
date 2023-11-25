@@ -6,14 +6,13 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "DalTest/1.0.0": {
+      "DalXml/1.0.0": {
         "dependencies": {
           "DalFacade": "1.0.0",
-          "DalList": "1.0.0",
-          "DalXml": "1.0.0"
+          "DalList": "1.0.0"
         },
         "runtime": {
-          "DalTest.dll": {}
+          "DalXml.dll": {}
         }
       },
       "DalFacade/1.0.0": {
@@ -28,20 +27,11 @@
         "runtime": {
           "DalList.dll": {}
         }
-      },
-      "DalXml/1.0.0": {
-        "dependencies": {
-          "DalFacade": "1.0.0",
-          "DalList": "1.0.0"
-        },
-        "runtime": {
-          "DalXml.dll": {}
-        }
       }
     }
   },
   "libraries": {
-    "DalTest/1.0.0": {
+    "DalXml/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -52,11 +42,6 @@
       "sha512": ""
     },
     "DalList/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "DalXml/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

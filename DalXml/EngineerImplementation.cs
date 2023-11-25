@@ -19,6 +19,7 @@ internal class EngineerImplementation : IEngineer
 
         Engineer tempItem = new Engineer(item.Id, item.Name, item.Email, item.Level, item.Cost);
         list.Add(tempItem);
+        XMLTools.SaveListToXMLSerializer(list, "engineers");
         return item.Id;
     }
     /// <summary>
@@ -30,7 +31,7 @@ internal class EngineerImplementation : IEngineer
         List<Engineer> list = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         Engineer? deleteIt = (from e in list
                               where e.Id == id
-                              select e).ToList()[0];
+                              select e).ToList().FirstOrDefault();
 
         if (deleteIt == null)
         {
@@ -52,7 +53,7 @@ internal class EngineerImplementation : IEngineer
         List<Engineer> list = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         return (from e in list
                 where e.Id == id
-                select e).ToList()[0];
+                select e).ToList().FirstOrDefault();
     }
 
     public Engineer? Read(Func<Engineer, bool> filter)
@@ -87,7 +88,7 @@ internal class EngineerImplementation : IEngineer
         List<Engineer> list = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         Engineer? existingItem = (from e in list
                                   where e.Id == item.Id
-                                  select e).ToList()[0];
+                                  select e).ToList().FirstOrDefault();
 
         if (existingItem == null)
         {
@@ -98,6 +99,6 @@ internal class EngineerImplementation : IEngineer
             list.Remove(existingItem);
             list.Add(item);
         }
-        XMLTools.SaveListToXMLSerializer<Engineer>(list, "engineers");
+        XMLTools.SaveListToXMLSerializer(list, "engineers");
     }
 }
