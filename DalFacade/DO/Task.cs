@@ -32,4 +32,9 @@ public record Task
     String? Remarks,
     int? EngineerId,
     EngineerExperience? ComplexityLevel = EngineerExperience.Novice
-);
+)
+{
+    public Task() : this(default, default, default, default, default,
+        default, default, default, default, default, default, default, default, default)
+    { }
+};

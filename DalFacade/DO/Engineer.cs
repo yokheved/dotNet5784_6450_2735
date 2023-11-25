@@ -15,4 +15,7 @@ public record Engineer
     String? Email,
     EngineerExperience? Level,
     double? Cost
-);
+)
+{
+    public Engineer() : this(default, default, default, default, default) { }
+};

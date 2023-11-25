@@ -1,7 +1,6 @@
 ﻿namespace DalTest;
 using Dal;
 using DO;
-
 internal class Program
 {
 
@@ -13,7 +12,7 @@ internal class Program
         try
         {
             Initialization.Do(s_dal);
-            Console.WriteLine("\n Enter your choice: 1-Task, 2-Engineer, 3-Dependency, 0-exit");
+            Console.WriteLine("\n Enter your choice:");
             int? choice;
             do
             {
@@ -95,8 +94,8 @@ internal class Program
         Console.WriteLine("Enter Task Engineer Id:");
         bool? succidedId = int.TryParse(Console.ReadLine(), out engineerId);
 
-        Console.WriteLine("Enter Complexity Level (Novice, Intermediate, or Expert):");
-        EngineerExperience? complexityLevel = Enum.Parse<EngineerExperience>(Console.ReadLine());
+        Console.WriteLine("Enter Complexity Level (Novice, AdvancedBeginner, Competent, Proficient, Expert):");
+        Enum.TryParse<EngineerExperience>(Console.ReadLine(), out EngineerExperience complexityLevel);
 
         Task task = new Task(
             0,

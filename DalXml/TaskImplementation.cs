@@ -32,7 +32,7 @@ internal class TaskImplementation : ITask
         List<Task> list = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
         Task? deleteIt = (from t in list
                           where t.Id == id
-                          select t).ToList()[0];
+                          select t).ToList().FirstOrDefault();
 
         if (deleteIt == null)
         {
@@ -54,7 +54,7 @@ internal class TaskImplementation : ITask
         List<Task> list = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
         return (from t in list
                 where t.Id == id
-                select t).ToList()[0];
+                select t).ToList().FirstOrDefault();
     }
 
     public Task? Read(Func<Task, bool> filter)
@@ -89,7 +89,7 @@ internal class TaskImplementation : ITask
         List<Task> list = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
         DO.Task? existingItem = (from t in list
                                  where t.Id == item.Id
-                                 select t).ToList()[0];
+                                 select t).ToList().FirstOrDefault();
 
         if (existingItem == null)
         {

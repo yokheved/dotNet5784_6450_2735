@@ -1,49 +1,38 @@
 ﻿namespace Dal;
 using DO;
-using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 internal class DependencyImplementation : IDependency
 {
     public int Create(Dependency item)
     {
-        try
-        {
-            // Load the existing dependencies from the XML file
-            XElement dependenciesRoot = XMLTools.LoadListFromXMLElement("Dependencies");
+        // Load the existing dependencies from the XML file
+        XElement dependenciesRoot = XMLTools.LoadListFromXMLElement("Dependencies");
 
-            // Get the next ID for the new dependency
-            int nextId = XMLTools.GetAndIncreaseNextId("DataConfig.xml", "NextDependencyId");
+        // Get the next ID for the new dependency
+        int nextId = Config.NextDependencyId;
 
-            // Create a new XElement for the new dependency
-            XElement newDependency = new XElement("Dependency",
-                new XElement("Id", nextId),
-                new XElement("DependentTask", item.DependentTask),
-                new XElement("DependsOnTask", item.DependsOnTask)
-            
-            );
+        // Create a new XElement for the new dependency
+        XElement newDependency = new XElement("Dependency",
+            new XElement("Id", nextId),
+            new XElement("DependentTask", item.DependentTask),
+            new XElement("DependsOnTask", item.DependsOnTask)
 
-            // Add the new dependency to the dependencies root element
-            dependenciesRoot.Add(newDependency);
+        );
 
-            // Save the updated dependencies root element to the XML file
-            XMLTools.SaveListToXMLElement(dependenciesRoot, "Dependencies");
+        // Add the new dependency to the dependencies root element
+        dependenciesRoot.Add(newDependency);
 
-            // Return the ID of the created item
-            return nextId;
-        }
-        catch (Exception ex)
-        {
-            // Handle any exceptions that occur during the creation process
-            Console.WriteLine("An error occurred while creating the item: " + ex.Message);
-            return -1; // Return a negative value to indicate an error
-        }
+        // Save the updated dependencies root element to the XML file
+        XMLTools.SaveListToXMLElement(dependenciesRoot, "Dependencies");
+
+        // Return the ID of the created item
+        return nextId;
     }
 
     public void Delete(int id)
     {
-        string entity = "Dependencies"; 
+        string entity = "Dependencies";
 
         XElement rootElem = XMLTools.LoadListFromXMLElement(entity);
         XElement elementToDelete = rootElem.Elements().First(e => e.Element("Id")?.Value == id.ToString());
@@ -55,7 +44,7 @@ internal class DependencyImplementation : IDependency
         }
     }
 
-    public Dependency Read(int id)
+    public Dependency? Read(int id)
     {
         // Load the XML data from the "Dependency" element
         XElement rootElem = XMLTools.LoadListFromXMLElement("Dependency");
@@ -64,18 +53,20 @@ internal class DependencyImplementation : IDependency
         foreach (XElement elem in rootElem.Elements())
         {
             // Parse the "Id" element value to an integer
-            int dependencyId = int.Parse(elem.Element("Id")?.Value ?? "");
+            int dependencyId = int.Parse(elem.Element("Id")!.Value);
 
             // Check if the parsed id matches the provided id
             if (dependencyId == id)
             {
                 // Create a new Dependency object and populate its properties
-                Dependency dependency = new Dependency
-                {
-                    Id = int.Parse(elem.Element("Id").Value),
-                    DependsOnTask = elem.Element("DependsOnTask").Value,
-                    DependentTask = elem.Element("DependentTask").Value
-                };
+                string DependsOnTask = elem.Element("DependsOnTask")!.Value,
+               DependentTask = elem.Element(" DependentTask")!.Value;
+                Dependency? dependency = new Dependency
+                (
+                    dependencyId,
+                    int.Parse(DependentTask),
+                    int.Parse(DependsOnTask)
+                );
 
                 // Return the created dependency object
                 return dependency;
@@ -92,12 +83,15 @@ internal class DependencyImplementation : IDependency
 
         foreach (XElement elem in rootElem.Elements())
         {
-            Dependency dependency = new Dependency
-            {
-                Id = int.Parse(elem.Element("Id").Value),
-                DependsOnTask = elem.Element("DependsOnTask").Value,
-                DependentTask = elem.Element(" DependentTask,").Value,
-            };
+            string id = elem.Element("Id")!.Value,
+               DependsOnTask = elem.Element("DependsOnTask")!.Value,
+               DependentTask = elem.Element(" DependentTask")!.Value;
+            Dependency? dependency = new Dependency
+            (
+                int.Parse(id),
+                int.Parse(DependentTask),
+                int.Parse(DependsOnTask)
+            );
 
             if (filter(dependency))
             {
@@ -111,22 +105,26 @@ internal class DependencyImplementation : IDependency
     public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null)
     {
         XElement rootElem = XMLTools.LoadListFromXMLElement("Dependency");
+        List<Dependency> dependencies = new List<Dependency>();
 
         foreach (XElement elem in rootElem.Elements())
         {
-            Dependency dependency = new Dependency
-            {
-                Id = int.Parse(elem.Element("Id").Value),
-                DependsOnTask = elem.Element("DependsOnTask").Value,
-                DependentTask = elem.Element(" DependentTask,").Value,
-
-            };
+            string id = elem.Element("Id")!.Value,
+                DependsOnTask = elem.Element("DependsOnTask")!.Value,
+                DependentTask = elem.Element(" DependentTask")!.Value;
+            Dependency? dependency = new Dependency
+            (
+                int.Parse(id),
+                int.Parse(DependentTask),
+                int.Parse(DependsOnTask)
+            );
 
             if (filter == null || filter(dependency))
             {
-                yield return dependency;
+                dependencies.Add(dependency);
             }
         }
+        return dependencies;
     }
 
     public void Update(Dependency item)
@@ -139,16 +137,14 @@ internal class DependencyImplementation : IDependency
         if (dependentToUpdate != null)
         {
             // Update the properties of the entity XElement with the new values
-            dependentToUpdate.Element("Id")?.SetValue(item.Id);
-            dependentToUpdate.Element(" DependentTask,")?.SetValue(item.DependentTask,);
-            dependentToUpdate.Element("DependsOnTask")?.SetValue(item.DependsOnTask);
+            dependentToUpdate.Element("Id")!.SetValue(item.Id);
+            dependentToUpdate.Element(" DependentTask,")!.SetValue(item.DependentTask);
+            dependentToUpdate.Element("DependsOnTask")!.SetValue(item.DependsOnTask);
 
-            XMLTools.SaveListToXMLElement(root, "Dependencies"); 
-
-
+            XMLTools.SaveListToXMLElement(root, "Dependencies");
         }
 
     }
-       
-    
+
+
 }
