@@ -47,7 +47,7 @@ internal class DependencyImplementation : IDependency
     public Dependency? Read(int id)
     {
         // Load the XML data from the "Dependency" element
-        XElement rootElem = XMLTools.LoadListFromXMLElement("Dependency");
+        XElement rootElem = XMLTools.LoadListFromXMLElement("Dependencies");
 
         // Iterate through each element in the XML
         foreach (XElement elem in rootElem.Elements())
@@ -79,7 +79,7 @@ internal class DependencyImplementation : IDependency
 
     public Dependency? Read(Func<Dependency, bool> filter)
     {
-        XElement rootElem = XMLTools.LoadListFromXMLElement("Dependency");
+        XElement rootElem = XMLTools.LoadListFromXMLElement("Dependencies");
 
         foreach (XElement elem in rootElem.Elements())
         {
@@ -104,7 +104,7 @@ internal class DependencyImplementation : IDependency
 
     public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        XElement rootElem = XMLTools.LoadListFromXMLElement("Dependency");
+        XElement rootElem = XMLTools.LoadListFromXMLElement("Dependencies");
         List<Dependency> dependencies = new List<Dependency>();
 
         foreach (XElement elem in rootElem.Elements())
