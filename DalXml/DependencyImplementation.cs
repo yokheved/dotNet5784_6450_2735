@@ -4,6 +4,11 @@ using System.Xml.Linq;
 
 internal class DependencyImplementation : IDependency
 {
+    /// <summary>
+    /// Creates new Dependency entity object in DAL
+    /// </summary>
+    /// <param name="item">Dependency type</param>
+    /// <returns>integer - new item id</returns>
     public int Create(Dependency item)
     {
         // Load the existing dependencies from the XML file
@@ -29,7 +34,10 @@ internal class DependencyImplementation : IDependency
         // Return the ID of the created item
         return nextId;
     }
-
+    /// <summary>
+    /// Deletes an object by its Id
+    /// </summary>
+    /// <param name="id">id of dependency to delete</param>
     public void Delete(int id)
     {
         string entity = "Dependencies";
@@ -43,14 +51,18 @@ internal class DependencyImplementation : IDependency
             XMLTools.SaveListToXMLElement(rootElem, entity);
         }
     }
-
+    /// <summary>
+    /// Reads entity object by its ID 
+    /// </summary>
+    /// <param name="id">id of Dependency to read</param>
+    /// <returns>Dependency object with param id, if not found - null</returns>
     public Dependency? Read(int id)
     {
         // Load the XML data from the "Dependency" element
         XElement rootElem = XMLTools.LoadListFromXMLElement("Dependencies");
-
+        IEnumerable<XElement> elements = rootElem.Elements();
         // Iterate through each element in the XML
-        foreach (XElement elem in rootElem.Elements())
+        foreach (XElement elem in elements)
         {
             // Parse the "Id" element value to an integer
             int dependencyId = int.Parse(elem.Element("Id")!.Value);
@@ -101,7 +113,11 @@ internal class DependencyImplementation : IDependency
 
         return null;
     }
-
+    /// <summary>
+    /// Reads all entity objects by lambda function returning bool if wanted
+    /// </summary>
+    /// <param name="filter">not needed parameter of filtering list function, return true or false for object</param>
+    /// <returns>return list filterd by filter, or full list</returns>
     public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null)
     {
         XElement rootElem = XMLTools.LoadListFromXMLElement("Dependencies");
