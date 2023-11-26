@@ -80,7 +80,8 @@ static class XMLTools
         try
         {
             using FileStream file = new(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
-            new XmlSerializer(typeof(List<T>)).Serialize(file, list);
+            var serializer = new XmlSerializer(typeof(List<T>));
+            serializer.Serialize(file, list);
             //new XmlSerializer(typeof(List<T?>)).Serialize(file, list);
 
         }

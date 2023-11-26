@@ -72,7 +72,7 @@ internal class DependencyImplementation : IDependency
             {
                 // Create a new Dependency object and populate its properties
                 string DependsOnTask = elem.Element("DependsOnTask")!.Value,
-               DependentTask = elem.Element(" DependentTask")!.Value;
+               DependentTask = elem.Element("DependentTask")!.Value;
                 Dependency? dependency = new Dependency
                 (
                     dependencyId,
@@ -97,7 +97,7 @@ internal class DependencyImplementation : IDependency
         {
             string id = elem.Element("Id")!.Value,
                DependsOnTask = elem.Element("DependsOnTask")!.Value,
-               DependentTask = elem.Element(" DependentTask")!.Value;
+               DependentTask = elem.Element("DependentTask")!.Value;
             Dependency? dependency = new Dependency
             (
                 int.Parse(id),
@@ -127,7 +127,7 @@ internal class DependencyImplementation : IDependency
         {
             string id = elem.Element("Id")!.Value,
                 DependsOnTask = elem.Element("DependsOnTask")!.Value,
-                DependentTask = elem.Element(" DependentTask")!.Value;
+                DependentTask = elem.Element("DependentTask")!.Value;
             Dependency? dependency = new Dependency
             (
                 int.Parse(id),
@@ -154,7 +154,7 @@ internal class DependencyImplementation : IDependency
         {
             // Update the properties of the entity XElement with the new values
             dependentToUpdate.Element("Id")!.SetValue(item.Id);
-            dependentToUpdate.Element(" DependentTask,")!.SetValue(item.DependentTask);
+            dependentToUpdate.Element("DependentTask")!.SetValue(item.DependentTask);
             dependentToUpdate.Element("DependsOnTask")!.SetValue(item.DependsOnTask);
 
             XMLTools.SaveListToXMLElement(root, "Dependencies");
