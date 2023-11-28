@@ -12,10 +12,10 @@ internal class Program
         try
         {
             Initialization.Do(s_dal);
-            Console.WriteLine("\n Enter your choice:");
             int? choice;
             do
             {
+                Console.WriteLine("\n Enter your choice:");
                 choice = MainChoice();
                 switch (choice)
                 {
