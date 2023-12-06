@@ -1,7 +1,7 @@
 ﻿namespace Dal;
 using DO;
 
-sealed public class DalList : IDal
+sealed internal class DalList : IDal
 {
     public IDependency Dependency => new DependencyImplementation();
 
@@ -9,5 +9,7 @@ sealed public class DalList : IDal
 
     public ITask Task => new TaskImplementation();
 
+    public static IDal Instance { get; } = new DalList();
 
+    private DalList() { }
 }
