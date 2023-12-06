@@ -30,7 +30,7 @@ internal class DependencyImplementation : IDependency
     {
         return (from d in DataSource.Dependencies
                 where d.Id == id
-                select d).ToList()[0];
+                select d).ToList().FirstOrDefault();
     }
     /// <summary>
     /// Deletes an object by its Id
@@ -40,7 +40,7 @@ internal class DependencyImplementation : IDependency
     {
         Dependency? deleteIt = (from d in DataSource.Dependencies
                                 where d.Id == id
-                                select d).ToList()[0];
+                                select d).ToList().FirstOrDefault();
 
         if (deleteIt == null)
         {
@@ -59,7 +59,7 @@ internal class DependencyImplementation : IDependency
     {
         Dependency? existingItem = (from d in DataSource.Dependencies
                                     where d.Id == item.Id
-                                    select d).ToList()[0];
+                                    select d).ToList().FirstOrDefault();
 
         if (existingItem == null)
         {

@@ -36,7 +36,7 @@ internal class TaskImplementation : ITask
     {
         return (from t in DataSource.Tasks
                 where t.Id == id
-                select t).ToList()[0];
+                select t).ToList().FirstOrDefault();
     }
     /// <summary>
     /// Deletes a Task object by its Id
@@ -46,7 +46,7 @@ internal class TaskImplementation : ITask
     {
         DO.Task? deleteIt = (from t in DataSource.Tasks
                              where t.Id == id
-                             select t).ToList()[0];
+                             select t).ToList().FirstOrDefault();
 
         if (deleteIt == null)
         {
@@ -65,7 +65,7 @@ internal class TaskImplementation : ITask
     {
         DO.Task? existingItem = (from t in DataSource.Tasks
                                  where t.Id == item.Id
-                                 select t).ToList()[0];
+                                 select t).ToList().FirstOrDefault();
 
         if (existingItem == null)
         {

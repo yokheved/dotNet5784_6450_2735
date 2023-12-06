@@ -27,7 +27,7 @@ internal class EngineerImplementation : IEngineer
     {
         Engineer? deleteIt = (from e in DataSource.Engineers
                               where e.Id == id
-                              select e).ToList()[0];
+                              select e).ToList().FirstOrDefault();
 
         if (deleteIt == null)
         {
@@ -47,7 +47,7 @@ internal class EngineerImplementation : IEngineer
     {
         return (from e in DataSource.Engineers
                 where e.Id == id
-                select e).ToList()[0];
+                select e).ToList().FirstOrDefault();
     }
     /// <summary>
     /// Reads all entity objects by lambda function returning bool if wanted
@@ -73,7 +73,7 @@ internal class EngineerImplementation : IEngineer
     {
         Engineer? existingItem = (from e in DataSource.Engineers
                                   where e.Id == item.Id
-                                  select e).ToList()[0];
+                                  select e).ToList().FirstOrDefault();
 
         if (existingItem == null)
         {

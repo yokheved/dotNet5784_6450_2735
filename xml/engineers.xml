@@ -1,3 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfEngineer>
+<ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Engineer>
+    <Id>366786520</Id>
+    <Name>Alice</Name>
+    <Email>Alice@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>146</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>235681663</Id>
+    <Name>Bob</Name>
+    <Email>Bob@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>128</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>273050665</Id>
+    <Name>Charlie</Name>
+    <Email>Charlie@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>188</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>381242571</Id>
+    <Name>Diana</Name>
+    <Email>Diana@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>188</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>288908226</Id>
+    <Name>Eva</Name>
+    <Email>Eva@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>74</Cost>
+  </Engineer>
 </ArrayOfEngineer>
