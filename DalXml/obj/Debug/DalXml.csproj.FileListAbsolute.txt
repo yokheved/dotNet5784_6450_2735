@@ -11,3 +11,17 @@ C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalXml\obj\Debug\refint\DalXml.dll
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.pdb
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\DalXml\obj\Debug\ref\DalXml.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalXml.deps.json
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalXml.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\bin\DalXml.pdb
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.sourcelink.json
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.csproj.CopyComplete
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\refint\DalXml.dll
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\DalXml.pdb
+C:\Users\יעל\source\repos\yokheved\doNet5784_6450_2735\DalXml\obj\Debug\ref\DalXml.dll
