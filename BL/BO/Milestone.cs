@@ -1,20 +1,23 @@
 ﻿using System.Reflection;
-
 namespace BO;
-
+/// <summary>
+/// milestone: id, alias, create at date, status, start at date,
+/// approx end at date, last date to end, end at date, completion percentage,
+/// remarks, dependencies list. - all properties
+/// </summary>
 public class Milestone
 {
-    int Id { get; init; }
-    string? Alias { get; init; }
-    DateTime CreateAtDate { get; init; }
-    Status Status { get; init; }
-    DateTime StartAtDate { get; set; }
-    DateTime ApproxEndAtDate { get; set; }
-    DateTime LastDateToEnd { get; set; }
-    DateTime EndAtDate { get; set; }
-    double CompletionPercentage { get; set; }
-    string? Remarks { get; set; }
-    List<TaskInList>? DependenciesList { get; set; }
+    public int Id { get; init; }
+    public string? Alias { get; init; }
+    public DateTime CreateAtDate { get; init; }
+    public Status Status { get; init; }
+    public DateTime StartAtDate { get; set; }
+    public DateTime ApproxEndAtDate { get; set; }
+    public DateTime LastDateToEnd { get; set; }
+    public DateTime EndAtDate { get; set; }
+    public double CompletionPercentage { get; set; }
+    public string? Remarks { get; set; }
+    public List<TaskInList>? DependenciesList { get; set; }
     /// <summary>
     /// converts object to name of object and properties
     /// </summary>

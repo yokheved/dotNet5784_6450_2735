@@ -1,19 +1,17 @@
 ﻿using System.Reflection;
 
 namespace BO;
-
+/// <summary>
+/// engineer: id, name, email, level, cost, task(now) - all properties
+/// </summary>
 public class Engineer
 {
-    int Id { get; init; }
-    string? Name { get; init; }
-    string? Email { get; init; }
-    EngineerExperience Level { get; set; }
-    double Cost { get; set; }
-    TaskInEngineer? Task { get; set; }
-    /// <summary>
-    /// converts object to name of object and properties
-    /// </summary>
-    /// <returns> a string like: "objType:\n propName: propVal\n.....</returns>
+    public int Id { get; init; }
+    public string? Name { get; init; }
+    public string? Email { get; init; }
+    public EngineerExperience Level { get; set; }
+    public double Cost { get; set; }
+    public TaskInEngineer? Task { get; set; }
     public override string ToString()
     {
         Type type = this.GetType();//reflection

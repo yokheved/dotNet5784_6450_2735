@@ -1,24 +1,27 @@
 ﻿using System.Reflection;
-
 namespace BO;
-
+/// <summary>
+/// task: id, description, alias, create at date, approx start at date, 
+/// start at date, last date to end, approx end at date, status, dependencies list,
+/// milestone, deliverables, remarks, engineer, level - all properties
+/// </summary>
 public class Task
 {
-    int id { get; init; }
-    String? Description { get; init; }
-    String? Alias { get; init; }
-    DateTime CreatedAtDate { get; init; }
-    DateTime ApproxStartAtDate { get; set; }
-    DateTime StartAtDate { get; set; }
-    DateTime LastDateToEnd { get; set; }
-    DateTime ApproxEndAtDate { get; set; }
-    Status Status { get; set; }
-    List<TaskInList>? DependenciesList { get; set; }
-    MilestoneInTask? Milestone { get; set; }
-    string? Deliverables { get; set; }
-    string? Remarks { get; set; }
-    EngineerInTask? Engineer { get; set; }
-    EngineerExperience? Level { get; set; }
+    public int Id { get; init; }
+    public String? Description { get; init; }
+    public String? Alias { get; init; }
+    public DateTime CreatedAtDate { get; init; }
+    public DateTime ApproxStartAtDate { get; set; }
+    public DateTime StartAtDate { get; set; }
+    public DateTime LastDateToEnd { get; set; }
+    public DateTime ApproxEndAtDate { get; set; }
+    public Status Status { get; set; }
+    public List<TaskInList>? DependenciesList { get; set; }
+    public MilestoneInTask? Milestone { get; set; }
+    public string? Deliverables { get; set; }
+    public string? Remarks { get; set; }
+    public EngineerInTask? Engineer { get; set; }
+    public EngineerExperience? Level { get; set; }
     /// <summary>
     /// converts object to name of object and properties
     /// </summary>

@@ -1,7 +1,9 @@
 ﻿namespace BO;
-
+/// <summary>
+/// engineer in task: id, name - all properties
+/// </summary>
 public class EngineerInTask
 {
-    int Id { get; init; }
-    string? Name { get; init; }
+    public int Id { get; init; }
+    public string? Name { get; init; }
 }

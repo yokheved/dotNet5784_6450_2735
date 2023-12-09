@@ -1,13 +1,14 @@
 ﻿using System.Reflection;
-
 namespace BO;
-
+/// <summary>
+/// task in list; id, description, alias, status - all properties
+/// </summary>
 public class TaskInList
 {
-    int Id { get; init; }
-    string? Description { get; init; }
-    string? Alias { get; init; }
-    Status Status { get; set; }
+    public int Id { get; init; }
+    public string? Description { get; init; }
+    public string? Alias { get; init; }
+    public Status Status { get; set; }
     /// <summary>
     /// converts object to name of object and properties
     /// </summary>
