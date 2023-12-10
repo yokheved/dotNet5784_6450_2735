@@ -111,5 +111,17 @@ static class XMLTools
         }
     }
     #endregion
-
+    public static void ResetFile(string entity)
+    {
+        string filePath = $"{s_xml_dir + entity}.xml";
+        try
+        {
+            XDocument doc = XDocument.Load("your_file_path.xml");
+            doc.Root?.Elements()?.Remove();
+        }
+        catch (Exception ex)
+        {
+            throw new DalXMLFileLoadCreateException($"fail to reset xml file: {filePath}, {ex.Message}");
+        }
+    }
 }

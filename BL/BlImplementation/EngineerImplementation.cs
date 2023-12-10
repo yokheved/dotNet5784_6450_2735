@@ -1,5 +1,4 @@
 ﻿using BlApi;
-
 namespace BlImplementation;
 
 internal class EngineerImplementation : IEngineer
