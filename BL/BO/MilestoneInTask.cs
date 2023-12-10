@@ -1,16 +1,12 @@
 ﻿using System.Reflection;
 namespace BO;
 /// <summary>
-/// milestone in task: description, alias, create at date, status,
-/// completion percentage - all properties
+/// milestone in task: id, alias - all properties
 /// </summary>
 public class MilestoneInTask
 {
-    public string? Description { get; init; }
+    public int Id { get; init; }
     public string? Alias { get; init; }
-    public DateTime CreatedAtDate { get; init; }
-    public Status Status { get; set; }
-    public double CompletionPercentage { get; set; }
     /// <summary>
     /// converts object to name of object and properties
     /// </summary>

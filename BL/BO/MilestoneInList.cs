@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
 namespace BO;
 /// <summary>
-/// milestone in list: description, alias, create at date,
+/// milestone in list: id, description, alias, create at date,
 /// status, completion percentage - all properties
 /// </summary>
 public class MilestoneInList
 {
+    public int Id { get; init; }
     public string? Description { get; init; }
     public string? Alias { get; init; }
     public DateTime CreatedAtDate { get; init; }
