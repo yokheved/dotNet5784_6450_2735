@@ -37,6 +37,12 @@ static class XMLTools
         XMLTools.SaveListToXMLElement(root, data_config_xml);
         return nextId;
     }
+    public static DateTime GetDate(string data_config_xml, string elemName)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        DateTime date = root.ToDateTimeNullable(elemName) ?? throw new FormatException($"can't convert id.  {data_config_xml}, {elemName}");
+        return date;
+    }
 
     #endregion
 
