@@ -1,6 +1,5 @@
 ﻿namespace Dal;
 using DO;
-
 sealed internal class DalList : IDal
 {
     public IDependency Dependency => new DependencyImplementation();
@@ -8,8 +7,10 @@ sealed internal class DalList : IDal
     public IEngineer Engineer => new EngineerImplementation();
 
     public ITask Task => new TaskImplementation();
-    public DateTime? StartDate => new DateTime?();
-    public DateTime? EndDate => new DateTime?();
+    public DateTime StartDate
+    { get => DataSource.Config.EndProjectDate; set => DataSource.Config.EndProjectDate = value; }
+    public DateTime EndDate
+    { get => DataSource.Config.EndProjectDate; set => DataSource.Config.EndProjectDate = value; }
     public void Reset()
     {
         DataSource.Engineers.Clear();

@@ -43,6 +43,13 @@ static class XMLTools
         DateTime date = root.ToDateTimeNullable(elemName) ?? throw new FormatException($"can't convert id.  {data_config_xml}, {elemName}");
         return date;
     }
+    public static void SetDate(string data_config_xml, string elemName, DateTime date)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        root.Element(elemName)?.SetValue((date).ToString());
+        XMLTools.SaveListToXMLElement(root, data_config_xml);
+        return;
+    }
 
     #endregion
 
