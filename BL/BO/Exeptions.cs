@@ -23,3 +23,9 @@ public class BlIsInTheMiddleOfTask : Exception
 {
     public BlIsInTheMiddleOfTask(string? message) : base(message) { }
 }
+
+[Serializable]
+public class BlNotValidValueExeption : Exception
+{
+    public BlNotValidValueExeption(string? message) : base(message) { }
+}

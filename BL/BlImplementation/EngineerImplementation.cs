@@ -7,6 +7,12 @@ internal class EngineerImplementation : IEngineer
     private readonly DO.IDal _dal = DO.Factory.Get;
     public void AddEngineer(BO.Engineer engineer)
     {
+        if (engineer.Id <= 0)
+            throw new BO.BlNotValidValueExeption($"value {engineer.Id} for id is not valid");
+        if (engineer.Name == "")
+            throw new BO.BlNotValidValueExeption($"value {engineer.Name} for id is not valid");
+        if (engineer.Cost < 0)
+            throw new BO.BlNotValidValueExeption($"value {engineer.Cost} for id is not valid");
         try
         {
             _dal.Engineer!.Create(new DO.Engineer(
@@ -39,6 +45,8 @@ internal class EngineerImplementation : IEngineer
         {
             if (ex is DO.DalDoesNotExistException)
                 throw new BO.BlDoesNotExistException(ex.Message);
+            if (ex is BO.BlIsInTheMiddleOfTask)
+                throw new BO.BlIsInTheMiddleOfTask(ex.Message);
             else throw new Exception(ex.Message);
         }
     }
@@ -122,6 +130,12 @@ internal class EngineerImplementation : IEngineer
 
     public void UpdateEngineer(BO.Engineer engineer)
     {
+        if (engineer.Id <= 0)
+            throw new BO.BlNotValidValueExeption($"value {engineer.Id} for id is not valid");
+        if (engineer.Name == "")
+            throw new BO.BlNotValidValueExeption($"value {engineer.Name} for id is not valid");
+        if (engineer.Cost < 0)
+            throw new BO.BlNotValidValueExeption($"value {engineer.Cost} for id is not valid");
         try
         {
             _dal.Engineer!.Update(new DO.Engineer(
