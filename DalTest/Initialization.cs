@@ -158,9 +158,9 @@ public static class Initialization
     /// <param name="engineerDal"></param>
     /// <param name="dependencyDal"></param>
     /// <exception cref="Exception"></exception>
-    public static void Do(IDal dal)
+    public static void Do()
     {
-        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
+        s_dal = DO.Factory.Get; //stage 4
         createTasks();
         createEngineers();
         createDependencies();

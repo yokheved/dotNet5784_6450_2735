@@ -1,0 +1,5 @@
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.csproj.AssemblyReference.cache
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.AssemblyInfoInputs.cache
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.AssemblyInfo.cs
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.csproj.CoreCompileInputs.cache

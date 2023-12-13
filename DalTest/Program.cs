@@ -11,7 +11,12 @@ internal class Program
     {
         try
         {
-            Initialization.Do(s_dal);
+            Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
+            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
+            if (ans == "Y") //stage 3
+                //Initialization.Do(s_dal); //stage 2
+                Initialization.Do(); //stage 4
+
             int? choice;
             do
             {
@@ -78,11 +83,11 @@ internal class Program
 
         // For DateTime properties
         DateTime createdAtDate = DateTime.Now; // You can set the creation date based on your logic
-        DateTime? startDate = GetDateTimeFromUser("Enter Start Date:", false);
-        DateTime? scheduledDate = GetDateTimeFromUser("Enter Scheduled Date:", false);
-        DateTime? forecastDate = GetDateTimeFromUser("Enter Forecast Date:", false);
-        DateTime? deadlineDate = GetDateTimeFromUser("Enter Deadline Date:", false);
-        DateTime? completeDate = GetDateTimeFromUser("Enter Complete Date:", false);
+        GetDateTimeFromUser("Enter Start Date:", false, out DateTime startDate);
+        GetDateTimeFromUser("Enter Scheduled Date:", false, out DateTime scheduledDate);
+        GetDateTimeFromUser("Enter Forecast Date:", false, out DateTime forecastDate);
+        GetDateTimeFromUser("Enter Deadline Date:", false, out DateTime deadlineDate);
+        GetDateTimeFromUser("Enter Complete Date:", false, out DateTime completeDate);
 
         Console.WriteLine("Enter Deliverables:");
         string? deliverables = Console.ReadLine();
@@ -95,7 +100,7 @@ internal class Program
         bool? succidedId = int.TryParse(Console.ReadLine(), out engineerId);
 
         Console.WriteLine("Enter Complexity Level (Novice, AdvancedBeginner, Competent, Proficient, Expert):");
-        Enum.TryParse<EngineerExperience>(Console.ReadLine(), out EngineerExperience complexityLevel);
+        Enum.TryParse(Console.ReadLine(), out EngineerExperience complexityLevel);
 
         Task task = new Task(
             0,
@@ -103,11 +108,11 @@ internal class Program
             alias,
             isMilestone,
             createdAtDate,
-            (DateTime)startDate,
-            (DateTime)scheduledDate,
-            (DateTime)forecastDate,
-            (DateTime)deadlineDate,
-            (DateTime)completeDate,
+            startDate,
+            scheduledDate,
+            forecastDate,
+            deadlineDate,
+            completeDate,
             deliverables,
             remarks,
             engineerId,
@@ -154,12 +159,12 @@ internal class Program
         bool succidedIs = bool.TryParse(Console.ReadLine(), out isMilestone);
 
         // For DateTime properties
-        DateTime createdAtDate = task.CreatedAtDate; // You can set the creation date based on your logic
-        DateTime? startDate = GetDateTimeFromUser("Enter Start Date:", true);
-        DateTime? scheduledDate = GetDateTimeFromUser("Enter Scheduled Date:", true);
-        DateTime? forecastDate = GetDateTimeFromUser("Enter Forecast Date:", true);
-        DateTime? deadlineDate = GetDateTimeFromUser("Enter Deadline Date:", true);
-        DateTime? completeDate = GetDateTimeFromUser("Enter Complete Date:", true);
+        DateTime createdAtDate = task!.CreatedAtDate; // You can set the creation date based on your logic
+        bool isStartDate = GetDateTimeFromUser("Enter Start Date:", true, out DateTime startDate);
+        bool isScheduledDate = GetDateTimeFromUser("Enter Scheduled Date:", true, out DateTime scheduledDate);
+        bool isForecastDate = GetDateTimeFromUser("Enter Forecast Date:", true, out DateTime forecastDate);
+        bool isDeadlineDate = GetDateTimeFromUser("Enter Deadline Date:", true, out DateTime deadlineDate);
+        bool isCompleteDate = GetDateTimeFromUser("Enter Complete Date:", true, out DateTime completeDate);
 
         Console.WriteLine("Enter Deliverables:");
         string? deliverables = Console.ReadLine();
@@ -180,11 +185,11 @@ internal class Program
             alias ?? task.Alias,
             succidedIs ? isMilestone : task.IsMilestone,
             createdAtDate,
-            startDate is not null ? (DateTime)startDate : task.StartDate,
-            scheduledDate is not null ? (DateTime)scheduledDate : task.ScheduledDate,
-            forecastDate is not null ? (DateTime)forecastDate : task.ForecastDate,
-            deadlineDate is not null ? (DateTime)deadlineDate : task.DeadlineDate,
-            completeDate is not null ? (DateTime)completeDate : task.CompleteDate,
+            isStartDate ? startDate : task.StartDate,
+            isScheduledDate ? scheduledDate : task.ScheduledDate,
+            isForecastDate ? forecastDate : task.ForecastDate,
+            isDeadlineDate ? deadlineDate : task.DeadlineDate,
+            isCompleteDate ? completeDate : task.CompleteDate,
             deliverables ?? task.Deliverables,
             remarks ?? task.Remarks,
             succidedId ? engineerId : task.EngineerId,
@@ -423,11 +428,11 @@ internal class Program
     /// <param name="prompt">message to show befor input as label</param>
     /// <param name="allowNull">bool if should allow user give no input</param>
     /// <returns>returns date time object from user, if no inputt returns null</returns>
-    private static DateTime? GetDateTimeFromUser(string prompt, bool allowNull)
+    private static bool GetDateTimeFromUser(string prompt, bool allowNull, out DateTime date)
     {
         Console.WriteLine(prompt);
-        bool success = DateTime.TryParse(Console.ReadLine(), out DateTime result);
-        return !success && allowNull ? null : result;
+        bool success = DateTime.TryParse(Console.ReadLine(), out date);
+        return success || !allowNull;
     }
     /// <summary>
     /// gets action from user, which entity to deal with

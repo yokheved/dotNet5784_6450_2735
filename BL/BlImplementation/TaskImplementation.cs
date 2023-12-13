@@ -3,6 +3,7 @@ namespace BlImplementation;
 
 internal class TaskImplementation : ITask
 {
+    private readonly DO.IDal _dal = DO.Factory.Get;
     public void AddTask(BO.Task task)
     {
         throw new NotImplementedException();

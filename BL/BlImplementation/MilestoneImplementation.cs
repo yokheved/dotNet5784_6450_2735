@@ -4,6 +4,7 @@ namespace BlImplementation;
 
 internal class MilestoneImplementation : IMilestone
 {
+    private readonly DO.IDal _dal = DO.Factory.Get;
     public BO.Milestone GetMilestone(int id)
     {
         throw new NotImplementedException();

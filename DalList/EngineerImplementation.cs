@@ -90,4 +90,22 @@ internal class EngineerImplementation : IEngineer
         return DataSource.Engineers
             .FirstOrDefault(filter);
     }
+
+    public void Deconstruct(Engineer? e, out int id, out string? name, out string? email, out int? level, out double? cost)
+    {
+        if (e == null)
+        {
+            id = 0;
+            name = null;
+            email = null;
+            level = null;
+            cost = null;
+            return;
+        }
+        id = e.Id;
+        name = e.Name;
+        email = e.Email;
+        level = e.Level is not null ? (int)e.Level : null;
+        cost = e.Cost;
+    }
 }
