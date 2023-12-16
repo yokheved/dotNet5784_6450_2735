@@ -29,3 +29,9 @@ public class BlNotValidValueExeption : Exception
 {
     public BlNotValidValueExeption(string? message) : base(message) { }
 }
+
+[Serializable]
+public class BlIsADependencyExeption : Exception
+{
+    public BlIsADependencyExeption(string? message) : base(message) { }
+}

@@ -94,4 +94,44 @@ internal class TaskImplementation : ITask
                select item;
     }
 
+    public void Deconstruct(DO.Task? t, out int id, out string? discription, out string? alias, out bool? isMilestone,
+        out DateTime createdAtDate, out DateTime? startDate, out DateTime? scheduledDate, out DateTime? forecastDate,
+        out DateTime? deadlineDate, out DateTime? completeDate, out string? deliverables, out string? remarks, out int? engineerId,
+        out int? complexityLevel)
+    {
+        if (t == null)
+        {
+            id = 0;
+            discription = null;
+            alias = null;
+            isMilestone = null;
+            createdAtDate = DateTime.MinValue;
+            startDate = DateTime.MinValue;
+            scheduledDate = DateTime.MinValue;
+            deadlineDate = DateTime.MinValue;
+            completeDate = DateTime.MinValue;
+            forecastDate = DateTime.MinValue;
+            deliverables = null;
+            remarks = null;
+            engineerId = null;
+            complexityLevel = null;
+        }
+        else
+        {
+            id = t.Id;
+            discription = t.Discription;
+            alias = t.Alias;
+            isMilestone = t.IsMilestone;
+            createdAtDate = t.CreatedAtDate;
+            startDate = t.StartDate;
+            scheduledDate = t.ScheduledDate;
+            deadlineDate = t.DeadlineDate;
+            completeDate = t.CompleteDate;
+            deliverables = t.Deliverables;
+            forecastDate = t.ForecastDate;
+            remarks = t.Remarks;
+            engineerId = t.EngineerId;
+            complexityLevel = t.ComplexityLevel;
+        }
+    }
 }

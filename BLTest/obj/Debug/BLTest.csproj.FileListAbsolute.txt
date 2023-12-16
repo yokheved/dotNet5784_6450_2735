@@ -3,3 +3,14 @@ C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.AssemblyInfoInputs.cache
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.AssemblyInfo.cs
 C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.csproj.CoreCompileInputs.cache
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\BLTest.exe
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\BLTest.deps.json
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\BLTest.runtimeconfig.json
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\BLTest.dll
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\BLTest.pdb
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.csproj.CopyComplete
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.dll
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\refint\BLTest.dll
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.pdb
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\BLTest.genruntimeconfig.cache
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\BLTest\obj\Debug\ref\BLTest.dll

@@ -20,7 +20,7 @@ public interface ITask
     /// adds param task as a new task to DB if exists throws an error
     /// </summary>
     /// <param name="task">task to add to DB</param>
-    public void AddTask(BO.Task task);
+    public int AddTask(BO.Task task);
     /// <summary>
     /// updates task with id as given task with given task
     /// - if does not exist throws an error
