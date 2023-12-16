@@ -14,7 +14,7 @@ public class Milestone
     public DateTime StartAtDate { get; set; }
     public DateTime ApproxEndAtDate { get; set; }
     public DateTime LastDateToEnd { get; set; }
-    public DateTime EndAtDate { get; set; }
+    public DateTime? EndAtDate { get; set; }
     public double CompletionPercentage { get; set; }
     public string? Remarks { get; set; }
     public List<TaskInList>? DependenciesList { get; set; }

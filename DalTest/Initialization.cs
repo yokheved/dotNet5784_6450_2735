@@ -109,7 +109,7 @@ public static class Initialization
             int id = 0;
             do
                 id = s_rand.Next(150000000, 400000000);
-            while (s_dal!.Engineer.Read(id) is not null);
+            while (s_dal!.Engineer!.Read(id) is not null);
             Engineer engineer = new Engineer(
                 id,
                 names[i],
@@ -154,13 +154,10 @@ public static class Initialization
     /// <summary>
     /// creates and initializes entity lists with the param interface variables
     /// </summary>
-    /// <param name="taskDal"></param>
-    /// <param name="engineerDal"></param>
-    /// <param name="dependencyDal"></param>
     /// <exception cref="Exception"></exception>
     public static void Do()
     {
-        s_dal = DO.Factory.Get; //stage 4
+        s_dal = Factory.Get; //stage 4
         createTasks();
         createEngineers();
         createDependencies();
