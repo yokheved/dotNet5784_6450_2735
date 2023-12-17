@@ -12,7 +12,7 @@ public class Milestone
     public DateTime CreateAtDate { get; init; }
     public Status Status { get; init; }
     public DateTime StartAtDate { get; set; }
-    public DateTime ApproxEndAtDate { get; set; }
+    public DateTime ApproxStartAtDate { get; set; }
     public DateTime LastDateToEnd { get; set; }
     public DateTime? EndAtDate { get; set; }
     public double CompletionPercentage { get; set; }

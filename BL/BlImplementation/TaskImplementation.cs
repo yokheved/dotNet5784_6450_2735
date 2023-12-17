@@ -21,13 +21,12 @@ internal class TaskImplementation : ITask
                 task.CreatedAtDate,
                 task.StartAtDate,
                 task.ApproxStartAtDate,
-                task.ApproxEndAtDate,
                 task.LastDateToEnd,
-                null,
+                task.EndAtDate,
                 task.Deliverables,
                 task.Remarks,
                 task.Engineer?.Id,
-                task.Level is not null ? (DO.EngineerExperience)task.Level : null));
+                task.Level is not null ? (DO.EngineerExperience)task.Level : 0));
             task.DependenciesList!.ForEach(d =>
             {
                 if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d.Id) is null)
@@ -72,7 +71,7 @@ internal class TaskImplementation : ITask
         int? level = 0, engineerId = 0;
         bool? isMilestone = false;
         DateTime created = DateTime.MinValue;
-        DateTime? start = null, scheduled = null, forcast = null, deadline = null, completed = null;
+        DateTime? start = null, scheduled = null, deadline = null, completed = null;
         try
         {
             _dal.Task!.Deconstruct(
@@ -84,7 +83,6 @@ internal class TaskImplementation : ITask
                 out created,
                 out start,
                 out scheduled,
-                out forcast,
                 out deadline,
                 out completed,
                 out delivarables,
@@ -100,7 +98,7 @@ internal class TaskImplementation : ITask
                 StartAtDate = start ?? DateTime.MinValue,
                 Remarks = remarks,
                 Deliverables = delivarables,
-                ApproxEndAtDate = forcast ?? DateTime.MinValue,
+                EndAtDate = completed ?? DateTime.MinValue,
                 ApproxStartAtDate = scheduled ?? DateTime.MinValue,
                 LastDateToEnd = deadline ?? DateTime.MinValue,
                 DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == id)
@@ -111,7 +109,7 @@ internal class TaskImplementation : ITask
                                         Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
                                         Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
                                         Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
-                    : _dal.Task!.Read(d.DependsOnTask)?.ForecastDate is null ? 1
+                    : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
                     : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                     : 3)
                                     }).ToList(),
@@ -121,7 +119,7 @@ internal class TaskImplementation : ITask
                     Name = _dal.Engineer!.Read(t => t.Id == engineerId)!.Name
                 },
                 Status = (BO.Status)(scheduled is null ? 0
-                               : forcast is null ? 1
+                               : start is null ? 1
                                : completed is null ? 2
                                : 3)
             };
@@ -143,17 +141,16 @@ internal class TaskImplementation : ITask
                 Func<DO.Task, bool> doFilter =
                     t =>
                     {
-                        int level = t.ComplexityLevel is not null ? (int)t.ComplexityLevel : 0;
                         return filter(new BO.Task()
                         {
                             Id = t.Id,
                             Description = t.Discription,
                             Alias = t.Alias,
-                            Level = (BO.EngineerExperience)level,
+                            Level = (BO.EngineerExperience)t.ComplexityLevel,
                             StartAtDate = t.StartDate ?? DateTime.MinValue,
                             Remarks = t.Remarks,
                             Deliverables = t.Deliverables,
-                            ApproxEndAtDate = t.ForecastDate ?? DateTime.MinValue,
+                            EndAtDate = t.CompleteDate ?? DateTime.MinValue,
                             ApproxStartAtDate = t.ScheduledDate ?? DateTime.MinValue,
                             LastDateToEnd = t.DeadlineDate ?? DateTime.MinValue,
                             Engineer = new BO.EngineerInTask()
@@ -170,11 +167,11 @@ internal class TaskImplementation : ITask
                            Id = t.Id,
                            Description = t.Discription,
                            Alias = t.Alias,
-                           Level = t.ComplexityLevel is not null ? (BO.EngineerExperience)t.ComplexityLevel : 0,
+                           Level = (BO.EngineerExperience)t.ComplexityLevel,
                            StartAtDate = t.StartDate ?? DateTime.MinValue,
                            Remarks = t.Remarks,
                            Deliverables = t.Deliverables,
-                           ApproxEndAtDate = t.ForecastDate ?? DateTime.MinValue,
+                           EndAtDate = t.CompleteDate ?? DateTime.MinValue,
                            ApproxStartAtDate = t.ScheduledDate ?? DateTime.MinValue,
                            LastDateToEnd = t.DeadlineDate ?? DateTime.MinValue,
                            Engineer = new BO.EngineerInTask()
@@ -190,12 +187,12 @@ internal class TaskImplementation : ITask
                                                    Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
                                                    Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
                                                    Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
-                               : _dal.Task!.Read(d.DependsOnTask)?.ForecastDate is null ? 1
+                               : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
                                : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                                : 3)
                                                }).ToList(),
                            Status = (BO.Status)(t.ScheduledDate is null ? 0
-                               : t.ForecastDate is null ? 1
+                               : t.StartDate is null ? 1
                                : t.CompleteDate is null ? 2
                                : 3)
                        };
@@ -208,11 +205,10 @@ internal class TaskImplementation : ITask
                            Id = t.Id,
                            Description = t.Discription,
                            Alias = t.Alias,
-                           Level = t.ComplexityLevel is not null ? (BO.EngineerExperience)t.ComplexityLevel : 0,
+                           Level = (BO.EngineerExperience)t.ComplexityLevel,
                            StartAtDate = t.StartDate ?? DateTime.MinValue,
                            Remarks = t.Remarks,
                            Deliverables = t.Deliverables,
-                           ApproxEndAtDate = t.ForecastDate ?? DateTime.MinValue,
                            ApproxStartAtDate = t.ScheduledDate ?? DateTime.MinValue,
                            LastDateToEnd = t.DeadlineDate ?? DateTime.MinValue,
                            DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == t.Id)
@@ -223,7 +219,7 @@ internal class TaskImplementation : ITask
                                                    Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
                                                    Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
                                                    Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
-                               : _dal.Task!.Read(d.DependsOnTask)?.ForecastDate is null ? 1
+                               : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
                                : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                                : 3)
                                                }).ToList(),
@@ -233,7 +229,7 @@ internal class TaskImplementation : ITask
                                Name = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Name
                            },
                            Status = (BO.Status)(t.ScheduledDate is null ? 0
-                               : t.ForecastDate is null ? 1
+                               : t.StartDate is null ? 1
                                : t.CompleteDate is null ? 2
                                : 3)
                        };
@@ -260,13 +256,12 @@ internal class TaskImplementation : ITask
                 task.CreatedAtDate,
                 task.StartAtDate,
                 task.ApproxStartAtDate,
-                task.ApproxEndAtDate,
                 task.LastDateToEnd,
-                null,
+                task.EndAtDate,
                 task.Deliverables,
                 task.Remarks,
                 task.Engineer?.Id,
-                task.Level is not null ? (DO.EngineerExperience)task.Level : null));
+                task.Level is not null ? (DO.EngineerExperience)task.Level : 0));
             _dal.Dependency!.ReadAll(d => d.DependentTask == task.Id && task.DependenciesList!.Any(de => d.DependsOnTask != de.Id))
                 .ToList().ForEach(d => _dal.Dependency!.Delete(d.Id));
             task.DependenciesList!.ForEach(d =>

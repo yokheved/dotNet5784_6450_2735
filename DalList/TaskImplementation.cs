@@ -22,7 +22,7 @@ internal class TaskImplementation : ITask
         }
         int id = DataSource.Config.NextTaskId;
         DO.Task tempItem = new DO.Task(id, item.Discription, item.Alias, item.IsMilestone,
-            item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.ForecastDate, item.DeadlineDate,
+            item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.DeadlineDate,
             item.CompleteDate, item.Deliverables, item.Remarks, item.EngineerId, item.ComplexityLevel);
         DataSource.Tasks.Add(tempItem);
         return id;
@@ -95,7 +95,7 @@ internal class TaskImplementation : ITask
     }
 
     public void Deconstruct(DO.Task? t, out int id, out string? discription, out string? alias, out bool? isMilestone,
-        out DateTime createdAtDate, out DateTime? startDate, out DateTime? scheduledDate, out DateTime? forecastDate,
+        out DateTime createdAtDate, out DateTime? startDate, out DateTime? scheduledDate,
         out DateTime? deadlineDate, out DateTime? completeDate, out string? deliverables, out string? remarks, out int? engineerId,
         out int? complexityLevel)
     {
@@ -110,7 +110,6 @@ internal class TaskImplementation : ITask
             scheduledDate = DateTime.MinValue;
             deadlineDate = DateTime.MinValue;
             completeDate = DateTime.MinValue;
-            forecastDate = DateTime.MinValue;
             deliverables = null;
             remarks = null;
             engineerId = null;
@@ -128,10 +127,9 @@ internal class TaskImplementation : ITask
             deadlineDate = t.DeadlineDate;
             completeDate = t.CompleteDate;
             deliverables = t.Deliverables;
-            forecastDate = t.ForecastDate;
             remarks = t.Remarks;
             engineerId = t.EngineerId;
-            complexityLevel = t.ComplexityLevel;
+            complexityLevel = (int)t.ComplexityLevel;
         }
     }
 }

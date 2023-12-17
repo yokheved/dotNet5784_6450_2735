@@ -85,7 +85,6 @@ internal class Program
         DateTime createdAtDate = DateTime.Now; // You can set the creation date based on your logic
         GetDateTimeFromUser("Enter Start Date:", false, out DateTime startDate);
         GetDateTimeFromUser("Enter Scheduled Date:", false, out DateTime scheduledDate);
-        GetDateTimeFromUser("Enter Forecast Date:", false, out DateTime forecastDate);
         GetDateTimeFromUser("Enter Deadline Date:", false, out DateTime deadlineDate);
         GetDateTimeFromUser("Enter Complete Date:", false, out DateTime completeDate);
 
@@ -110,7 +109,6 @@ internal class Program
             createdAtDate,
             startDate,
             scheduledDate,
-            forecastDate,
             deadlineDate,
             completeDate,
             deliverables,
@@ -162,7 +160,6 @@ internal class Program
         DateTime createdAtDate = task!.CreatedAtDate; // You can set the creation date based on your logic
         bool isStartDate = GetDateTimeFromUser("Enter Start Date:", true, out DateTime startDate);
         bool isScheduledDate = GetDateTimeFromUser("Enter Scheduled Date:", true, out DateTime scheduledDate);
-        bool isForecastDate = GetDateTimeFromUser("Enter Forecast Date:", true, out DateTime forecastDate);
         bool isDeadlineDate = GetDateTimeFromUser("Enter Deadline Date:", true, out DateTime deadlineDate);
         bool isCompleteDate = GetDateTimeFromUser("Enter Complete Date:", true, out DateTime completeDate);
 
@@ -187,7 +184,6 @@ internal class Program
             createdAtDate,
             isStartDate ? startDate : task.StartDate,
             isScheduledDate ? scheduledDate : task.ScheduledDate,
-            isForecastDate ? forecastDate : task.ForecastDate,
             isDeadlineDate ? deadlineDate : task.DeadlineDate,
             isCompleteDate ? completeDate : task.CompleteDate,
             deliverables ?? task.Deliverables,

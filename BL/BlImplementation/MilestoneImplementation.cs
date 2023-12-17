@@ -12,7 +12,7 @@ internal class MilestoneImplementation : IMilestone
         bool? isMilestone = false;
         double complex = 0;
         DateTime created = DateTime.MinValue;
-        DateTime? start = null, scheduled = null, forcast = null, deadline = null, completed = null;
+        DateTime? start = null, scheduled = null, deadline = null, completed = null;
         try
         {
             _dal.Task!.Deconstruct(
@@ -24,7 +24,6 @@ internal class MilestoneImplementation : IMilestone
                 out created,
                 out start,
                 out scheduled,
-                out forcast,
                 out deadline,
                 out completed,
                 out delivarables,
@@ -39,14 +38,14 @@ internal class MilestoneImplementation : IMilestone
                  Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
                  Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
                  Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
-                     : _dal.Task!.Read(d.DependsOnTask)?.ForecastDate is null ? 1
+                     : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
                      : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                      : 3)
              }).ToList().ForEach(tl => complex += ((int)tl.Status + 1) * 25.0 / _dal.Dependency!.ReadAll(d => d.DependentTask == id).Count());
             return new BO.Milestone()
             {
                 Status = (BO.Status)(scheduled is null ? 0
-                               : forcast is null ? 1
+                               : start is null ? 1
                                : completed is null ? 2
                                : 3),
                 Id = id,
@@ -54,7 +53,7 @@ internal class MilestoneImplementation : IMilestone
                 CreateAtDate = created,
                 StartAtDate = start ?? DateTime.MinValue,
                 Remarks = remarks,
-                ApproxEndAtDate = forcast ?? DateTime.MinValue,
+                ApproxStartAtDate = scheduled ?? DateTime.MinValue,
                 LastDateToEnd = deadline ?? DateTime.MinValue,
                 EndAtDate = completed,
                 DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == id)
@@ -65,7 +64,7 @@ internal class MilestoneImplementation : IMilestone
                                         Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
                                         Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
                                         Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
-                                            : _dal.Task!.Read(d.DependsOnTask)?.ForecastDate is null ? 1
+                                            : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
                                             : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                                             : 3)
                                     }).ToList(),
