@@ -26,11 +26,11 @@ internal class DependencyImplementation : IDependency
     /// </summary>
     /// <param name="id">id of Dependency to read</param>
     /// <returns>Dependency object with param id, if not found - null</returns>
-    public Dependency? Read(int id)
+    public Dependency Read(int id)
     {
         return (from d in DataSource.Dependencies
                 where d.Id == id
-                select d).ToList().FirstOrDefault();
+                select d).ToList().FirstOrDefault() ?? throw new DalDoesNotExistException($"dependency with id {id} does not exist");
     }
     /// <summary>
     /// Deletes an object by its Id
@@ -88,10 +88,10 @@ internal class DependencyImplementation : IDependency
         return from item in DataSource.Dependencies
                select item;
     }
-    public Dependency? Read(Func<Dependency, bool> filter)
+    public Dependency Read(Func<Dependency, bool> filter)
     {
         return DataSource.Dependencies
-            .FirstOrDefault(filter);
+            .FirstOrDefault(filter) ?? throw new DalDoesNotExistException($"dependency does not exist");
     }
 
 }

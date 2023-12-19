@@ -7,7 +7,7 @@ internal class TaskImplementation : ITask
     public DO.Task? Read(Func<DO.Task, bool> filter)
     {
         return DataSource.Tasks
-            .FirstOrDefault(filter);
+            .FirstOrDefault(filter) ?? throw new DalDoesNotExistException($"task does not exist");
     }
     /// <summary>
     /// Creates new Task entity object in DAL
@@ -32,11 +32,11 @@ internal class TaskImplementation : ITask
     /// </summary>
     /// <param name="id">id of Task to read</param>
     /// <returns>Task object with param id, if not found - null</returns>
-    public DO.Task? Read(int id)
+    public DO.Task Read(int id)
     {
         return (from t in DataSource.Tasks
                 where t.Id == id
-                select t).ToList().FirstOrDefault();
+                select t).ToList().FirstOrDefault() ?? throw new DalDoesNotExistException($"task with id {id} does not exist");
     }
     /// <summary>
     /// Deletes a Task object by its Id

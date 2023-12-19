@@ -121,7 +121,16 @@ internal class TaskImplementation : ITask
                 Status = (BO.Status)(scheduled is null ? 0
                                : start is null ? 1
                                : completed is null ? 2
-                               : 3)
+                               : 3),
+                Milestone = new BO.MilestoneInTask()
+                {
+                    Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                        d.DependsOnTask == id && _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null
+                                )!.DependentTask)!.Id,
+                    Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                        d.DependsOnTask == id && (_dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null)
+                                )!.DependentTask)?.Alias
+                }
             };
         }
         catch (Exception ex)
@@ -157,6 +166,35 @@ internal class TaskImplementation : ITask
                             {
                                 Id = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Id,
                                 Name = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Name
+                            },
+                            DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == t.Id)
+                                                where true
+                                                select new BO.TaskInList()
+                                                {
+                                                    Id = d.DependsOnTask,
+                                                    Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
+                                                    Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
+                                                    Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
+                                : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
+                                : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
+                                : 3)
+                                                }).ToList(),
+                            Status = (BO.Status)(t.ScheduledDate is null ? 0
+                               : t.StartDate is null ? 1
+                               : t.CompleteDate is null ? 2
+                               : 3),
+                            Milestone = new BO.MilestoneInTask()
+                            {
+                                Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                                {
+                                    _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                                    return d.DependsOnTask == t.Id;
+                                })!.DependentTask)!.Id,
+                                Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                                {
+                                    _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                                    return d.DependsOnTask == t.Id;
+                                })!.DependentTask)?.Alias
                             }
                         });
                     };
@@ -194,7 +232,20 @@ internal class TaskImplementation : ITask
                            Status = (BO.Status)(t.ScheduledDate is null ? 0
                                : t.StartDate is null ? 1
                                : t.CompleteDate is null ? 2
-                               : 3)
+                               : 3),
+                           Milestone = new BO.MilestoneInTask()
+                           {
+                               Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                               {
+                                   _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                                   return d.DependsOnTask == t.Id;
+                               })!.DependentTask)!.Id,
+                               Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                               {
+                                   _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                                   return d.DependsOnTask == t.Id;
+                               })!.DependentTask)?.Alias
+                           }
                        };
             }
             else
@@ -231,7 +282,20 @@ internal class TaskImplementation : ITask
                            Status = (BO.Status)(t.ScheduledDate is null ? 0
                                : t.StartDate is null ? 1
                                : t.CompleteDate is null ? 2
-                               : 3)
+                               : 3),
+                           Milestone = new BO.MilestoneInTask()
+                           {
+                               Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                               {
+                                   _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                                   return d.DependsOnTask == t.Id;
+                               })!.DependentTask)!.Id,
+                               Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                               {
+                                   _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                                   return d.DependsOnTask == t.Id;
+                               })!.DependentTask)?.Alias
+                           }
                        };
         }
         catch (Exception ex)

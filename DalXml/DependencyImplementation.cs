@@ -81,7 +81,7 @@ internal class DependencyImplementation : IDependency
                 );
 
                 // Return the created dependency object
-                return dependency;
+                return dependency ?? throw new DalDoesNotExistException($"dependency with id {id} does not exist");
             }
         }
 
@@ -107,7 +107,7 @@ internal class DependencyImplementation : IDependency
 
             if (filter(dependency))
             {
-                return dependency;
+                return dependency ?? throw new DalDoesNotExistException($"dependency does not exist");
             }
         }
 

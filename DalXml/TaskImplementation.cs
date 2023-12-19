@@ -49,19 +49,22 @@ internal class TaskImplementation : ITask
     /// </summary>
     /// <param name="id">id of Task to read</param>
     /// <returns>Task object with param id, if not found - null</returns>
-    public Task? Read(int id)
+    public Task Read(int id)
     {
         List<Task> list = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
-        return (from t in list
-                where t.Id == id
-                select t).ToList().FirstOrDefault();
+        Task? task = (from t in list
+                      where t.Id == id
+                      select t).ToList().FirstOrDefault()
+                      ?? throw new DalDoesNotExistException($"task with id {id} does not exist");
+        return task;
     }
 
-    public Task? Read(Func<Task, bool> filter)
+    public Task Read(Func<Task, bool> filter)
     {
         List<Task> list = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
-        return list
-           .FirstOrDefault(filter);
+        Task? task = list
+           .FirstOrDefault(filter) ?? throw new DalDoesNotExistException($"task does not exist");
+        return task;
     }
     /// <summary>
     /// Reads all entity objects by lambda function returning bool if wanted
