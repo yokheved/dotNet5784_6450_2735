@@ -48,19 +48,19 @@ internal class EngineerImplementation : IEngineer
     /// </summary>
     /// <param name="id">id of Engineer to read</param>
     /// <returns>Engineer object with param id, if not found - null</returns>
-    public Engineer? Read(int id)
+    public Engineer Read(int id)
     {
         List<Engineer> list = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         return (from e in list
                 where e.Id == id
-                select e).ToList().FirstOrDefault();
+                select e).ToList().FirstOrDefault() ?? throw new DalDoesNotExistException($"engineer with id {id} does not exist");
     }
 
-    public Engineer? Read(Func<Engineer, bool> filter)
+    public Engineer Read(Func<Engineer, bool> filter)
     {
         List<Engineer> list = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         return list
-                  .FirstOrDefault(filter);
+                  .FirstOrDefault(filter) ?? throw new DalDoesNotExistException($"engineer does not exist");
     }
     /// <summary>
     /// Reads all entity objects by lambda function returning bool if wanted
@@ -100,5 +100,22 @@ internal class EngineerImplementation : IEngineer
             list.Add(item);
         }
         XMLTools.SaveListToXMLSerializer(list, "engineers");
+    }
+    public void Deconstruct(Engineer? e, out int id, out string? name, out string? email, out int? level, out double? cost)
+    {
+        if (e == null)
+        {
+            id = 0;
+            name = null;
+            email = null;
+            level = null;
+            cost = null;
+            return;
+        }
+        id = e.Id;
+        name = e.Name;
+        email = e.Email;
+        level = e.Level is not null ? (int)e.Level : null;
+        cost = e.Cost;
     }
 }

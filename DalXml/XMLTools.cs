@@ -37,6 +37,19 @@ static class XMLTools
         XMLTools.SaveListToXMLElement(root, data_config_xml);
         return nextId;
     }
+    public static DateTime GetDate(string data_config_xml, string elemName)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        DateTime date = root.ToDateTimeNullable(elemName) ?? throw new FormatException($"can't convert id.  {data_config_xml}, {elemName}");
+        return date;
+    }
+    public static void SetDate(string data_config_xml, string elemName, DateTime date)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        root.Element(elemName)?.SetValue((date).ToString());
+        XMLTools.SaveListToXMLElement(root, data_config_xml);
+        return;
+    }
 
     #endregion
 
@@ -111,5 +124,17 @@ static class XMLTools
         }
     }
     #endregion
-
+    public static void ResetFile(string entity)
+    {
+        string filePath = $"{s_xml_dir + entity}.xml";
+        try
+        {
+            XDocument doc = XDocument.Load("your_file_path.xml");
+            doc.Root?.Elements()?.Remove();
+        }
+        catch (Exception ex)
+        {
+            throw new DalXMLFileLoadCreateException($"fail to reset xml file: {filePath}, {ex.Message}");
+        }
+    }
 }

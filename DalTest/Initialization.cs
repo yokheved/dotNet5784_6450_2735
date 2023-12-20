@@ -65,7 +65,7 @@ public static class Initialization
         for (int i = 0; i < 20; i++)
         {//create task
             //makes an array of dates in cronoligical order
-            DateTime[] dates = new DateTime[6];
+            DateTime[] dates = new DateTime[5];
             for (int j = 0; j < 6; j++)
             {
                 if (j == 0)
@@ -83,7 +83,7 @@ public static class Initialization
                 taskDescriptions[taskDescriptionIndex],
                 aliases[taskDescriptionIndex],
                 (s_rand.Next(0, 2) == 1 ? true : false),
-                dates[0], dates[1], dates[2], dates[3], dates[4], dates[5],
+                dates[0], dates[1], dates[2], dates[3], dates[4],
                 taskDeliverables[taskDescriptionIndex],
                 taskRemarks[taskDescriptionIndex],
                 s_rand.Next(1, 6));
@@ -109,7 +109,7 @@ public static class Initialization
             int id = 0;
             do
                 id = s_rand.Next(150000000, 400000000);
-            while (s_dal!.Engineer.Read(id) is not null);
+            while (s_dal!.Engineer!.Read(id) is not null);
             Engineer engineer = new Engineer(
                 id,
                 names[i],
@@ -154,13 +154,10 @@ public static class Initialization
     /// <summary>
     /// creates and initializes entity lists with the param interface variables
     /// </summary>
-    /// <param name="taskDal"></param>
-    /// <param name="engineerDal"></param>
-    /// <param name="dependencyDal"></param>
     /// <exception cref="Exception"></exception>
-    public static void Do(IDal dal)
+    public static void Do()
     {
-        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
+        s_dal = Factory.Get; //stage 4
         createTasks();
         createEngineers();
         createDependencies();

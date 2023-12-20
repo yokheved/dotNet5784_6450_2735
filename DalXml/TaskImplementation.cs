@@ -17,7 +17,7 @@ internal class TaskImplementation : ITask
         }
         int id = Config.NextTaskId;
         Task tempItem = new Task(id, item.Discription, item.Alias, item.IsMilestone,
-            item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.ForecastDate, item.DeadlineDate,
+            item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.DeadlineDate,
             item.CompleteDate, item.Deliverables, item.Remarks, item.EngineerId, item.ComplexityLevel);
         list.Add(tempItem);
         XMLTools.SaveListToXMLSerializer<Task>(list, "tasks");
@@ -49,19 +49,22 @@ internal class TaskImplementation : ITask
     /// </summary>
     /// <param name="id">id of Task to read</param>
     /// <returns>Task object with param id, if not found - null</returns>
-    public Task? Read(int id)
+    public Task Read(int id)
     {
         List<Task> list = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
-        return (from t in list
-                where t.Id == id
-                select t).ToList().FirstOrDefault();
+        Task? task = (from t in list
+                      where t.Id == id
+                      select t).ToList().FirstOrDefault()
+                      ?? throw new DalDoesNotExistException($"task with id {id} does not exist");
+        return task;
     }
 
-    public Task? Read(Func<Task, bool> filter)
+    public Task Read(Func<Task, bool> filter)
     {
         List<Task> list = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
-        return list
-           .FirstOrDefault(filter);
+        Task? task = list
+           .FirstOrDefault(filter) ?? throw new DalDoesNotExistException($"task does not exist");
+        return task;
     }
     /// <summary>
     /// Reads all entity objects by lambda function returning bool if wanted
@@ -101,5 +104,43 @@ internal class TaskImplementation : ITask
             list.Add(item);
         }
         XMLTools.SaveListToXMLSerializer<Task>(list, "tasks");
+    }
+    public void Deconstruct(DO.Task? t, out int id, out string? discription, out string? alias, out bool? isMilestone,
+       out DateTime createdAtDate, out DateTime? startDate, out DateTime? scheduledDate,
+       out DateTime? deadlineDate, out DateTime? completeDate, out string? deliverables, out string? remarks, out int? engineerId,
+       out int? complexityLevel)
+    {
+        if (t == null)
+        {
+            id = 0;
+            discription = null;
+            alias = null;
+            isMilestone = null;
+            createdAtDate = DateTime.MinValue;
+            startDate = DateTime.MinValue;
+            scheduledDate = DateTime.MinValue;
+            deadlineDate = DateTime.MinValue;
+            completeDate = DateTime.MinValue;
+            deliverables = null;
+            remarks = null;
+            engineerId = null;
+            complexityLevel = null;
+        }
+        else
+        {
+            id = t.Id;
+            discription = t.Discription;
+            alias = t.Alias;
+            isMilestone = t.IsMilestone;
+            createdAtDate = t.CreatedAtDate;
+            startDate = t.StartDate;
+            scheduledDate = t.ScheduledDate;
+            deadlineDate = t.DeadlineDate;
+            completeDate = t.CompleteDate;
+            deliverables = t.Deliverables;
+            remarks = t.Remarks;
+            engineerId = t.EngineerId;
+            complexityLevel = (int)t.ComplexityLevel;
+        }
     }
 }

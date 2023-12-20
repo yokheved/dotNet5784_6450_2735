@@ -7,7 +7,7 @@ internal class TaskImplementation : ITask
     public DO.Task? Read(Func<DO.Task, bool> filter)
     {
         return DataSource.Tasks
-            .FirstOrDefault(filter);
+            .FirstOrDefault(filter) ?? throw new DalDoesNotExistException($"task does not exist");
     }
     /// <summary>
     /// Creates new Task entity object in DAL
@@ -22,7 +22,7 @@ internal class TaskImplementation : ITask
         }
         int id = DataSource.Config.NextTaskId;
         DO.Task tempItem = new DO.Task(id, item.Discription, item.Alias, item.IsMilestone,
-            item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.ForecastDate, item.DeadlineDate,
+            item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.DeadlineDate,
             item.CompleteDate, item.Deliverables, item.Remarks, item.EngineerId, item.ComplexityLevel);
         DataSource.Tasks.Add(tempItem);
         return id;
@@ -32,11 +32,11 @@ internal class TaskImplementation : ITask
     /// </summary>
     /// <param name="id">id of Task to read</param>
     /// <returns>Task object with param id, if not found - null</returns>
-    public DO.Task? Read(int id)
+    public DO.Task Read(int id)
     {
         return (from t in DataSource.Tasks
                 where t.Id == id
-                select t).ToList().FirstOrDefault();
+                select t).ToList().FirstOrDefault() ?? throw new DalDoesNotExistException($"task with id {id} does not exist");
     }
     /// <summary>
     /// Deletes a Task object by its Id
@@ -94,4 +94,42 @@ internal class TaskImplementation : ITask
                select item;
     }
 
+    public void Deconstruct(DO.Task? t, out int id, out string? discription, out string? alias, out bool? isMilestone,
+        out DateTime createdAtDate, out DateTime? startDate, out DateTime? scheduledDate,
+        out DateTime? deadlineDate, out DateTime? completeDate, out string? deliverables, out string? remarks, out int? engineerId,
+        out int? complexityLevel)
+    {
+        if (t == null)
+        {
+            id = 0;
+            discription = null;
+            alias = null;
+            isMilestone = null;
+            createdAtDate = DateTime.MinValue;
+            startDate = DateTime.MinValue;
+            scheduledDate = DateTime.MinValue;
+            deadlineDate = DateTime.MinValue;
+            completeDate = DateTime.MinValue;
+            deliverables = null;
+            remarks = null;
+            engineerId = null;
+            complexityLevel = null;
+        }
+        else
+        {
+            id = t.Id;
+            discription = t.Discription;
+            alias = t.Alias;
+            isMilestone = t.IsMilestone;
+            createdAtDate = t.CreatedAtDate;
+            startDate = t.StartDate;
+            scheduledDate = t.ScheduledDate;
+            deadlineDate = t.DeadlineDate;
+            completeDate = t.CompleteDate;
+            deliverables = t.Deliverables;
+            remarks = t.Remarks;
+            engineerId = t.EngineerId;
+            complexityLevel = (int)t.ComplexityLevel;
+        }
+    }
 }
