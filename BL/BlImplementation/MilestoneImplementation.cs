@@ -1,5 +1,4 @@
 ﻿using BlApi;
-
 namespace BlImplementation;
 
 internal class MilestoneImplementation : IMilestone
@@ -8,7 +7,7 @@ internal class MilestoneImplementation : IMilestone
 
     private IEnumerable<BO.Milestone> CreateMilestonesList(List<BO.Task> tasksList)
     {
-        var dict = _dal.Dependency!.ReadAll(d => tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependentTask))
+        var dict = _dal.Dependency!.ReadAll(d => tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependsOnTask))
             .GroupBy(d => d.DependentTask).ToDictionary(
                 group => group.Key,//dependent task
                 group => group.Select(d => d.DependentTask)//all dependencies for task
@@ -58,22 +57,24 @@ internal class MilestoneImplementation : IMilestone
                 if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d) is null)
                     _dal.Dependency!.Create(new DO.Dependency(0, id, d));
             });
-            keys = (from d in dict
-                    where d.Key == item.Key
-                    select d.Key).ToList();
+            keys = keys.Concat(from d in dict
+                               where d.Key == item.Key
+                               select d.Key).ToList();
             keys.ForEach(k =>
              {
                  if (_dal.Dependency!.Read(de => de.DependentTask == k && de.DependsOnTask == id) is null)
+                 {
                      _dal.Dependency!.Create(new DO.Dependency(0, k, id));
-                 keys.Remove(k);
+                     dict.Remove(k);
+                 }
              });
         }
-        keys.ForEach(k =>
+        foreach (var k in dict)//for each task that does not have dependencies - dependent on start
         {
-            if (_dal.Dependency!.Read(de => de.DependentTask == k && de.DependsOnTask == idStart) is null)
-                _dal.Dependency!.Create(new DO.Dependency(0, k, idStart));
-            keys.Remove(k);
-        });
+            if (_dal.Dependency!.Read(de => de.DependentTask == k.Key && de.DependsOnTask == idStart) is null)
+                _dal.Dependency!.Create(new DO.Dependency(0, k.Key, idStart));
+            dict.Remove(k.Key);
+        };
         foreach (var task in tasksList)
         {
             task.DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == task.Id)
@@ -104,6 +105,10 @@ internal class MilestoneImplementation : IMilestone
     public void CreateProjectSchedule(DateTime startDate, DateTime endDate, IEnumerable<BO.Task> tasksList)
     {
         List<BO.Milestone> milestones = this.CreateMilestonesList(tasksList.ToList()).ToList();
+        milestones.ForEach(milestone =>
+        {
+
+        });
 
     }
 
