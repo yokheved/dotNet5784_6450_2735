@@ -6,7 +6,7 @@ internal class MilestoneImplementation : IMilestone
 {
     private readonly DO.IDal _dal = DO.Factory.Get;
 
-    private IEnumerable<BO.Milestone> CreateMilestonesList(IEnumerable<BO.Task> tasksList)
+    private IEnumerable<BO.Milestone> CreateMilestonesList(List<BO.Task> tasksList)
     {
         var dict = _dal.Dependency!.ReadAll(d => tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependentTask))
             .GroupBy(d => d.DependentTask).ToDictionary(
@@ -74,12 +74,37 @@ internal class MilestoneImplementation : IMilestone
                 _dal.Dependency!.Create(new DO.Dependency(0, k, idStart));
             keys.Remove(k);
         });
-        return (IEnumerable<BO.Milestone>)mileStoneList;
+        foreach (var task in tasksList)
+        {
+            task.DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == task.Id)
+                                     where true
+                                     select new BO.TaskInList()
+                                     {
+                                         Id = d.DependsOnTask,
+                                         Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
+                                         Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
+                                         Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
+                                             : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
+                                             : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
+                                             : 3)
+                                     }).ToList();
+            task.Milestone = new BO.MilestoneInTask()
+            {
+                Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                    d.DependsOnTask == task.Id && _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null
+                                )!.DependentTask)!.Id,
+                Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                    d.DependsOnTask == task.Id && (_dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null)
+                                )!.DependentTask)?.Alias
+            };
+        }
+        return mileStoneList;
     }
 
     public void CreateProjectSchedule(DateTime startDate, DateTime endDate, IEnumerable<BO.Task> tasksList)
     {
-        throw new NotImplementedException();
+        List<BO.Milestone> milestones = this.CreateMilestonesList(tasksList.ToList()).ToList();
+
     }
 
     public BO.Milestone GetMilestone(int id)
