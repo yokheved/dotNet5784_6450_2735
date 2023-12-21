@@ -21,6 +21,7 @@ public record Task
     String? Discription,
     String? Alias,
     bool IsMilestone,
+    TimeSpan? Duration,
     DateTime CreatedAtDate,
     DateTime? ScheduledDate,
     DateTime? StartDate,
@@ -32,7 +33,7 @@ public record Task
     EngineerExperience ComplexityLevel = EngineerExperience.Novice
 )
 {
-    public Task() : this(default, default, default, default,
-        default, default, default, default, default, default, default, default, default)
+    public Task() : this(default, default, default, default, default, default,
+        default, default, default, default, default, default, default, default)
     { }
 };

@@ -18,6 +18,7 @@ internal class TaskImplementation : ITask
                 task.Description,
                 task.Alias,
                 task.Milestone is not null,
+                task.Duration,
                 task.CreatedAtDate,
                 task.StartAtDate,
                 task.ApproxStartAtDate,
@@ -69,6 +70,7 @@ internal class TaskImplementation : ITask
     {
         string? description = "", alias = "", remarks = "", delivarables = "";
         int? level = 0, engineerId = 0;
+        TimeSpan? duration = null;
         bool? isMilestone = false;
         DateTime created = DateTime.MinValue;
         DateTime? start = null, scheduled = null, deadline = null, completed = null;
@@ -80,6 +82,7 @@ internal class TaskImplementation : ITask
                 out description,
                 out alias,
                 out isMilestone,
+                out duration,
                 out created,
                 out start,
                 out scheduled,
@@ -94,6 +97,7 @@ internal class TaskImplementation : ITask
                 Id = id,
                 Description = description,
                 Alias = alias,
+                Duration = duration,
                 Level = level is not null ? (BO.EngineerExperience)level : null,
                 StartAtDate = start ?? DateTime.MinValue,
                 Remarks = remarks,
@@ -155,6 +159,7 @@ internal class TaskImplementation : ITask
                             Id = t.Id,
                             Description = t.Discription,
                             Alias = t.Alias,
+                            Duration = t.Duration,
                             Level = (BO.EngineerExperience)t.ComplexityLevel,
                             StartAtDate = t.StartDate ?? DateTime.MinValue,
                             Remarks = t.Remarks,
@@ -205,6 +210,7 @@ internal class TaskImplementation : ITask
                            Id = t.Id,
                            Description = t.Discription,
                            Alias = t.Alias,
+                           Duration = t.Duration,
                            Level = (BO.EngineerExperience)t.ComplexityLevel,
                            StartAtDate = t.StartDate ?? DateTime.MinValue,
                            Remarks = t.Remarks,
@@ -255,6 +261,7 @@ internal class TaskImplementation : ITask
                        {
                            Id = t.Id,
                            Description = t.Discription,
+                           Duration = t.Duration,
                            Alias = t.Alias,
                            Level = (BO.EngineerExperience)t.ComplexityLevel,
                            StartAtDate = t.StartDate ?? DateTime.MinValue,
@@ -317,6 +324,7 @@ internal class TaskImplementation : ITask
                 task.Description,
                 task.Alias,
                 task.Milestone is not null,
+                task.Duration,
                 task.CreatedAtDate,
                 task.StartAtDate,
                 task.ApproxStartAtDate,

@@ -10,6 +10,7 @@ public class Task
     public int Id { get; init; }
     public String? Description { get; init; }
     public String? Alias { get; init; }
+    public TimeSpan? Duration { get; init; }
     public DateTime CreatedAtDate { get; init; }
     public DateTime ApproxStartAtDate { get; set; }
     public DateTime StartAtDate { get; set; }

@@ -10,6 +10,7 @@ internal class MilestoneImplementation : IMilestone
         string? description = "", alias = "", remarks = "", delivarables = "";
         int? level = 0, engineerId = 0;
         bool? isMilestone = false;
+        TimeSpan? duration = null;
         double complex = 0;
         DateTime created = DateTime.MinValue;
         DateTime? start = null, scheduled = null, deadline = null, completed = null;
@@ -21,6 +22,7 @@ internal class MilestoneImplementation : IMilestone
                 out description,
                 out alias,
                 out isMilestone,
+                out duration,
                 out created,
                 out start,
                 out scheduled,

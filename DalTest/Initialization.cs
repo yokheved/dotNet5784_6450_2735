@@ -83,6 +83,7 @@ public static class Initialization
                 taskDescriptions[taskDescriptionIndex],
                 aliases[taskDescriptionIndex],
                 (s_rand.Next(0, 2) == 1 ? true : false),
+                TimeSpan.FromDays(s_rand.Next(2, 11)),
                 dates[0], dates[1], dates[2], dates[3], dates[4],
                 taskDeliverables[taskDescriptionIndex],
                 taskRemarks[taskDescriptionIndex],

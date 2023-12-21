@@ -21,7 +21,7 @@ internal class TaskImplementation : ITask
             throw new DalAlreadyExistsException($"Object of type Task with ID {item.Id} exists.");
         }
         int id = DataSource.Config.NextTaskId;
-        DO.Task tempItem = new DO.Task(id, item.Discription, item.Alias, item.IsMilestone,
+        DO.Task tempItem = new DO.Task(id, item.Discription, item.Alias, item.IsMilestone, item.Duration,
             item.CreatedAtDate, item.StartDate, item.ScheduledDate, item.DeadlineDate,
             item.CompleteDate, item.Deliverables, item.Remarks, item.EngineerId, item.ComplexityLevel);
         DataSource.Tasks.Add(tempItem);
@@ -94,7 +94,7 @@ internal class TaskImplementation : ITask
                select item;
     }
 
-    public void Deconstruct(DO.Task? t, out int id, out string? discription, out string? alias, out bool? isMilestone,
+    public void Deconstruct(DO.Task? t, out int id, out string? discription, out string? alias, out bool? isMilestone, out TimeSpan? duration,
         out DateTime createdAtDate, out DateTime? startDate, out DateTime? scheduledDate,
         out DateTime? deadlineDate, out DateTime? completeDate, out string? deliverables, out string? remarks, out int? engineerId,
         out int? complexityLevel)
@@ -105,6 +105,7 @@ internal class TaskImplementation : ITask
             discription = null;
             alias = null;
             isMilestone = null;
+            duration = null;
             createdAtDate = DateTime.MinValue;
             startDate = DateTime.MinValue;
             scheduledDate = DateTime.MinValue;
@@ -121,6 +122,7 @@ internal class TaskImplementation : ITask
             discription = t.Discription;
             alias = t.Alias;
             isMilestone = t.IsMilestone;
+            duration = t.Duration;
             createdAtDate = t.CreatedAtDate;
             startDate = t.StartDate;
             scheduledDate = t.ScheduledDate;

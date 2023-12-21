@@ -81,6 +81,11 @@ internal class Program
         bool isMilestone;
         bool.TryParse(Console.ReadLine(), out isMilestone);
 
+        int days;
+        Console.WriteLine("Enter duration of task (in days):");
+        int.TryParse(Console.ReadLine(), out days);
+        TimeSpan? duration = TimeSpan.FromDays(days);
+
         // For DateTime properties
         DateTime createdAtDate = DateTime.Now; // You can set the creation date based on your logic
         GetDateTimeFromUser("Enter Start Date:", false, out DateTime startDate);
@@ -106,6 +111,7 @@ internal class Program
             description,
             alias,
             isMilestone,
+            duration,
             createdAtDate,
             startDate,
             scheduledDate,
@@ -121,7 +127,7 @@ internal class Program
     private static void TaskRead()
     {
         Console.WriteLine("Enter Task ID to read:");
-        int taskId = int.Parse(Console.ReadLine());
+        int.TryParse(Console.ReadLine(), out int taskId);
 
         // Assuming s_dalTask.Read(taskId) method exists to read the task from your data source
         Task? task = s_dal!.Task!.Read(taskId);
@@ -156,6 +162,11 @@ internal class Program
         bool isMilestone;
         bool succidedIs = bool.TryParse(Console.ReadLine(), out isMilestone);
 
+        int days;
+        Console.WriteLine("Enter duration of task (in days):");
+        int.TryParse(Console.ReadLine(), out days);
+        TimeSpan? duration = TimeSpan.FromDays(days);
+
         // For DateTime properties
         DateTime createdAtDate = task!.CreatedAtDate; // You can set the creation date based on your logic
         bool isStartDate = GetDateTimeFromUser("Enter Start Date:", true, out DateTime startDate);
@@ -181,6 +192,7 @@ internal class Program
             description ?? task.Discription,
             alias ?? task.Alias,
             succidedIs ? isMilestone : task.IsMilestone,
+            duration ?? task.Duration,
             createdAtDate,
             isStartDate ? startDate : task.StartDate,
             isScheduledDate ? scheduledDate : task.ScheduledDate,
