@@ -134,4 +134,8 @@ internal class TaskImplementation : ITask
             complexityLevel = (int)t.ComplexityLevel;
         }
     }
+    public void Reset()
+    {
+        DataSource.Tasks.Clear();
+    }
 }

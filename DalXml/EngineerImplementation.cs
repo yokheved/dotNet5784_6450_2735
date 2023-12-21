@@ -118,4 +118,9 @@ internal class EngineerImplementation : IEngineer
         level = e.Level is not null ? (int)e.Level : null;
         cost = e.Cost;
     }
+
+    public void Reset()
+    {
+        XMLTools.ResetFile("engineers");
+    }
 }

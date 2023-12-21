@@ -145,4 +145,8 @@ internal class TaskImplementation : ITask
             complexityLevel = (int)t.ComplexityLevel;
         }
     }
+    public void Reset()
+    {
+        XMLTools.ResetFile("tasks");
+    }
 }

@@ -4,6 +4,7 @@
 /// </summary>
 public interface IMilestone
 {
+    public void CreateProjectSchedule(DateTime startDate, DateTime endDate, IEnumerable<BO.Task> tasksList);
     /// <summary>
     /// gets milstone with id as param
     /// </summary>

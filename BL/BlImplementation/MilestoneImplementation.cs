@@ -5,6 +5,83 @@ namespace BlImplementation;
 internal class MilestoneImplementation : IMilestone
 {
     private readonly DO.IDal _dal = DO.Factory.Get;
+
+    private IEnumerable<BO.Milestone> CreateMilestonesList(IEnumerable<BO.Task> tasksList)
+    {
+        var dict = _dal.Dependency!.ReadAll(d => tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependentTask))
+            .GroupBy(d => d.DependentTask).ToDictionary(
+                group => group.Key,//dependent task
+                group => group.Select(d => d.DependentTask)//all dependencies for task
+            ).OrderBy(pair => pair.Key)
+                             .ToDictionary(pair => pair.Key, pair => pair.Value);
+        var distinctDict = dict.Distinct();
+        _dal.Dependency!.Reset();
+        int idStart = _dal.Task!.Create(new DO.Task(
+                0,
+                null,
+                "M 0 : START",
+                true,
+                null,
+                DateTime.Now,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0));
+        int i = 1;
+        List<BO.Milestone> mileStoneList = new List<BO.Milestone>();
+        List<int> keys = new List<int>();
+        mileStoneList.Add(this.GetMilestone(idStart));
+        foreach (var item in distinctDict)
+        {
+            int id = _dal.Task!.Create(new DO.Task(
+                0,
+                null,
+                $"M {i++}",
+                true,
+                null,
+                DateTime.Now,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0));
+            mileStoneList.Add(this.GetMilestone(id));
+            item.Value.ToList().ForEach(d =>
+            {
+                if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d) is null)
+                    _dal.Dependency!.Create(new DO.Dependency(0, id, d));
+            });
+            keys = (from d in dict
+                    where d.Key == item.Key
+                    select d.Key).ToList();
+            keys.ForEach(k =>
+             {
+                 if (_dal.Dependency!.Read(de => de.DependentTask == k && de.DependsOnTask == id) is null)
+                     _dal.Dependency!.Create(new DO.Dependency(0, k, id));
+                 keys.Remove(k);
+             });
+        }
+        keys.ForEach(k =>
+        {
+            if (_dal.Dependency!.Read(de => de.DependentTask == k && de.DependsOnTask == idStart) is null)
+                _dal.Dependency!.Create(new DO.Dependency(0, k, idStart));
+            keys.Remove(k);
+        });
+        return (IEnumerable<BO.Milestone>)mileStoneList;
+    }
+
+    public void CreateProjectSchedule(DateTime startDate, DateTime endDate, IEnumerable<BO.Task> tasksList)
+    {
+        throw new NotImplementedException();
+    }
+
     public BO.Milestone GetMilestone(int id)
     {
         string? description = "", alias = "", remarks = "", delivarables = "";
@@ -17,7 +94,7 @@ internal class MilestoneImplementation : IMilestone
         try
         {
             _dal.Task!.Deconstruct(
-                _dal.Task!.Read(id),
+                _dal.Task!.Read(t => t.Id == id && t.IsMilestone),
                 out id,
                 out description,
                 out alias,
@@ -70,7 +147,7 @@ internal class MilestoneImplementation : IMilestone
                                             : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                                             : 3)
                                     }).ToList(),
-                CompletionPercentage = complex,
+                CompletionPercentage = complex
             };
         }
         catch (Exception ex)

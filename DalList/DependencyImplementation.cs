@@ -93,5 +93,9 @@ internal class DependencyImplementation : IDependency
         return DataSource.Dependencies
             .FirstOrDefault(filter) ?? throw new DalDoesNotExistException($"dependency does not exist");
     }
+    public void Reset()
+    {
+        DataSource.Dependencies.Clear();
+    }
 
 }

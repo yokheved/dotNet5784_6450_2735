@@ -10,5 +10,5 @@ public interface ICrud<T> where T : class
     void Update(T item);
     void Delete(int id);
     T? Read(Func<T, bool> filter); // stage 2
-
+    void Reset();
 }
