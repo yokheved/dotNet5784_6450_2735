@@ -104,14 +104,64 @@ internal class MilestoneImplementation : IMilestone
 
     public void CreateProjectSchedule(DateTime startDate, DateTime endDate, IEnumerable<BO.Task> tasksList)
     {
-        List<BO.Milestone> milestones = this.CreateMilestonesList(tasksList.ToList()).ToList();
-        milestones.ForEach(milestone =>
+        List<BO.Task> tasks = tasksList.ToList();
+        List<BO.Milestone> milestones = this.CreateMilestonesList(tasks).ToList();
+        milestones.First().ApproxStartAtDate = startDate;
+        milestones.Last().LastDateToEnd = endDate;
+        for (int i = 1; i < milestones.Count; i++)//ApproxStartAtDate calculation for all milestones
         {
-
+            milestones[i].ApproxStartAtDate =
+                milestones[i - 1].ApproxStartAtDate + tasks.Max(t => t.Duration) ?? DateTime.Now;
+        }
+        for (int i = milestones.Count - 2; i == 0; i++)//LastDateToEnd calculation for all milestones
+        {
+            milestones[i].LastDateToEnd =
+                milestones[i - 1].LastDateToEnd - tasks.Max(t => t.Duration) ?? DateTime.Now;
+        }
+        tasks.ForEach(t =>
+        {
+            t.ApproxStartAtDate = GetMilestone(t.Milestone!.Id).ApproxStartAtDate;
+            t.LastDateToEnd = (from m in milestones where m.DependenciesList!.Any(d => d.Id == m.Id) select m).First().LastDateToEnd;
+            _dal.Task!.Update(new DO.Task(
+                t.Id,
+                t.Description,
+                t.Alias,
+                false,
+                t.Duration,
+                t.CreatedAtDate,
+                t.StartAtDate,
+                t.ApproxStartAtDate,
+                t.LastDateToEnd,
+                t.EndAtDate,
+                t.Deliverables,
+                t.Remarks,
+                t.Engineer?.Id,
+                t.Level is not null ? (DO.EngineerExperience)t.Level : 0));
         });
-
+        milestones.ForEach(t =>
+        {
+            t.Alias = "";
+            t.DependenciesList?.ForEach(d =>
+            {
+                t.Alias += $"{d.Alias}";
+            });
+            _dal.Task!.Update(new DO.Task(
+                t.Id,
+                null,
+                t.Alias,
+                false,
+                null,
+                t.CreateAtDate,
+                t.StartAtDate,
+                t.ApproxStartAtDate,
+                t.LastDateToEnd,
+                t.EndAtDate,
+                null,
+                t.Remarks,
+                null,
+                (DO.EngineerExperience)0));
+        });
     }
-
     public BO.Milestone GetMilestone(int id)
     {
         string? description = "", alias = "", remarks = "", delivarables = "";
