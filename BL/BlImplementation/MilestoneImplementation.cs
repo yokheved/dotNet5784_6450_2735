@@ -33,7 +33,6 @@ internal class MilestoneImplementation : IMilestone
         int i = 1;
         List<BO.Milestone> mileStoneList = new List<BO.Milestone>();
         List<int> keys = new List<int>();
-        mileStoneList.Add(this.GetMilestone(idStart));//add start milestone to milestones
         foreach (var item in distinctDict)//add all milestones
         {
             int id = _dal.Task!.Create(new DO.Task(
@@ -51,12 +50,12 @@ internal class MilestoneImplementation : IMilestone
                 null,
                 null,
                 0));
-            mileStoneList.Add(this.GetMilestone(id));
             item.Value.ToList().ForEach(d =>//create dependencies for this milstone
             {
                 if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d) is null)
                     _dal.Dependency!.Create(new DO.Dependency(0, id, d));
             });
+            mileStoneList.Add(this.GetMilestone(id));
             //get all dependencies from dict that are supposed to depened on current milestone
             keys = keys.Concat(from d in dict
                                where d.Key == item.Key
@@ -76,6 +75,7 @@ internal class MilestoneImplementation : IMilestone
                 _dal.Dependency!.Create(new DO.Dependency(0, k.Key, idStart));
             dict.Remove(k.Key);
         };
+        mileStoneList.Insert(0, this.GetMilestone(idStart));//add start milestone to the beggining of milestones 
         foreach (var task in tasksList)//update dependency and milestone property for all tasks
         {
             task.DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == task.Id)
