@@ -15,7 +15,7 @@ internal class MilestoneImplementation : IMilestone
                              .ToDictionary(pair => pair.Key, pair => pair.Value);
         var distinctDict = dict.Distinct();
         _dal.Dependency!.Reset();
-        int idStart = _dal.Task!.Create(new DO.Task(
+        int idStart = _dal.Task!.Create(new DO.Task(//create start milestone
                 0,
                 null,
                 "M 0 : START",
@@ -33,8 +33,8 @@ internal class MilestoneImplementation : IMilestone
         int i = 1;
         List<BO.Milestone> mileStoneList = new List<BO.Milestone>();
         List<int> keys = new List<int>();
-        mileStoneList.Add(this.GetMilestone(idStart));
-        foreach (var item in distinctDict)
+        mileStoneList.Add(this.GetMilestone(idStart));//add start milestone to milestones
+        foreach (var item in distinctDict)//add all milestones
         {
             int id = _dal.Task!.Create(new DO.Task(
                 0,
@@ -52,15 +52,16 @@ internal class MilestoneImplementation : IMilestone
                 null,
                 0));
             mileStoneList.Add(this.GetMilestone(id));
-            item.Value.ToList().ForEach(d =>
+            item.Value.ToList().ForEach(d =>//create dependencies for this milstone
             {
                 if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d) is null)
                     _dal.Dependency!.Create(new DO.Dependency(0, id, d));
             });
+            //get all dependencies from dict that are supposed to depened on current milestone
             keys = keys.Concat(from d in dict
                                where d.Key == item.Key
                                select d.Key).ToList();
-            keys.ForEach(k =>
+            keys.ForEach(k =>//for all milestones dependent on this milestone creat dependency
              {
                  if (_dal.Dependency!.Read(de => de.DependentTask == k && de.DependsOnTask == id) is null)
                  {
@@ -75,7 +76,7 @@ internal class MilestoneImplementation : IMilestone
                 _dal.Dependency!.Create(new DO.Dependency(0, k.Key, idStart));
             dict.Remove(k.Key);
         };
-        foreach (var task in tasksList)
+        foreach (var task in tasksList)//update dependency and milestone property for all tasks
         {
             task.DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == task.Id)
                                      where true
@@ -118,7 +119,7 @@ internal class MilestoneImplementation : IMilestone
             milestones[i].LastDateToEnd =
                 milestones[i - 1].LastDateToEnd - tasks.Max(t => t.Duration) ?? DateTime.Now;
         }
-        tasks.ForEach(t =>
+        tasks.ForEach(t =>//update new data in DAL
         {
             t.ApproxStartAtDate = GetMilestone(t.Milestone!.Id).ApproxStartAtDate;
             t.LastDateToEnd = (from m in milestones where m.DependenciesList!.Any(d => d.Id == m.Id) select m).First().LastDateToEnd;
@@ -138,7 +139,7 @@ internal class MilestoneImplementation : IMilestone
                 t.Engineer?.Id,
                 t.Level is not null ? (DO.EngineerExperience)t.Level : 0));
         });
-        milestones.ForEach(t =>
+        milestones.ForEach(t =>//update new data in DAL
         {
             t.Alias = "";
             t.DependenciesList?.ForEach(d =>
