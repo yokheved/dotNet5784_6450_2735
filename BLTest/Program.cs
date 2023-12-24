@@ -30,7 +30,7 @@ internal class Program
                         EngineerHandle();
                         break;
                     case 3:
-                        DependencyHandle();
+                        MilestoneHandle();
                         break;
                 }
             }
@@ -68,7 +68,7 @@ internal class Program
                 break;
         }
     }
-    private static void TaskCreate()///creates a new task by receiving details from the user such as a description, alias and whether or not it is a milestone.
+    private static Task TaskCreate()///creates a new task by receiving details from the user such as a description, alias and whether or not it is a milestone.
     {
         Console.WriteLine("Enter Task Description:");
         string? description = Console.ReadLine();
@@ -138,6 +138,7 @@ internal class Program
             Level = complexityLevel
         };
         s_bl.Task!.AddTask(task);
+        return task;
     }
     private static void TaskRead()
     {
@@ -223,7 +224,7 @@ internal class Program
         int taskId = int.Parse(Console.ReadLine());
 
         // Delete the task using s_dalTask.Delete(taskId)
-        s_dal!.Task!.Delete(taskId);
+        s_bl!.Task!.DeleteTask(taskId);
         Console.WriteLine("Task deleted successfully.");
     }
     #endregion
@@ -337,40 +338,26 @@ internal class Program
     #endregion
 
     #region Dependency - option 3 in main
-    private static void DependencyHandle()///performs actions on dependencies of the user's choice.
+    private static void MilestoneHandle()///performs actions on dependencies of the user's choice.
     {
         CRUD? choice;
         choice = EntityChoice();
         switch (choice)
         {
-            case CRUD.Create:
-                DependencyCreate();
-                break;
             case CRUD.Read:
-                DependencyRead();
+                MilestoneRead();
                 break;
             case CRUD.ReadAll:
-                DependencyReadAll();
+                MilestoneReadAll();
                 break;
             case CRUD.Update:
-                DependencyUpdate();
+                MilestoneUpdate();
                 break;
-            case CRUD.Delete:
-                DependencyDelete();
+            default:
                 break;
         }
     }
-    private static void DependencyCreate()
-    {
-        Console.WriteLine("Enter Dependent Task ID:");
-        int dependentTask = int.Parse(Console.ReadLine());
-
-        Console.WriteLine("Enter Depends On Task ID:");
-        int dependsOnTask = int.Parse(Console.ReadLine());
-
-        s_dal!.Dependency!.Create(new DO.Dependency(0, dependentTask, dependsOnTask));
-    }
-    private static void DependencyRead()
+    private static void MilestoneRead()
     {
         Console.WriteLine("Enter Dependency ID to read:");
         int dependencyId = int.Parse(Console.ReadLine());
@@ -380,7 +367,7 @@ internal class Program
 
         Console.WriteLine(dependency);
     }
-    private static void DependencyReadAll()
+    private static void MilestoneReadAll()
     {
         List<Dependency> dependencies = s_dal!.Dependency!.ReadAll().ToList();
 
@@ -390,7 +377,7 @@ internal class Program
             Console.WriteLine("------------");
         }
     }
-    private static void DependencyUpdate()
+    private static void MilestoneUpdate()
     {
         Console.WriteLine("Enter Dependency ID to update:");
         int dependencyId = int.Parse(Console.ReadLine());
@@ -411,16 +398,6 @@ internal class Program
             dependentOnSucceed ? dependsOnTask : dependency.DependsOnTask)
         );
     }
-    private static void DependencyDelete()
-    {
-        Console.WriteLine("Enter Dependency ID to delete:");
-        int dependencyId = int.Parse(Console.ReadLine());
-
-        // Delete the dependency using s_dalDependency.Delete(dependencyId)
-        s_dal!.Dependency!.Delete(dependencyId);
-        Console.WriteLine("Dependency deleted successfully.");
-    }
-
     #endregion
 
     #region additional functions
@@ -458,12 +435,29 @@ internal class Program
     /// <returns>int choice from user</returns>
     private static int? MainChoice()
     {
-        Console.WriteLine("task: press 1");
-        Console.WriteLine("engineer: press 2");
-        Console.WriteLine("dependency: press 3");
+        Console.WriteLine("project create: press 1");
+        Console.WriteLine("task: press 2");
+        Console.WriteLine("engineer: press 3");
+        Console.WriteLine("milestone: press 4");
         Console.WriteLine("exit: press 0");
         int choice = int.Parse(Console.ReadLine()!);
         return choice;
+    }
+
+    private static void ProjectCreate()
+    {
+        List<Task> tasks = new List<Task>();
+        while (true)
+        {
+            Console.WriteLine("To enter task for project: (Y/N)");
+            string? ans = Console.ReadLine() ?? throw new BlNotValidValueExeption("non valid value");
+            if (ans == "Y") tasks.Add(TaskCreate());
+            else break;
+        }
+        if (tasks.Count == 0) throw new BlNotValidValueExeption("can't create a project with no tasks");
+        GetDateTimeFromUser("Enter start date for project:", false, out DateTime startDate);
+        GetDateTimeFromUser("Enter deadline date for project:", false, out DateTime deadlineDate);
+        s_bl.Milestone!.CreateProjectSchedule(startDate, deadlineDate, tasks);
     }
 
     #endregion

@@ -23,3 +23,15 @@ public enum Status
     OnTrack,
     InJeopardy
 }
+
+/// <summary>
+/// list of values that represents choice of user for action on entity
+/// </summary>
+public enum CRUD
+{
+    Create,
+    Read,
+    ReadAll,
+    Update,
+    Delete
+}
