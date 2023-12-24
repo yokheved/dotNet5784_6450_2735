@@ -148,7 +148,7 @@ internal class MilestoneImplementation : IMilestone
                 {
                     t.Alias += $"{d.Alias}";
                 });
-                _dal.Task!.Update(new DO.Task(
+                _dal.Task!.Update(new DO.Task(//also checks for circling dependencies
                     t.Id,
                     null,
                     t.Alias,
@@ -170,6 +170,7 @@ internal class MilestoneImplementation : IMilestone
             if (ex is DO.DalDoesNotExistException || ex is BO.BlDoesNotExistException)
                 throw new BO.BlDoesNotExistException(ex.Message);
             if (ex is DO.DalAlreadyExistsException) throw new BO.BlAlreadyExistsException(ex.Message);
+            if (ex is BO.BlCirclingDependenciesExeption) throw new BO.BlCirclingDependenciesExeption(ex.Message);
             throw new Exception(ex.Message);
         }
     }
