@@ -118,7 +118,7 @@ internal class MilestoneImplementation : IMilestone
                 milestone.StartAtDate,
                 milestone.ApproxStartAtDate,
                 milestone.LastDateToEnd,
-                milestone.DependenciesList!.Select(d => _dal.Task!.Read(d.Id)!.CompleteDate).First() ??
+                milestone.DependenciesList!.All(d => _dal.Task!.Read(d.Id)!.CompleteDate is not null) ? DateTime.Now :
                 milestone.EndAtDate,
                 null,
                 milestone.Remarks,
