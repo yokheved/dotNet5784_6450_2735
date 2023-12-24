@@ -9,6 +9,7 @@ public class Milestone
 {
     public int Id { get; init; }
     public string? Alias { get; set; }
+    public string? Description { get; set; }
     public DateTime CreateAtDate { get; init; }
     public Status Status { get; init; }
     public DateTime StartAtDate { get; set; }

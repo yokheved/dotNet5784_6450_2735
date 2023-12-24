@@ -16,5 +16,6 @@ public interface IMilestone
     /// </summary>
     /// <param name="id">id of milstone to update</param>
     /// <returns>updated milestone</returns>
-    public BO.Milestone UpdateMilestone(int id);
+    public BO.Milestone UpdateMilestone(int id, string? alias, string? description, string? remarks);
+    public void UpdateMilestone(int id);
 }

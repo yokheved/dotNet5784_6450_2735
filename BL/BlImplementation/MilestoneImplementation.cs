@@ -102,7 +102,45 @@ internal class MilestoneImplementation : IMilestone
         }
         return mileStoneList;
     }
-
+    public void UpdateMilestone(int id)
+    {
+        try
+        {
+            BO.Milestone milestone = GetMilestone(id);
+            _dal.Task!.Update(new DO.Task(
+                milestone.Id,
+                milestone.Description,
+                milestone.Alias,
+                true,
+                null,
+                milestone.CreateAtDate,
+                milestone.DependenciesList!.Select(d => _dal.Task!.Read(d.Id)!.StartDate).First() ??
+                milestone.StartAtDate,
+                milestone.ApproxStartAtDate,
+                milestone.LastDateToEnd,
+                milestone.DependenciesList!.Select(d => _dal.Task!.Read(d.Id)!.CompleteDate).First() ??
+                milestone.EndAtDate,
+                null,
+                milestone.Remarks,
+                null,
+                (DO.EngineerExperience)0));
+            _dal.Dependency!.ReadAll(d => d.DependentTask == milestone.Id && milestone.DependenciesList!.Any(de => d.DependsOnTask != de.Id))
+                .ToList().ForEach(d => _dal.Dependency!.Delete(d.Id));
+            milestone.DependenciesList!.ForEach(d =>
+            {
+                if (_dal.Dependency!.Read(de => de.DependentTask == milestone.Id && de.DependsOnTask == d.Id) is null)
+                    _dal.Dependency!.Create(new DO.Dependency(0, milestone.Id, d.Id));
+            });
+        }
+        catch (Exception ex)
+        {
+            if (ex is DO.DalDoesNotExistException)
+                throw new BO.BlDoesNotExistException(ex.Message);
+            if (ex is BO.BlCirclingDependenciesExeption)
+                throw new BO.BlCirclingDependenciesExeption(ex.Message);
+            else throw new Exception(ex.Message);
+        }
+    }
     public void CreateProjectSchedule(DateTime startDate, DateTime endDate, IEnumerable<BO.Task> tasksList)
     {
         try
@@ -221,6 +259,7 @@ internal class MilestoneImplementation : IMilestone
                                : 3),
                 Id = id,
                 Alias = alias,
+                Description = description,
                 CreateAtDate = created,
                 StartAtDate = start ?? DateTime.MinValue,
                 Remarks = remarks,
@@ -249,10 +288,42 @@ internal class MilestoneImplementation : IMilestone
             else throw new Exception(ex.Message);
         }
     }
-
-    public BO.Milestone UpdateMilestone(int id)
+    public BO.Milestone UpdateMilestone(int id, string? alias, string? description, string? remarks)
     {
-        //not clear how to update relevent fields
-        throw new NotImplementedException();
+        if (id <= 0)
+            throw new BO.BlNotValidValueExeption($"value {id} for id is not valid");
+        if (alias == "")
+            throw new BO.BlNotValidValueExeption($"value{alias} for alias is not valid");
+        try
+        {
+            BO.Milestone milestone = GetMilestone(id);
+            milestone.Description = description ?? milestone.Description;
+            milestone.Remarks = remarks ?? milestone.Remarks;
+            milestone.Alias = alias ?? milestone.Alias;
+            _dal.Task!.Update(new DO.Task(
+                milestone.Id,
+                description ?? milestone.Description,
+                alias ?? milestone.Alias,
+                true,
+                null,
+                milestone.CreateAtDate,
+                milestone.StartAtDate,
+                milestone.ApproxStartAtDate,
+                milestone.LastDateToEnd,
+                milestone.EndAtDate,
+                null,
+                remarks ?? milestone.Remarks,
+                null,
+                (DO.EngineerExperience)0));
+            return milestone;
+        }
+        catch (Exception ex)
+        {
+            if (ex is DO.DalDoesNotExistException)
+                throw new BO.BlDoesNotExistException(ex.Message);
+            if (ex is BO.BlCirclingDependenciesExeption)
+                throw new BO.BlCirclingDependenciesExeption(ex.Message);
+            else throw new Exception(ex.Message);
+        }
     }
 }

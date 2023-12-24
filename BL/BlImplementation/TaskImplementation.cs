@@ -5,6 +5,7 @@ namespace BlImplementation;
 internal class TaskImplementation : ITask
 {
     private readonly DO.IDal _dal = DO.Factory.Get;
+    private readonly IBl _bl = Factory.Get;
     public int AddTask(BO.Task task)
     {
         if (task.Id <= 0)
@@ -17,7 +18,7 @@ internal class TaskImplementation : ITask
                 task.Id,
                 task.Description,
                 task.Alias,
-                task.Milestone is not null,
+                false,
                 task.Duration,
                 task.CreatedAtDate,
                 task.StartAtDate,
@@ -33,6 +34,11 @@ internal class TaskImplementation : ITask
                 if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d.Id) is null)
                     _dal.Dependency!.Create(new DO.Dependency(0, id, d.Id));
             });
+            _bl.Milestone!.UpdateMilestone(_dal.Task!.Read(_dal.Dependency!.Read(d =>
+            {
+                _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                return d.DependsOnTask == task.Id;
+            })!.DependentTask)!.Id);
             return id;
         }
         catch (Exception ex)
@@ -55,6 +61,11 @@ internal class TaskImplementation : ITask
             if (dependentTask is not null)
                 throw new BO.BlIsADependencyExeption($"task with id {id} is  a dependency for task {dependentTask}");
             _dal.Engineer!.Delete(id);
+            _bl.Milestone!.UpdateMilestone(_dal.Task!.Read(_dal.Dependency!.Read(d =>
+            {
+                _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                return d.DependsOnTask == taskId;
+            })!.DependentTask)!.Id);
         }
         catch (Exception ex)
         {
@@ -346,6 +357,11 @@ internal class TaskImplementation : ITask
             group => group.Key,//dependent task
                 group => group.Select(d => d.DependentTask).ToArray()//all dependencies for task
             ));
+            _bl.Milestone!.UpdateMilestone(_dal.Task!.Read(_dal.Dependency!.Read(d =>
+            {
+                _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                return d.DependsOnTask == task.Id;
+            })!.DependentTask)!.Id);
         }
         catch (Exception ex)
         {
