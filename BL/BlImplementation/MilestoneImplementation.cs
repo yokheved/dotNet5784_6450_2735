@@ -5,7 +5,7 @@ internal class MilestoneImplementation : IMilestone
 {
     private readonly DO.IDal _dal = DO.Factory.Get;
 
-    private IEnumerable<BO.Milestone> CreateMilestonesList(List<BO.Task> tasksList)
+    private List<BO.Milestone> CreateMilestonesList(List<BO.Task> tasksList)
     {
         var dict = _dal.Dependency!.ReadAll(d => tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependsOnTask))
             .GroupBy(d => d.DependentTask).ToDictionary(
@@ -105,63 +105,73 @@ internal class MilestoneImplementation : IMilestone
 
     public void CreateProjectSchedule(DateTime startDate, DateTime endDate, IEnumerable<BO.Task> tasksList)
     {
-        List<BO.Task> tasks = tasksList.ToList();
-        List<BO.Milestone> milestones = this.CreateMilestonesList(tasks).ToList();
-        milestones.First().ApproxStartAtDate = startDate;
-        milestones.Last().LastDateToEnd = endDate;
-        for (int i = 1; i < milestones.Count; i++)//ApproxStartAtDate calculation for all milestones
+        try
         {
-            milestones[i].ApproxStartAtDate =
-                milestones[i - 1].ApproxStartAtDate + tasks.Max(t => t.Duration) ?? DateTime.Now;
-        }
-        for (int i = milestones.Count - 2; i == 0; i++)//LastDateToEnd calculation for all milestones
-        {
-            milestones[i].LastDateToEnd =
-                milestones[i - 1].LastDateToEnd - tasks.Max(t => t.Duration) ?? DateTime.Now;
-        }
-        tasks.ForEach(t =>//update new data in DAL
-        {
-            t.ApproxStartAtDate = GetMilestone(t.Milestone!.Id).ApproxStartAtDate;
-            t.LastDateToEnd = (from m in milestones where m.DependenciesList!.Any(d => d.Id == m.Id) select m).First().LastDateToEnd;
-            _dal.Task!.Update(new DO.Task(
-                t.Id,
-                t.Description,
-                t.Alias,
-                false,
-                t.Duration,
-                t.CreatedAtDate,
-                t.StartAtDate,
-                t.ApproxStartAtDate,
-                t.LastDateToEnd,
-                t.EndAtDate,
-                t.Deliverables,
-                t.Remarks,
-                t.Engineer?.Id,
-                t.Level is not null ? (DO.EngineerExperience)t.Level : 0));
-        });
-        milestones.ForEach(t =>//update new data in DAL
-        {
-            t.Alias = "";
-            t.DependenciesList?.ForEach(d =>
+            List<BO.Task> tasks = tasksList.ToList();
+            List<BO.Milestone> milestones = this.CreateMilestonesList(tasks);
+            milestones.First().ApproxStartAtDate = startDate;
+            milestones.Last().LastDateToEnd = endDate;
+            for (int i = 1; i < milestones.Count; i++)//ApproxStartAtDate calculation for all milestones
             {
-                t.Alias += $"{d.Alias}";
+                milestones[i].ApproxStartAtDate =
+                    milestones[i - 1].ApproxStartAtDate + tasks.Max(t => t.Duration) ?? DateTime.Now;
+            }
+            for (int i = milestones.Count - 2; i == 0; i++)//LastDateToEnd calculation for all milestones
+            {
+                milestones[i].LastDateToEnd =
+                    milestones[i - 1].LastDateToEnd - tasks.Max(t => t.Duration) ?? DateTime.Now;
+            }
+            tasks.ForEach(t =>//update new data in DAL
+            {
+                t.ApproxStartAtDate = GetMilestone(t.Milestone!.Id).ApproxStartAtDate;
+                t.LastDateToEnd = (from m in milestones where m.DependenciesList!.Any(d => d.Id == m.Id) select m).First().ApproxStartAtDate;
+                _dal.Task!.Update(new DO.Task(
+                    t.Id,
+                    t.Description,
+                    t.Alias,
+                    false,
+                    t.Duration,
+                    t.CreatedAtDate,
+                    t.StartAtDate,
+                    t.ApproxStartAtDate,
+                    t.LastDateToEnd,
+                    t.EndAtDate,
+                    t.Deliverables,
+                    t.Remarks,
+                    t.Engineer?.Id,
+                    t.Level is not null ? (DO.EngineerExperience)t.Level : 0));
             });
-            _dal.Task!.Update(new DO.Task(
-                t.Id,
-                null,
-                t.Alias,
-                false,
-                null,
-                t.CreateAtDate,
-                t.StartAtDate,
-                t.ApproxStartAtDate,
-                t.LastDateToEnd,
-                t.EndAtDate,
-                null,
-                t.Remarks,
-                null,
-                (DO.EngineerExperience)0));
-        });
+            milestones.ForEach(t =>//update new data in DAL
+            {
+                t.Alias = "";
+                t.DependenciesList?.ForEach(d =>
+                {
+                    t.Alias += $"{d.Alias}";
+                });
+                _dal.Task!.Update(new DO.Task(
+                    t.Id,
+                    null,
+                    t.Alias,
+                    false,
+                    null,
+                    t.CreateAtDate,
+                    t.StartAtDate,
+                    t.ApproxStartAtDate,
+                    t.LastDateToEnd,
+                    t.EndAtDate,
+                    null,
+                    t.Remarks,
+                    null,
+                    (DO.EngineerExperience)0));
+            });
+        }
+        catch (Exception ex)
+        {
+            if (ex is DO.DalDoesNotExistException || ex is BO.BlDoesNotExistException)
+                throw new BO.BlDoesNotExistException(ex.Message);
+            if (ex is DO.DalAlreadyExistsException) throw new BO.BlAlreadyExistsException(ex.Message);
+            throw new Exception(ex.Message);
+        }
     }
     public BO.Milestone GetMilestone(int id)
     {

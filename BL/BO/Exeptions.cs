@@ -35,3 +35,9 @@ public class BlIsADependencyExeption : Exception
 {
     public BlIsADependencyExeption(string? message) : base(message) { }
 }
+
+[Serializable]
+public class BlCirclingDependenciesExeption : Exception
+{
+    public BlCirclingDependenciesExeption(string? message) : base(message) { }
+}
