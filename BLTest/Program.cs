@@ -16,23 +16,30 @@ internal class Program
                             //Initialization.Do(s_dal); //stage 2
                 DalTest.Initialization.Do(); //stage 4
 
-            int? choice;
+            int? choice = 0;
             do
             {
-                Console.WriteLine("\n Enter your choice:");
-                choice = MainChoice();
-                switch (choice)
+                try
                 {
-                    case 1:
-                        TaskHandle();
-                        break;
-                    case 2:
-                        EngineerHandle();
-                        break;
-                    case 3:
-                        MilestoneHandle();
-                        break;
+                    Console.WriteLine("\n Enter your choice:");
+                    choice = MainChoice();
+                    switch (choice)
+                    {
+                        case 1:
+                            ProjectCreate();
+                            break;
+                        case 2:
+                            TaskHandle();
+                            break;
+                        case 3:
+                            EngineerHandle();
+                            break;
+                        case 4:
+                            MilestoneHandle();
+                            break;
+                    }
                 }
+                catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             }
             while (choice != 0);
         }
@@ -356,14 +363,11 @@ internal class Program
     private static void MilestoneHandle()///performs actions on dependencies of the user's choice.
     {
         CRUD? choice;
-        choice = EntityChoice();
+        choice = EntityChoice(true);
         switch (choice)
         {
             case CRUD.Read:
                 MilestoneRead();
-                break;
-            case CRUD.ReadAll:
-                MilestoneReadAll();
                 break;
             case CRUD.Update:
                 MilestoneUpdate();
@@ -375,43 +379,32 @@ internal class Program
     private static void MilestoneRead()
     {
         Console.WriteLine("Enter Dependency ID to read:");
-        int dependencyId = int.Parse(Console.ReadLine());
+        int milestoneId = int.Parse(Console.ReadLine());
 
-        // Assuming s_dalDependency.Read(dependencyId) method exists to read the dependency from your data source
-        Dependency? dependency = s_dal!.Dependency!.Read(dependencyId);
+        // Assuming s_bl.Milestone.GetMilestone method exists to read the milestone from your data source
+        Milestone? dependency = s_bl!.Milestone!.GetMilestone(milestoneId);
 
         Console.WriteLine(dependency);
-    }
-    private static void MilestoneReadAll()
-    {
-        List<Dependency> dependencies = s_dal!.Dependency!.ReadAll().ToList();
-
-        foreach (var dependency in dependencies)
-        {
-            Console.WriteLine(dependency);
-            Console.WriteLine("------------");
-        }
     }
     private static void MilestoneUpdate()
     {
-        Console.WriteLine("Enter Dependency ID to update:");
-        int dependencyId = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter Milestone ID to update:");
+        int milestoneId = int.Parse(Console.ReadLine());
 
-        Dependency? dependency = s_dal!.Dependency!.Read(dependencyId);
-        Console.WriteLine("Current Dependency Details:");
-        Console.WriteLine(dependency);
+        Milestone? milestone = s_bl!.Milestone!.GetMilestone(milestoneId);
+        Console.WriteLine("Current Milestone Details:");
+        Console.WriteLine(milestone);
 
-        Console.WriteLine("Enter Dependent Task ID:");
-        bool dependentSucceed = int.TryParse(Console.ReadLine(), out int dependentTask);
+        Console.WriteLine("Enter Milestone Alias:");
+        string? alias = Console.ReadLine();
 
-        Console.WriteLine("Enter Depends On Task ID:");
-        bool dependentOnSucceed = int.TryParse(Console.ReadLine(), out int dependsOnTask);
+        Console.WriteLine("Enter Milestone Description:");
+        string? description = Console.ReadLine();
+
+        Console.WriteLine("Enter Milestone Remarks:");
+        string? remarks = Console.ReadLine();
         // Update the dependency using s_dalDependency.Update(dependency)
-        s_dal!.Dependency!.Update(new DO.Dependency(
-            dependency!.Id,
-            dependentSucceed ? dependentTask : dependency.DependentTask,
-            dependentOnSucceed ? dependsOnTask : dependency.DependsOnTask)
-        );
+        s_bl!.Milestone!.UpdateMilestone(milestoneId, alias, description, remarks);
     }
     #endregion
 
@@ -420,15 +413,14 @@ internal class Program
     /// gets choice of action from the user : create, read, read all, update, delete
     /// </summary>
     /// <returns>returns type CRUD enum, users choice</returns>
-    private static CRUD EntityChoice()///accepts a choice from a menu from the user and returns the choice as a CRUD value.
+    private static CRUD EntityChoice(bool isMilestone = false)///accepts a choice from a menu from the user and returns the choice as a CRUD value.
     {
         int choice;
-        Console.WriteLine("create: press 0");
+        if (!isMilestone) Console.WriteLine("create: press 0");
         Console.WriteLine("read: press 1");
-        Console.WriteLine("read all: press 2");
+        if (!isMilestone) Console.WriteLine("read all: press 2");
         Console.WriteLine("update: press 3");
-        Console.WriteLine("delete: press 4");
-
+        if (!isMilestone) Console.WriteLine("delete: press 4");
         int.TryParse(Console.ReadLine(), out choice);
         return (CRUD)choice;
     }
@@ -458,7 +450,6 @@ internal class Program
         int choice = int.Parse(Console.ReadLine()!);
         return choice;
     }
-
     private static void ProjectCreate()
     {
         List<Task> tasks = new List<Task>();
