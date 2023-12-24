@@ -282,10 +282,10 @@ internal class Program
         EngineerExperience level = Enum.Parse<EngineerExperience>(Console.ReadLine());
 
         Console.WriteLine("Enter Engineer Cost:");
-        double? cost = double.Parse(Console.ReadLine());
+        double cost = double.Parse(Console.ReadLine());
 
-        Engineer engineer = new Engineer(engineerId, name, email, level, cost);
-        s_dal!.Engineer!.Create(engineer);
+        Engineer engineer = new Engineer() { Id = engineerId, Name = name, Email = email, Level = level, Cost = cost };
+        s_bl.Engineer.AddEngineer(engineer);
     }
     private static void EngineerRead()
     {
@@ -293,13 +293,13 @@ internal class Program
         int engineerId = int.Parse(Console.ReadLine());
 
         // Assuming s_dalEngineer.Read(engineerId) method exists to read the engineer from your data source
-        Engineer? engineer = s_dal!.Engineer!.Read(engineerId);
+        Engineer? engineer = s_bl!.Engineer!.GetEngineer(engineerId);
 
         Console.WriteLine(engineer);
     }
     private static void EngineerReadAll()
     {
-        List<Engineer> engineers = s_dal!.Engineer!.ReadAll().ToList();
+        List<Engineer> engineers = s_bl!.Engineer!.GetEngineerList().ToList();
 
         foreach (var engineer in engineers)
         {
@@ -312,7 +312,7 @@ internal class Program
         Console.WriteLine("Enter Engineer ID to update:");
         int engineerId = int.Parse(Console.ReadLine());
 
-        Engineer? engineer = s_dal!.Engineer!.Read(engineerId);
+        Engineer? engineer = s_bl!.Engineer!.GetEngineer(engineerId);
         Console.WriteLine("Current Engineer Details:");
         Console.WriteLine(engineer);
 
@@ -328,15 +328,17 @@ internal class Program
         Console.WriteLine("Enter Engineer Cost:");
         bool successCost = double.TryParse(Console.ReadLine(), out double cost);
 
-        DO.Engineer engineerUpdate = new DO.Engineer(
-            engineerId,
-            name ?? engineer!.Name,
-            email ?? engineer!.Email,
-            levelSucceeded ? level : engineer!.Level,
-            successCost ? cost : engineer!.Cost);
+        Engineer engineerUpdate = new Engineer()
+        {
+            Id = engineerId,
+            Name = name ?? engineer!.Name,
+            Email = email ?? engineer!.Email,
+            Level = levelSucceeded ? level : engineer!.Level,
+            Cost = successCost ? cost : engineer!.Cost
+        };
 
-        // Update the engineer using s_dalEngineer.Update(engineer)
-        s_dal!.Engineer!.Update(engineerUpdate);
+        // Update the engineer using s_blEngineer.Update(engineer)
+        s_bl!.Engineer!.UpdateEngineer(engineerUpdate);
     }
     private static void EngineerDelete()
     {
@@ -344,7 +346,7 @@ internal class Program
         int engineerId = int.Parse(Console.ReadLine());
 
         // Delete the engineer using s_dalEngineer.Delete(engineerId)
-        s_dal!.Engineer!.Delete(engineerId);
+        s_bl!.Engineer!.DeleteEgineer(engineerId);
         Console.WriteLine("Engineer deleted successfully.");
     }
 
