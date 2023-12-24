@@ -196,6 +196,19 @@ internal class Program
         Console.WriteLine("Enter Complexity Level (Novice, Intermediate, or Expert):");
         bool levelSucceeded = Enum.TryParse<EngineerExperience>(Console.ReadLine(), out EngineerExperience complexityLevel);
 
+        List<TaskInList> dependencies = (from d in task.DependenciesList select d).ToList();
+        int dependencyId = 0;
+        do
+        {
+            Console.WriteLine("enter task dependencyid (if non. enter -1):");
+            int.TryParse(Console.ReadLine(), out dependencyId);
+            if (dependencyId == -1) break;
+            Task dTask = s_bl.Task!.GetTask(dependencyId);
+            if (!dependencies.Any(d => d.Id == dependencyId))
+                dependencies.Add(new TaskInList()
+                { Id = dependencyId, Alias = dTask.Alias, Description = dTask.Description, Status = dTask.Status });
+        } while (true);
+
         Task taskUpdate = new Task()
         {
             Id = task.Id,
@@ -208,15 +221,15 @@ internal class Program
             LastDateToEnd = task.LastDateToEnd,
             EndAtDate = status == 3 ? DateTime.Now : task.EndAtDate,
             Status = isStatus ? (Status)status : task.Status,
-            DependenciesList =
-            deliverables ?? task.Deliverables,
-            remarks ?? task.Remarks,
-            succidedId ? engineerId : task.EngineerId,
-            levelSucceeded ? complexityLevel : task.ComplexityLevel
+            DependenciesList = dependencies,
+            Deliverables = deliverables ?? task.Deliverables,
+            Remarks = remarks ?? task.Remarks,
+            Engineer = succidedId ? new EngineerInTask() { Id = engineerId, Name = s_bl.Engineer!.GetEngineer(engineerId).Name } : task.Engineer,
+            Level = levelSucceeded ? complexityLevel : task.Level
         };
 
-        // Update the task using s_dalTask.Update(task)
-        s_dal!.Task.Update(taskUpdate);
+        // Update the task using s_blTask.Update(task)
+        s_bl!.Task.UpdateTask(taskUpdate);
     }
     private static void TaskDelete()
     {
