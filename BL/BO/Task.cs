@@ -13,9 +13,9 @@ public class Task
     public TimeSpan? Duration { get; init; }
     public DateTime CreatedAtDate { get; init; }
     public DateTime ApproxStartAtDate { get; set; }
-    public DateTime StartAtDate { get; set; }
+    public DateTime? StartAtDate { get; set; }
     public DateTime LastDateToEnd { get; set; }
-    public DateTime EndAtDate { get; set; }
+    public DateTime? EndAtDate { get; set; }
     public Status Status { get; set; }
     public List<TaskInList>? DependenciesList { get; set; }
     public MilestoneInTask? Milestone { get; set; }
