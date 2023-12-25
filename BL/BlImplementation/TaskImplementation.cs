@@ -1,5 +1,4 @@
 ﻿using BlApi;
-
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
@@ -33,13 +32,7 @@ internal class TaskImplementation : ITask
             {
                 if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d.Id) is null)
                     _dal.Dependency!.Create(new DO.Dependency(0, id, d.Id));
-            });
-            _bl.Milestone!.UpdateMilestone(_dal.Task!.Read(_dal.Dependency!.Read(d =>
-            {
-                _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                return d.DependsOnTask == task.Id;
-            })!.DependentTask)!.Id);
-            return id;
+            }); return id;
         }
         catch (Exception ex)
         {
@@ -48,24 +41,19 @@ internal class TaskImplementation : ITask
             else throw new Exception(ex.Message);
         }
     }
-
     public void DeleteTask(int id)
     {
         try
         {
-            int? taskId = _dal.Task!.Read(t =>
-            t.EngineerId == id && t.StartDate is not null && t.CompleteDate is null
-            )?.Id;
+            int taskId = GetTask(t =>
+            t.Engineer!.Id == id && t.StartAtDate is not null && t.EndAtDate is null
+            )!.Id;
             int? dependentTask = _dal.Dependency!.Read(d =>
             d.DependsOnTask == taskId)?.DependentTask;
             if (dependentTask is not null)
                 throw new BO.BlIsADependencyExeption($"task with id {id} is  a dependency for task {dependentTask}");
             _dal.Engineer!.Delete(id);
-            _bl.Milestone!.UpdateMilestone(_dal.Task!.Read(_dal.Dependency!.Read(d =>
-            {
-                _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                return d.DependsOnTask == taskId;
-            })!.DependentTask)!.Id);
+            _bl.Milestone!.UpdateMilestone(GetTask(taskId).Milestone!.Id);
         }
         catch (Exception ex)
         {
@@ -76,7 +64,6 @@ internal class TaskImplementation : ITask
             else throw new Exception(ex.Message);
         }
     }
-
     public BO.Task GetTask(int id)
     {
         string? description = "", alias = "", remarks = "", delivarables = "";
@@ -155,7 +142,10 @@ internal class TaskImplementation : ITask
             else throw new Exception(ex.Message);
         }
     }
-
+    public BO.Task GetTask(Func<BO.Task, bool>? filter = null)
+    {
+        return GetTasks(filter).First() ?? throw new BO.BlDoesNotExistException("task as requiered does not exist");
+    }
     public IEnumerable<BO.Task> GetTasks(Func<BO.Task, bool>? filter = null)
     {
         try
@@ -178,11 +168,6 @@ internal class TaskImplementation : ITask
                             EndAtDate = t.CompleteDate ?? DateTime.MinValue,
                             ApproxStartAtDate = t.ScheduledDate ?? DateTime.MinValue,
                             LastDateToEnd = t.DeadlineDate ?? DateTime.MinValue,
-                            Engineer = new BO.EngineerInTask()
-                            {
-                                Id = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Id,
-                                Name = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Name
-                            },
                             DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == t.Id)
                                                 where true
                                                 select new BO.TaskInList()
@@ -196,22 +181,11 @@ internal class TaskImplementation : ITask
                                 : 3)
                                                 }).ToList(),
                             Status = (BO.Status)(t.ScheduledDate is null ? 0
-                               : t.StartDate is null ? 1
-                               : t.CompleteDate is null ? 2
-                               : 3),
-                            Milestone = new BO.MilestoneInTask()
-                            {
-                                Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                                {
-                                    _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                                    return d.DependsOnTask == t.Id;
-                                })!.DependentTask)!.Id,
-                                Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                                {
-                                    _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                                    return d.DependsOnTask == t.Id;
-                                })!.DependentTask)?.Alias
-                            }
+                                       : t.StartDate is null ? 1
+                                       : t.CompleteDate is null ? 2
+                                       : 3),
+                            Engineer = GetEngineerInTask(t.Id),
+                            Milestone = GetMilestoneInTask(t.EngineerId)
                         });
                     };
                 return from t in _dal.Task!.ReadAll()
@@ -229,11 +203,6 @@ internal class TaskImplementation : ITask
                            EndAtDate = t.CompleteDate ?? DateTime.MinValue,
                            ApproxStartAtDate = t.ScheduledDate ?? DateTime.MinValue,
                            LastDateToEnd = t.DeadlineDate ?? DateTime.MinValue,
-                           Engineer = new BO.EngineerInTask()
-                           {
-                               Id = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Id,
-                               Name = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Name
-                           },
                            DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == t.Id)
                                                where true
                                                select new BO.TaskInList()
@@ -247,22 +216,11 @@ internal class TaskImplementation : ITask
                                : 3)
                                                }).ToList(),
                            Status = (BO.Status)(t.ScheduledDate is null ? 0
-                               : t.StartDate is null ? 1
-                               : t.CompleteDate is null ? 2
-                               : 3),
-                           Milestone = new BO.MilestoneInTask()
-                           {
-                               Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                               {
-                                   _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                                   return d.DependsOnTask == t.Id;
-                               })!.DependentTask)!.Id,
-                               Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                               {
-                                   _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                                   return d.DependsOnTask == t.Id;
-                               })!.DependentTask)?.Alias
-                           }
+                                       : t.StartDate is null ? 1
+                                       : t.CompleteDate is null ? 2
+                                       : 3),
+                           Engineer = GetEngineerInTask(t.Id),
+                           Milestone = GetMilestoneInTask(t.EngineerId)
                        };
             }
             else
@@ -292,28 +250,12 @@ internal class TaskImplementation : ITask
                                : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                                : 3)
                                                }).ToList(),
-                           Engineer = new BO.EngineerInTask()
-                           {
-                               Id = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Id,
-                               Name = _dal.Engineer!.Read(e => e.Id == t.EngineerId)!.Name
-                           },
                            Status = (BO.Status)(t.ScheduledDate is null ? 0
-                               : t.StartDate is null ? 1
-                               : t.CompleteDate is null ? 2
-                               : 3),
-                           Milestone = new BO.MilestoneInTask()
-                           {
-                               Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                               {
-                                   _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                                   return d.DependsOnTask == t.Id;
-                               })!.DependentTask)!.Id,
-                               Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                               {
-                                   _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                                   return d.DependsOnTask == t.Id;
-                               })!.DependentTask)?.Alias
-                           }
+                                       : t.StartDate is null ? 1
+                                       : t.CompleteDate is null ? 2
+                                       : 3),
+                           Engineer = GetEngineerInTask(t.Id),
+                           Milestone = GetMilestoneInTask(t.EngineerId)
                        };
         }
         catch (Exception ex)
@@ -321,7 +263,6 @@ internal class TaskImplementation : ITask
             throw new Exception(ex.Message);
         }
     }
-
     public void UpdateTask(BO.Task task)
     {
         if (task.Id <= 0)
@@ -357,11 +298,15 @@ internal class TaskImplementation : ITask
             group => group.Key,//dependent task
                 group => group.Select(d => d.DependentTask).ToArray()//all dependencies for task
             ));
-            _bl.Milestone!.UpdateMilestone(_dal.Task!.Read(_dal.Dependency!.Read(d =>
+            try
+            {
+                _bl.Milestone!.UpdateMilestone(_dal.Task!.Read(_dal.Dependency!.Read(d =>
             {
                 _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
                 return d.DependsOnTask == task.Id;
             })!.DependentTask)!.Id);
+            }
+            catch (Exception) { };
         }
         catch (Exception ex)
         {
@@ -371,6 +316,44 @@ internal class TaskImplementation : ITask
                 throw new BO.BlCirclingDependenciesExeption(ex.Message);
             else throw new Exception(ex.Message);
         }
+    }
+    private BO.MilestoneInTask? GetMilestoneInTask(int? taskId)
+    {
+        try
+        {
+            int? milestoneId = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+            {
+                _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                return d.DependsOnTask == taskId;
+            })!.DependentTask)!.Id;
+            if (milestoneId != null)
+            {
+                string? milestoneAlias = Factory.Get.Milestone.GetMilestone((int)milestoneId).Alias;
+                return new BO.MilestoneInTask()
+                {
+                    Id = (int)milestoneId,
+                    Alias = milestoneAlias
+                };
+            }
+        }
+        catch (Exception ex) { }
+        return null;
+    }
+    private BO.EngineerInTask? GetEngineerInTask(int? engineerId)
+    {
+        try
+        {
+            if (engineerId != null)
+            {
+                return new BO.EngineerInTask()
+                {
+                    Id = (int)engineerId,
+                    Name = _dal.Engineer!.Read((int)engineerId)!.Name
+                };
+            }
+        }
+        catch (Exception ex) { }
+        return null;
     }
 
     /// <summary>
@@ -437,4 +420,5 @@ internal class TaskImplementation : ITask
             throw new BO.BlCirclingDependenciesExeption(" has a cycle! No topological ordering exists.");
         }
     }
+
 }

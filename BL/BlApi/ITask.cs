@@ -16,6 +16,7 @@ public interface ITask
     /// <param name="id">id for task to get from DB</param>
     /// <returns>BO.Task with id as param</returns>
     public BO.Task GetTask(int id);
+    public BO.Task GetTask(Func<BO.Task, bool>? filter = null);
     /// <summary>
     /// adds param task as a new task to DB if exists throws an error
     /// </summary>
