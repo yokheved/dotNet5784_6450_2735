@@ -43,7 +43,7 @@ internal class DependencyImplementation : IDependency
         string entity = "Dependencies";
 
         XElement rootElem = XMLTools.LoadListFromXMLElement(entity);
-        XElement elementToDelete = rootElem.Elements().First(e => e.Element("Id")?.Value == id.ToString());
+        XElement? elementToDelete = rootElem.Elements().FirstOrDefault(e => e.Element("Id")?.Value == id.ToString());
 
         if (elementToDelete != null)
         {

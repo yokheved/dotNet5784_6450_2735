@@ -41,9 +41,3 @@ public class BlCirclingDependenciesExeption : Exception
 {
     public BlCirclingDependenciesExeption(string? message) : base(message) { }
 }
-
-[Serializable]
-public class DalCirclingDependenciesExeption : Exception
-{
-    public DalCirclingDependenciesExeption(string? message) : base(message) { }
-}

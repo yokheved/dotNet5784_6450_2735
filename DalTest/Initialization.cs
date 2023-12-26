@@ -141,17 +141,36 @@ public static class Initialization
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId2);
                 s_dal!.Dependency!.Create(dependency);
+                CheckDependencies(dependency.Id);
             }
             if (taskId3 > -1)//if found a task 2 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId3);
                 s_dal!.Dependency!.Create(dependency);
+                CheckDependencies(dependency.Id);
             }
             if (taskId4 > -1)//if found a task 3 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId4);
                 s_dal!.Dependency!.Create(dependency);
+                CheckDependencies(dependency.Id);
             }
+        }
+    }
+
+    private static void CheckDependencies(int id)
+    {
+        try
+        {
+            TopologicalSort(s_dal!.Dependency!.ReadAll()//send a graph to check that there are no circling dependencies
+           .GroupBy(d => d.DependentTask).ToDictionary(
+           group => group.Key,//dependent task
+               group => group.Select(d => d.DependentTask).ToArray()//all dependencies for task
+           ));
+        }
+        catch (Exception ex)
+        {
+            s_dal!.Dependency!.Delete(id);
         }
     }
 
@@ -227,7 +246,7 @@ public static class Initialization
         // Did we add all the nodes or find a cycle?
         if (topologicalOrdering.Count != digraph.Count)
         {
-            throw new DO.DalCirclingDependenciesExeption(" has a cycle! No topological ordering exists.");
+            throw new DalCirclingDependenciesExeption(" has a cycle! No topological ordering exists.");
         }
     }
 }
