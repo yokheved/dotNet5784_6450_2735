@@ -129,7 +129,7 @@ static class XMLTools
         string filePath = $"{s_xml_dir + entity}.xml";
         try
         {
-            XDocument doc = XDocument.Load("your_file_path.xml");
+            XDocument doc = XDocument.Load(filePath);
             doc.Root?.Elements()?.Remove();
         }
         catch (Exception ex)

@@ -66,7 +66,7 @@ public static class Initialization
         {//create task
             //makes an array of dates in cronoligical order
             DateTime[] dates = new DateTime[5];
-            for (int j = 0; j < 6; j++)
+            for (int j = 0; j < 5; j++)
             {
                 if (j == 0)
                     dates[j] = new DateTime(s_rand.Next(2023, 2026), s_rand.Next(1, 13), s_rand.Next(1, 29));
@@ -109,8 +109,11 @@ public static class Initialization
         {
             int id = 0;
             do
+            {
                 id = s_rand.Next(150000000, 400000000);
-            while (s_dal!.Engineer!.Read(id) is not null);
+                try { s_dal!.Engineer!.Read(id); } catch (Exception e) { break; }
+            }
+            while (true);
             Engineer engineer = new Engineer(
                 id,
                 names[i],
@@ -162,5 +165,69 @@ public static class Initialization
         createTasks();
         createEngineers();
         createDependencies();
+    }
+    /// <summary>
+    /// checking if there are any circling dependencies
+    /// </summary>
+    /// <param name="digraph"> digraph is a dictionary:
+    /// key: a node(int)
+    /// value: an array of adjacent nodes (array of ints)
+    /// </param>
+    /// <exception cref="BlCirclingDependenciesExeption"></exception>
+    private static void TopologicalSort(Dictionary<int, int[]> digraph)
+    {
+        // Construct an dictionary mapping nodes to their indegrees
+        var indegrees = new Dictionary<int, int>();
+        foreach (var node in digraph.Keys)
+        {
+            indegrees.Add(node, 0);
+        }
+        foreach (var node in digraph.Keys)
+        {
+            foreach (var neighbor in digraph[node])
+            {
+                indegrees[neighbor] += 1;
+            }
+        }
+
+        // Track nodes with no incoming edges
+        var nodesWithNoIncomingEdges = new Queue<int>();
+        foreach (var node in digraph.Keys)
+        {
+            if (indegrees[node] == 0)
+            {
+                nodesWithNoIncomingEdges.Enqueue(node);
+            }
+        }
+
+        // Initially, no nodes in our ordering
+        var topologicalOrdering = new List<int>();
+
+        // As long as there are nodes with no incoming edges
+        // that can be added to the ordering 
+        while (nodesWithNoIncomingEdges.Count > 0)
+        {
+
+            // Add one of those nodes to the ordering
+            var node = nodesWithNoIncomingEdges.Dequeue();
+            topologicalOrdering.Add(node);
+
+            // Decrement the indegree of that node's neighbors
+            foreach (var neighbor in digraph[node])
+            {
+                indegrees[neighbor] -= 1;
+                if (indegrees[neighbor] == 0)
+                {
+                    nodesWithNoIncomingEdges.Enqueue(neighbor);
+                }
+            }
+        }
+
+        // We've run out of nodes with no incoming edges
+        // Did we add all the nodes or find a cycle?
+        if (topologicalOrdering.Count != digraph.Count)
+        {
+            throw new DO.DalCirclingDependenciesExeption(" has a cycle! No topological ordering exists.");
+        }
     }
 }

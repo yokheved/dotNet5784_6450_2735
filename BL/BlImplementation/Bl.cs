@@ -9,4 +9,9 @@ internal class Bl : IBl
     public ITask Task => new TaskImplementation();
 
     public IMilestone Milestone => new MilestoneImplementation();
+
+    public void Reset()
+    {
+        DO.Factory.Get.Reset();
+    }
 }

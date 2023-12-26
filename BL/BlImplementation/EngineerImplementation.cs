@@ -72,13 +72,7 @@ internal class EngineerImplementation : IEngineer
                 Email = email,
                 Level = level is not null ? (BO.EngineerExperience)level : null,
                 Cost = cost ?? 0,
-                Task = _dal.Task!.Read(t => t.EngineerId == id && t.StartDate is not null && t.CompleteDate is null) is not null ?
-                    (new BO.TaskInEngineer()
-                    {
-                        Id = _dal.Task!.Read(t => t.EngineerId == id && t.StartDate is not null && t.CompleteDate is null)!.Id,
-                        Alias = _dal.Task!.Read(t => t.EngineerId == id && t.StartDate is not null && t.CompleteDate is null)?.Alias
-                    })
-                    : null
+                Task = GetTaskInEngineer(id)
             };
         }
         catch (Exception ex)
@@ -110,13 +104,7 @@ internal class EngineerImplementation : IEngineer
                            Email = engineer.Email,
                            Level = engineer.Level is not null ? (BO.EngineerExperience)engineer.Level : 0,
                            Cost = engineer.Cost is not null ? (double)engineer.Cost : 0,
-                           Task = _dal.Task!.Read(t => t.EngineerId == engineer.Id && t.StartDate is not null && t.CompleteDate is null) is not null ?
-                           (new BO.TaskInEngineer()
-                           {
-                               Id = _dal.Task!.Read(t => t.EngineerId == engineer.Id && t.StartDate is not null && t.CompleteDate is null)!.Id,
-                               Alias = _dal.Task!.Read(t => t.EngineerId == engineer.Id && t.StartDate is not null && t.CompleteDate is null)?.Alias
-                           })
-                           : null
+                           Task = GetTaskInEngineer(engineer.Id)
                        };
             }
             else
@@ -129,13 +117,7 @@ internal class EngineerImplementation : IEngineer
                            Email = engineer.Email,
                            Level = engineer.Level is not null ? (BO.EngineerExperience)engineer.Level : 0,
                            Cost = engineer.Cost is not null ? (double)engineer.Cost : 0,
-                           Task = _dal.Task!.Read(t => t.EngineerId == engineer.Id && t.StartDate is not null && t.CompleteDate is null) is not null ?
-                           (new BO.TaskInEngineer()
-                           {
-                               Id = _dal.Task!.Read(t => t.EngineerId == engineer.Id && t.StartDate is not null && t.CompleteDate is null)!.Id,
-                               Alias = _dal.Task!.Read(t => t.EngineerId == engineer.Id && t.StartDate is not null && t.CompleteDate is null)?.Alias
-                           })
-                           : null
+                           Task = GetTaskInEngineer(engineer.Id)
                        };
         }
         catch (Exception ex)
@@ -167,5 +149,23 @@ internal class EngineerImplementation : IEngineer
                 throw new BO.BlDoesNotExistException(ex.Message);
             else throw new Exception(ex.Message);
         }
+    }
+    private BO.TaskInEngineer? GetTaskInEngineer(int? engineerId)
+    {
+        try
+        {
+            int? taskId = _dal.Task!.Read(t => t.EngineerId == engineerId && t.StartDate is not null && t.CompleteDate is null)!.Id;
+            if (taskId != null && engineerId != null)
+            {
+                string? taskAlias = Factory.Get.Task.GetTask((int)taskId).Alias;
+                return new BO.TaskInEngineer()
+                {
+                    Id = (int)engineerId,
+                    Alias = taskAlias
+                };
+            }
+        }
+        catch (Exception ex) { }
+        return null;
     }
 }

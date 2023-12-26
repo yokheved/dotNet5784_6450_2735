@@ -10,8 +10,13 @@ internal class Program
     {
         try
         {
-            Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
+            Console.Write("Would you like to Reset data? (Y/N)"); //stage 3
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
+            if (ans == "Y") //stage 3
+                            //Initialization.Do(s_dal); //stage 2
+                s_bl.Reset(); //stage 4
+            Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
+            ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
             if (ans == "Y") //stage 3
                             //Initialization.Do(s_dal); //stage 2
                 DalTest.Initialization.Do(); //stage 4
@@ -51,7 +56,7 @@ internal class Program
     }
 
 
-    #region Task - option 1 in main
+    #region Task - option 2 in main
     private static void TaskHandle()///The TaskHandle function performs actions on tasks selected by the user.
     {
         CRUD? choice;
@@ -209,7 +214,7 @@ internal class Program
         {
             Console.WriteLine("enter task dependencyid (if non. enter -1):");
             int.TryParse(Console.ReadLine(), out dependencyId);
-            if (dependencyId == -1) break;
+            if (dependencyId <= 0) break;
             Task dTask = s_bl.Task!.GetTask(dependencyId);
             if (!dependencies.Any(d => d.Id == dependencyId))
                 dependencies.Add(new TaskInList()
@@ -220,7 +225,7 @@ internal class Program
         {
             Id = task.Id,
             Description = description ?? task.Description,
-            Alias = alias ?? task.Alias,
+            Alias = alias == "" ? task.Alias : alias,
             Duration = duration ?? task.Duration,
             CreatedAtDate = task.CreatedAtDate,
             ApproxStartAtDate = task.ApproxStartAtDate,
@@ -249,7 +254,7 @@ internal class Program
     }
     #endregion
 
-    #region Engineer - option 2 in main
+    #region Engineer - option 3 in main
     private static void EngineerHandle()///The EngineerHandle function performs actions on engineers of the user's choice.
     {
         CRUD? choice;
@@ -359,7 +364,7 @@ internal class Program
 
     #endregion
 
-    #region Dependency - option 3 in main
+    #region Milestone - option 4 in main
     private static void MilestoneHandle()///performs actions on dependencies of the user's choice.
     {
         CRUD? choice;

@@ -115,24 +115,12 @@ internal class TaskImplementation : ITask
                     : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                     : 3)
                                     }).ToList(),
-                Engineer = new BO.EngineerInTask()
-                {
-                    Id = _dal.Engineer!.Read(t => t.Id == engineerId)!.Id,
-                    Name = _dal.Engineer!.Read(t => t.Id == engineerId)!.Name
-                },
                 Status = (BO.Status)(scheduled is null ? 0
-                               : start is null ? 1
-                               : completed is null ? 2
-                               : 3),
-                Milestone = new BO.MilestoneInTask()
-                {
-                    Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                        d.DependsOnTask == id && _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null
-                                )!.DependentTask)!.Id,
-                    Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                        d.DependsOnTask == id && (_dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null)
-                                )!.DependentTask)?.Alias
-                }
+                                       : start is null ? 1
+                                       : completed is null ? 2
+                                       : 3),
+                Engineer = GetEngineerInTask(id),
+                Milestone = GetMilestoneInTask(engineerId)
             };
         }
         catch (Exception ex)
