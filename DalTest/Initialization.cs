@@ -140,20 +140,17 @@ public static class Initialization
             if (taskId2 > -1)//if found a task 1 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId2);
-                s_dal!.Dependency!.Create(dependency);
-                CheckDependencies(dependency.Id);
+                CheckDependencies(s_dal!.Dependency!.Create(dependency));
             }
             if (taskId3 > -1)//if found a task 2 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId3);
-                s_dal!.Dependency!.Create(dependency);
-                CheckDependencies(dependency.Id);
+                CheckDependencies(s_dal!.Dependency!.Create(dependency));
             }
             if (taskId4 > -1)//if found a task 3 before me to be dependent on
             {
                 DO.Dependency dependency = new Dependency(0, taskId1, taskId4);
-                s_dal!.Dependency!.Create(dependency);
-                CheckDependencies(dependency.Id);
+                CheckDependencies(s_dal!.Dependency!.Create(dependency));
             }
         }
     }

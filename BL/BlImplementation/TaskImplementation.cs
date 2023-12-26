@@ -1,4 +1,6 @@
 ﻿using BlApi;
+using BO;
+
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
@@ -45,15 +47,12 @@ internal class TaskImplementation : ITask
     {
         try
         {
-            int taskId = GetTask(t =>
-            t.Engineer!.Id == id && t.StartAtDate is not null && t.EndAtDate is null
-            )!.Id;
             int? dependentTask = _dal.Dependency!.Read(d =>
-            d.DependsOnTask == taskId)?.DependentTask;
+            d.DependsOnTask == id)?.DependentTask;
             if (dependentTask is not null)
                 throw new BO.BlIsADependencyExeption($"task with id {id} is  a dependency for task {dependentTask}");
             _dal.Engineer!.Delete(id);
-            _bl.Milestone!.UpdateMilestone(GetTask(taskId).Milestone!.Id);
+            if (GetTask(id).Milestone is not null) _bl.Milestone!.UpdateMilestone(GetTask(id).Milestone!.Id);
         }
         catch (Exception ex)
         {

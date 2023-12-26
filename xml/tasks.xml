@@ -5440,4 +5440,964 @@
     <EngineerId>2</EngineerId>
     <ComplexityLevel>Novice</ComplexityLevel>
   </Task>
+  <Task>
+    <Id>381</Id>
+    <Discription>Optimizing Algorithm Performance with Multithreading</Discription>
+    <Alias>7 Multithreading Expert</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P3D</Duration>
+    <CreatedAtDate>2025-05-17T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-26T00:00:00</ScheduledDate>
+    <StartDate>2025-09-23T00:00:00</StartDate>
+    <DeadlineDate>2025-11-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-28T00:00:00</CompleteDate>
+    <Deliverables>Integration Testing</Deliverables>
+    <Remarks>Waiting for client feedback.</Remarks>
+    <EngineerId>1</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>382</Id>
+    <Discription>Implementing Security Measures for Data Protection</Discription>
+    <Alias>8 Security Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P8D</Duration>
+    <CreatedAtDate>2025-01-21T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-04-27T00:00:00</ScheduledDate>
+    <StartDate>2025-01-22T00:00:00</StartDate>
+    <DeadlineDate>2025-11-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-28T00:00:00</CompleteDate>
+    <Deliverables>User Documentation</Deliverables>
+    <Remarks>Task blocked, awaiting resolution.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>383</Id>
+    <Discription>Implementing Data Structures and Algorithms</Discription>
+    <Alias>1 Algorithm Specialist</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P6D</Duration>
+    <CreatedAtDate>2023-11-28T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-28T00:00:00</ScheduledDate>
+    <StartDate>2024-12-28T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Project Proposal Document</Deliverables>
+    <Remarks>Task completed successfully.</Remarks>
+    <EngineerId>1</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>384</Id>
+    <Discription>Implementing Security Measures for Data Protection</Discription>
+    <Alias>8 Security Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P4D</Duration>
+    <CreatedAtDate>2025-01-26T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-28T00:00:00</ScheduledDate>
+    <StartDate>2025-04-28T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>User Documentation</Deliverables>
+    <Remarks>Task blocked, awaiting resolution.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>385</Id>
+    <Discription>Optimizing Algorithm Performance with Multithreading</Discription>
+    <Alias>7 Multithreading Expert</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2023-04-02T00:00:00</CreatedAtDate>
+    <ScheduledDate>2024-11-23T00:00:00</ScheduledDate>
+    <StartDate>2023-11-20T00:00:00</StartDate>
+    <DeadlineDate>2025-11-24T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-26T00:00:00</CompleteDate>
+    <Deliverables>Integration Testing</Deliverables>
+    <Remarks>Waiting for client feedback.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>386</Id>
+    <Discription>Implementing Security Measures for Data Protection</Discription>
+    <Alias>8 Security Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P2D</Duration>
+    <CreatedAtDate>2024-02-17T00:00:00</CreatedAtDate>
+    <ScheduledDate>2024-10-20T00:00:00</ScheduledDate>
+    <StartDate>2024-09-17T00:00:00</StartDate>
+    <DeadlineDate>2024-10-27T00:00:00</DeadlineDate>
+    <CompleteDate>2024-12-28T00:00:00</CompleteDate>
+    <Deliverables>User Documentation</Deliverables>
+    <Remarks>Task blocked, awaiting resolution.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>387</Id>
+    <Discription>Creating RESTful APIs with ASP.NET Web API</Discription>
+    <Alias>3 API Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2024-03-21T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-28T00:00:00</ScheduledDate>
+    <StartDate>2024-09-22T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Design Mockups and Wireframes</Deliverables>
+    <Remarks>Facing technical challenges, seeking help.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>388</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P6D</Duration>
+    <CreatedAtDate>2025-11-09T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-27T00:00:00</ScheduledDate>
+    <StartDate>2025-11-25T00:00:00</StartDate>
+    <DeadlineDate>2025-11-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-28T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>389</Id>
+    <Discription>Implementing Security Measures for Data Protection</Discription>
+    <Alias>8 Security Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2024-11-22T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-27T00:00:00</ScheduledDate>
+    <StartDate>2025-12-23T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>User Documentation</Deliverables>
+    <Remarks>Task blocked, awaiting resolution.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>390</Id>
+    <Discription>Creating RESTful APIs with ASP.NET Web API</Discription>
+    <Alias>3 API Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P8D</Duration>
+    <CreatedAtDate>2025-05-10T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-08-28T00:00:00</ScheduledDate>
+    <StartDate>2025-07-27T00:00:00</StartDate>
+    <DeadlineDate>2025-10-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Design Mockups and Wireframes</Deliverables>
+    <Remarks>Facing technical challenges, seeking help.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>391</Id>
+    <Discription>Developing Scalable Software Applications</Discription>
+    <Alias>2 Software Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2024-06-02T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-23T00:00:00</ScheduledDate>
+    <StartDate>2024-11-12T00:00:00</StartDate>
+    <DeadlineDate>2025-12-25T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-27T00:00:00</CompleteDate>
+    <Deliverables>Functional Specifications</Deliverables>
+    <Remarks>Need additional resources for completion.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>392</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P3D</Duration>
+    <CreatedAtDate>2024-02-10T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-26T00:00:00</ScheduledDate>
+    <StartDate>2025-10-23T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-27T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>393</Id>
+    <Discription>Optimizing Algorithm Performance with Multithreading</Discription>
+    <Alias>7 Multithreading Expert</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2023-09-20T00:00:00</CreatedAtDate>
+    <ScheduledDate>2024-10-26T00:00:00</ScheduledDate>
+    <StartDate>2024-10-24T00:00:00</StartDate>
+    <DeadlineDate>2024-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Integration Testing</Deliverables>
+    <Remarks>Waiting for client feedback.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>394</Id>
+    <Discription>Optimizing Algorithm Performance with Multithreading</Discription>
+    <Alias>7 Multithreading Expert</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2025-07-03T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-09-20T00:00:00</ScheduledDate>
+    <StartDate>2025-08-17T00:00:00</StartDate>
+    <DeadlineDate>2025-11-20T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-22T00:00:00</CompleteDate>
+    <Deliverables>Integration Testing</Deliverables>
+    <Remarks>Waiting for client feedback.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>395</Id>
+    <Discription>Unit Testing and Debugging Codebase</Discription>
+    <Alias>5 Quality Assurance Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P10D</Duration>
+    <CreatedAtDate>2024-04-27T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-07-28T00:00:00</ScheduledDate>
+    <StartDate>2025-04-28T00:00:00</StartDate>
+    <DeadlineDate>2025-08-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-28T00:00:00</CompleteDate>
+    <Deliverables>Unit Test Cases</Deliverables>
+    <Remarks>Completed ahead of schedule.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>396</Id>
+    <Discription>Creating RESTful APIs with ASP.NET Web API</Discription>
+    <Alias>3 API Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P3D</Duration>
+    <CreatedAtDate>2024-08-07T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-18T00:00:00</ScheduledDate>
+    <StartDate>2025-11-18T00:00:00</StartDate>
+    <DeadlineDate>2025-12-23T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-24T00:00:00</CompleteDate>
+    <Deliverables>Design Mockups and Wireframes</Deliverables>
+    <Remarks>Facing technical challenges, seeking help.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>397</Id>
+    <Discription>Unit Testing and Debugging Codebase</Discription>
+    <Alias>5 Quality Assurance Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P4D</Duration>
+    <CreatedAtDate>2024-02-01T00:00:00</CreatedAtDate>
+    <ScheduledDate>2024-08-14T00:00:00</ScheduledDate>
+    <StartDate>2024-04-07T00:00:00</StartDate>
+    <DeadlineDate>2025-10-23T00:00:00</DeadlineDate>
+    <CompleteDate>2025-10-26T00:00:00</CompleteDate>
+    <Deliverables>Unit Test Cases</Deliverables>
+    <Remarks>Completed ahead of schedule.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>398</Id>
+    <Discription>Database Management and Optimization</Discription>
+    <Alias>4 Database Administrator</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2023-12-16T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-26T00:00:00</ScheduledDate>
+    <StartDate>2024-12-19T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-27T00:00:00</CompleteDate>
+    <Deliverables>Prototype Development</Deliverables>
+    <Remarks>Task postponed due to external dependencies.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>399</Id>
+    <Discription>Integrating Third-party APIs and Libraries</Discription>
+    <Alias>9 Integration Specialist</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2025-11-05T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-28T00:00:00</ScheduledDate>
+    <StartDate>2025-11-28T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Deployment Package</Deliverables>
+    <Remarks>Revisiting requirements, task scope changed.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>400</Id>
+    <Discription>Database Management and Optimization</Discription>
+    <Alias>4 Database Administrator</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2023-10-05T00:00:00</CreatedAtDate>
+    <ScheduledDate>2024-11-24T00:00:00</ScheduledDate>
+    <StartDate>2024-11-23T00:00:00</StartDate>
+    <DeadlineDate>2025-12-26T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-26T00:00:00</CompleteDate>
+    <Deliverables>Prototype Development</Deliverables>
+    <Remarks>Task postponed due to external dependencies.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>401</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P4D</Duration>
+    <CreatedAtDate>2024-04-13T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-04-21T00:00:00</ScheduledDate>
+    <StartDate>2025-04-21T00:00:00</StartDate>
+    <DeadlineDate>2025-06-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-09-28T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>1</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>402</Id>
+    <Discription>Developing Scalable Software Applications</Discription>
+    <Alias>2 Software Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2025-02-28T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-10-28T00:00:00</ScheduledDate>
+    <StartDate>2025-06-28T00:00:00</StartDate>
+    <DeadlineDate>2025-10-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-10-28T00:00:00</CompleteDate>
+    <Deliverables>Functional Specifications</Deliverables>
+    <Remarks>Need additional resources for completion.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>403</Id>
+    <Discription>Implementing Security Measures for Data Protection</Discription>
+    <Alias>8 Security Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P8D</Duration>
+    <CreatedAtDate>2023-04-07T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-22T00:00:00</ScheduledDate>
+    <StartDate>2024-05-10T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>User Documentation</Deliverables>
+    <Remarks>Task blocked, awaiting resolution.</Remarks>
+    <EngineerId>1</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>404</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P6D</Duration>
+    <CreatedAtDate>2024-06-05T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-09-09T00:00:00</ScheduledDate>
+    <StartDate>2025-08-08T00:00:00</StartDate>
+    <DeadlineDate>2025-09-11T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-26T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>405</Id>
+    <Discription>Optimizing Algorithm Performance with Multithreading</Discription>
+    <Alias>7 Multithreading Expert</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P2D</Duration>
+    <CreatedAtDate>2025-04-13T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-26T00:00:00</ScheduledDate>
+    <StartDate>2025-05-21T00:00:00</StartDate>
+    <DeadlineDate>2025-11-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Integration Testing</Deliverables>
+    <Remarks>Waiting for client feedback.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>406</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P3D</Duration>
+    <CreatedAtDate>2025-09-05T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-28T00:00:00</ScheduledDate>
+    <StartDate>2025-11-25T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>407</Id>
+    <Discription>Database Management and Optimization</Discription>
+    <Alias>4 Database Administrator</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P8D</Duration>
+    <CreatedAtDate>2024-02-24T00:00:00</CreatedAtDate>
+    <ScheduledDate>2024-09-27T00:00:00</ScheduledDate>
+    <StartDate>2024-09-27T00:00:00</StartDate>
+    <DeadlineDate>2025-11-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-27T00:00:00</CompleteDate>
+    <Deliverables>Prototype Development</Deliverables>
+    <Remarks>Task postponed due to external dependencies.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>408</Id>
+    <Discription>Implementing Security Measures for Data Protection</Discription>
+    <Alias>8 Security Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P3D</Duration>
+    <CreatedAtDate>2024-04-16T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-26T00:00:00</ScheduledDate>
+    <StartDate>2025-11-20T00:00:00</StartDate>
+    <DeadlineDate>2025-11-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>User Documentation</Deliverables>
+    <Remarks>Task blocked, awaiting resolution.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>409</Id>
+    <Discription>Developing Scalable Software Applications</Discription>
+    <Alias>2 Software Developer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P10D</Duration>
+    <CreatedAtDate>2024-02-21T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-25T00:00:00</ScheduledDate>
+    <StartDate>2025-12-24T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Functional Specifications</Deliverables>
+    <Remarks>Need additional resources for completion.</Remarks>
+    <EngineerId>1</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>410</Id>
+    <Discription>Integrating Third-party APIs and Libraries</Discription>
+    <Alias>9 Integration Specialist</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2024-01-28T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-08-28T00:00:00</ScheduledDate>
+    <StartDate>2025-04-28T00:00:00</StartDate>
+    <DeadlineDate>2025-09-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-10-28T00:00:00</CompleteDate>
+    <Deliverables>Deployment Package</Deliverables>
+    <Remarks>Revisiting requirements, task scope changed.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>411</Id>
+    <Discription>Creating RESTful APIs with ASP.NET Web API</Discription>
+    <Alias>3 API Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2023-05-22T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-27T00:00:00</ScheduledDate>
+    <StartDate>2025-09-27T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Design Mockups and Wireframes</Deliverables>
+    <Remarks>Facing technical challenges, seeking help.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>412</Id>
+    <Discription>Implementing Data Structures and Algorithms</Discription>
+    <Alias>1 Algorithm Specialist</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P3D</Duration>
+    <CreatedAtDate>2025-02-12T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-09-16T00:00:00</ScheduledDate>
+    <StartDate>2025-05-15T00:00:00</StartDate>
+    <DeadlineDate>2025-10-17T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-18T00:00:00</CompleteDate>
+    <Deliverables>Project Proposal Document</Deliverables>
+    <Remarks>Task completed successfully.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>413</Id>
+    <Discription>Database Management and Optimization</Discription>
+    <Alias>4 Database Administrator</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P4D</Duration>
+    <CreatedAtDate>2023-09-05T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-27T00:00:00</ScheduledDate>
+    <StartDate>2024-12-27T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Prototype Development</Deliverables>
+    <Remarks>Task postponed due to external dependencies.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>414</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P10D</Duration>
+    <CreatedAtDate>2025-10-28T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-28T00:00:00</ScheduledDate>
+    <StartDate>2025-12-28T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>415</Id>
+    <Discription>Implementing Security Measures for Data Protection</Discription>
+    <Alias>8 Security Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2023-07-21T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-24T00:00:00</ScheduledDate>
+    <StartDate>2024-12-23T00:00:00</StartDate>
+    <DeadlineDate>2025-12-25T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-27T00:00:00</CompleteDate>
+    <Deliverables>User Documentation</Deliverables>
+    <Remarks>Task blocked, awaiting resolution.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>416</Id>
+    <Discription>Developing User-friendly GUI Applications</Discription>
+    <Alias>10 GUI Developer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2024-11-10T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-26T00:00:00</ScheduledDate>
+    <StartDate>2024-12-24T00:00:00</StartDate>
+    <DeadlineDate>2025-12-26T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-26T00:00:00</CompleteDate>
+    <Deliverables>Quality Assurance Report</Deliverables>
+    <Remarks>Task completed with minor issues, pending review.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>417</Id>
+    <Discription>Creating RESTful APIs with ASP.NET Web API</Discription>
+    <Alias>3 API Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P3D</Duration>
+    <CreatedAtDate>2024-12-10T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-22T00:00:00</ScheduledDate>
+    <StartDate>2025-12-16T00:00:00</StartDate>
+    <DeadlineDate>2025-12-26T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-27T00:00:00</CompleteDate>
+    <Deliverables>Design Mockups and Wireframes</Deliverables>
+    <Remarks>Facing technical challenges, seeking help.</Remarks>
+    <EngineerId>1</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>418</Id>
+    <Discription>Implementing Data Structures and Algorithms</Discription>
+    <Alias>1 Algorithm Specialist</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2025-08-14T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-20T00:00:00</ScheduledDate>
+    <StartDate>2025-11-14T00:00:00</StartDate>
+    <DeadlineDate>2025-12-25T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-25T00:00:00</CompleteDate>
+    <Deliverables>Project Proposal Document</Deliverables>
+    <Remarks>Task completed successfully.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>419</Id>
+    <Discription>Unit Testing and Debugging Codebase</Discription>
+    <Alias>5 Quality Assurance Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2024-10-22T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-26T00:00:00</ScheduledDate>
+    <StartDate>2025-10-25T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Unit Test Cases</Deliverables>
+    <Remarks>Completed ahead of schedule.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>420</Id>
+    <Discription>Integrating Third-party APIs and Libraries</Discription>
+    <Alias>9 Integration Specialist</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2023-10-21T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-26T00:00:00</ScheduledDate>
+    <StartDate>2025-11-24T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Deployment Package</Deliverables>
+    <Remarks>Revisiting requirements, task scope changed.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>421</Id>
+    <Discription>Unit Testing and Debugging Codebase</Discription>
+    <Alias>5 Quality Assurance Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2023-12-08T00:00:00</CreatedAtDate>
+    <ScheduledDate>2024-12-28T00:00:00</ScheduledDate>
+    <StartDate>2024-12-13T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Unit Test Cases</Deliverables>
+    <Remarks>Completed ahead of schedule.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>422</Id>
+    <Discription>Implementing Data Structures and Algorithms</Discription>
+    <Alias>1 Algorithm Specialist</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2025-03-04T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-28T00:00:00</ScheduledDate>
+    <StartDate>2025-11-28T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Project Proposal Document</Deliverables>
+    <Remarks>Task completed successfully.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>423</Id>
+    <Discription>Unit Testing and Debugging Codebase</Discription>
+    <Alias>5 Quality Assurance Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P6D</Duration>
+    <CreatedAtDate>2024-02-13T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-03-26T00:00:00</ScheduledDate>
+    <StartDate>2024-02-23T00:00:00</StartDate>
+    <DeadlineDate>2025-10-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Unit Test Cases</Deliverables>
+    <Remarks>Completed ahead of schedule.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>424</Id>
+    <Discription>Creating RESTful APIs with ASP.NET Web API</Discription>
+    <Alias>3 API Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2023-10-27T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-28T00:00:00</ScheduledDate>
+    <StartDate>2025-12-28T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Design Mockups and Wireframes</Deliverables>
+    <Remarks>Facing technical challenges, seeking help.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>425</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P4D</Duration>
+    <CreatedAtDate>2023-04-25T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-10-26T00:00:00</ScheduledDate>
+    <StartDate>2025-10-25T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-27T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>426</Id>
+    <Discription>Implementing Security Measures for Data Protection</Discription>
+    <Alias>8 Security Engineer</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P9D</Duration>
+    <CreatedAtDate>2025-10-20T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-23T00:00:00</ScheduledDate>
+    <StartDate>2025-11-23T00:00:00</StartDate>
+    <DeadlineDate>2025-12-23T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-26T00:00:00</CompleteDate>
+    <Deliverables>User Documentation</Deliverables>
+    <Remarks>Task blocked, awaiting resolution.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>427</Id>
+    <Discription>Database Management and Optimization</Discription>
+    <Alias>4 Database Administrator</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2024-04-11T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-10-24T00:00:00</ScheduledDate>
+    <StartDate>2025-04-22T00:00:00</StartDate>
+    <DeadlineDate>2025-12-24T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-25T00:00:00</CompleteDate>
+    <Deliverables>Prototype Development</Deliverables>
+    <Remarks>Task postponed due to external dependencies.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>428</Id>
+    <Discription>Developing Scalable Software Applications</Discription>
+    <Alias>2 Software Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2023-03-12T00:00:00</CreatedAtDate>
+    <ScheduledDate>2023-11-28T00:00:00</ScheduledDate>
+    <StartDate>2023-09-22T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Functional Specifications</Deliverables>
+    <Remarks>Need additional resources for completion.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>429</Id>
+    <Discription>Unit Testing and Debugging Codebase</Discription>
+    <Alias>5 Quality Assurance Engineer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2025-09-18T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-28T00:00:00</ScheduledDate>
+    <StartDate>2025-11-26T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Unit Test Cases</Deliverables>
+    <Remarks>Completed ahead of schedule.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>430</Id>
+    <Discription>Implementing Data Structures and Algorithms</Discription>
+    <Alias>1 Algorithm Specialist</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2025-05-01T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-27T00:00:00</ScheduledDate>
+    <StartDate>2025-11-22T00:00:00</StartDate>
+    <DeadlineDate>2025-11-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-28T00:00:00</CompleteDate>
+    <Deliverables>Project Proposal Document</Deliverables>
+    <Remarks>Task completed successfully.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>431</Id>
+    <Discription>Implementing Data Structures and Algorithms</Discription>
+    <Alias>1 Algorithm Specialist</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P10D</Duration>
+    <CreatedAtDate>2024-10-06T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-24T00:00:00</ScheduledDate>
+    <StartDate>2025-12-07T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Project Proposal Document</Deliverables>
+    <Remarks>Task completed successfully.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>432</Id>
+    <Discription>Implementing Data Structures and Algorithms</Discription>
+    <Alias>1 Algorithm Specialist</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P2D</Duration>
+    <CreatedAtDate>2025-12-26T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-28T00:00:00</ScheduledDate>
+    <StartDate>2025-12-28T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Project Proposal Document</Deliverables>
+    <Remarks>Task completed successfully.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>433</Id>
+    <Discription>Implementing Data Structures and Algorithms</Discription>
+    <Alias>1 Algorithm Specialist</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P7D</Duration>
+    <CreatedAtDate>2024-01-28T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-06-28T00:00:00</ScheduledDate>
+    <StartDate>2024-01-28T00:00:00</StartDate>
+    <DeadlineDate>2025-10-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Project Proposal Document</Deliverables>
+    <Remarks>Task completed successfully.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>434</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2025-08-04T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-10-09T00:00:00</ScheduledDate>
+    <StartDate>2025-09-08T00:00:00</StartDate>
+    <DeadlineDate>2025-11-23T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-27T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>435</Id>
+    <Discription>Developing User-friendly GUI Applications</Discription>
+    <Alias>10 GUI Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P8D</Duration>
+    <CreatedAtDate>2025-05-01T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-16T00:00:00</ScheduledDate>
+    <StartDate>2025-11-10T00:00:00</StartDate>
+    <DeadlineDate>2025-12-25T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-25T00:00:00</CompleteDate>
+    <Deliverables>Quality Assurance Report</Deliverables>
+    <Remarks>Task completed with minor issues, pending review.</Remarks>
+    <EngineerId>4</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>436</Id>
+    <Discription>Integrating Third-party APIs and Libraries</Discription>
+    <Alias>9 Integration Specialist</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P3D</Duration>
+    <CreatedAtDate>2023-07-28T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-08-28T00:00:00</ScheduledDate>
+    <StartDate>2024-08-28T00:00:00</StartDate>
+    <DeadlineDate>2025-11-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-11-28T00:00:00</CompleteDate>
+    <Deliverables>Deployment Package</Deliverables>
+    <Remarks>Revisiting requirements, task scope changed.</Remarks>
+    <EngineerId>2</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>437</Id>
+    <Discription>Optimizing Algorithm Performance with Multithreading</Discription>
+    <Alias>7 Multithreading Expert</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P4D</Duration>
+    <CreatedAtDate>2025-10-09T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-11T00:00:00</ScheduledDate>
+    <StartDate>2025-12-10T00:00:00</StartDate>
+    <DeadlineDate>2025-12-16T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-25T00:00:00</CompleteDate>
+    <Deliverables>Integration Testing</Deliverables>
+    <Remarks>Waiting for client feedback.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>438</Id>
+    <Discription>Implementing Real-time Systems and IoT Devices</Discription>
+    <Alias>6 Real-time Systems Developer</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P10D</Duration>
+    <CreatedAtDate>2024-10-24T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-27T00:00:00</ScheduledDate>
+    <StartDate>2024-11-25T00:00:00</StartDate>
+    <DeadlineDate>2025-12-27T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Code Implementation</Deliverables>
+    <Remarks>Task in progress, making good progress.</Remarks>
+    <EngineerId>3</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>439</Id>
+    <Discription>Optimizing Algorithm Performance with Multithreading</Discription>
+    <Alias>7 Multithreading Expert</Alias>
+    <IsMilestone>false</IsMilestone>
+    <Duration>P6D</Duration>
+    <CreatedAtDate>2024-01-09T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-11-28T00:00:00</ScheduledDate>
+    <StartDate>2025-09-15T00:00:00</StartDate>
+    <DeadlineDate>2025-12-28T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-28T00:00:00</CompleteDate>
+    <Deliverables>Integration Testing</Deliverables>
+    <Remarks>Waiting for client feedback.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
+  <Task>
+    <Id>440</Id>
+    <Discription>Integrating Third-party APIs and Libraries</Discription>
+    <Alias>9 Integration Specialist</Alias>
+    <IsMilestone>true</IsMilestone>
+    <Duration>P5D</Duration>
+    <CreatedAtDate>2023-03-11T00:00:00</CreatedAtDate>
+    <ScheduledDate>2025-12-23T00:00:00</ScheduledDate>
+    <StartDate>2024-12-23T00:00:00</StartDate>
+    <DeadlineDate>2025-12-25T00:00:00</DeadlineDate>
+    <CompleteDate>2025-12-25T00:00:00</CompleteDate>
+    <Deliverables>Deployment Package</Deliverables>
+    <Remarks>Revisiting requirements, task scope changed.</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>Novice</ComplexityLevel>
+  </Task>
 </ArrayOfTask>

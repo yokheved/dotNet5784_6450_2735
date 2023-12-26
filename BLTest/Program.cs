@@ -132,7 +132,7 @@ internal class Program
         }
         Task task = new Task()
         {
-            Id = 0,
+            Id = 1,
             Description = description,
             Alias = alias,
             Duration = duration,
@@ -248,7 +248,7 @@ internal class Program
         Console.WriteLine("Enter Task ID to delete:");
         int taskId = int.Parse(Console.ReadLine());
 
-        // Delete the task using s_dalTask.Delete(taskId)
+        // Delete the task using s_blTask.DeleteTask(taskId)
         s_bl!.Task!.DeleteTask(taskId);
         Console.WriteLine("Task deleted successfully.");
     }

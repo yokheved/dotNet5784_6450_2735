@@ -11,8 +11,7 @@ internal class DependencyImplementation : IDependency
     /// <returns>integer - new item id</returns>
     public int Create(Dependency item)
     {
-        if (DataSource.Dependencies.Any(dep => dep.Id == item.Id)
-)
+        if (DataSource.Dependencies.Any(dep => dep.Id == item.Id))
         {
             throw new DalAlreadyExistsException($"Object of type Dependency with ID {item.Id} exists.");
         }

@@ -92,8 +92,8 @@ static class XMLTools
         string filePath = $"{s_xml_dir + entity}.xml";
         try
         {
-            using FileStream file = new(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
             var serializer = new XmlSerializer(typeof(List<T>));
+            using FileStream file = new(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
             serializer.Serialize(file, list);
             //new XmlSerializer(typeof(List<T?>)).Serialize(file, list);
 
