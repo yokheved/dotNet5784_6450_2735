@@ -117,7 +117,7 @@ internal class Program
         {
             Console.WriteLine("enter task dependencyid (if non. enter -1):");
             int.TryParse(Console.ReadLine(), out dependencyId);
-            if (dependencyId == -1) break;
+            if (dependencyId <= 0) break;
             dependencies.Add(dependencyId);
         } while (true);
         List<TaskInList> dependenciesTask = new List<TaskInList>();
@@ -149,7 +149,25 @@ internal class Program
             Engineer = new EngineerInTask() { Id = engineerId, Name = s_bl.Engineer!.GetEngineer(engineerId).Name },
             Level = complexityLevel
         };
-        s_bl.Task!.AddTask(task);
+        task = new Task()
+        {
+            Id = s_bl.Task!.AddTask(task),
+            Description = task.Description,
+            Alias = task.Alias,
+            Duration = task.Duration,
+            CreatedAtDate = task.CreatedAtDate,
+            ApproxStartAtDate = task.ApproxStartAtDate,
+            StartAtDate = null,
+            LastDateToEnd = task.LastDateToEnd,
+            EndAtDate = null,
+            Status = 0,
+            DependenciesList = dependenciesTask,
+            Milestone = null,
+            Deliverables = task.Deliverables,
+            Remarks = remarks,
+            Engineer = task.Engineer,
+            Level = task.Level
+        };
         return task;
     }
     private static void TaskRead()
@@ -462,7 +480,12 @@ internal class Program
         {
             Console.WriteLine("To enter task for project: (Y/N)");
             string? ans = Console.ReadLine() ?? throw new BlNotValidValueExeption("non valid value");
-            if (ans == "Y") tasks.Add(TaskCreate());
+            if (ans == "Y")
+            {
+                Task task = TaskCreate();
+                tasks.Add(task);
+                Console.WriteLine($"task with id {task.Id} was added successfully");
+            }
             else break;
         }
         if (tasks.Count == 0) throw new BlNotValidValueExeption("can't create a project with no tasks");

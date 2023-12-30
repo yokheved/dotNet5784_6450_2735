@@ -32,8 +32,8 @@ internal class TaskImplementation : ITask
                 task.Level is not null ? (DO.EngineerExperience)task.Level : 0));
             task.DependenciesList!.ForEach(d =>
             {
-                if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d.Id) is null)
-                    _dal.Dependency!.Create(new DO.Dependency(0, id, d.Id));
+                try { _dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d.Id); }
+                catch { _dal.Dependency!.Create(new DO.Dependency(0, id, d.Id)); }
             }); return id;
         }
         catch (Exception ex)

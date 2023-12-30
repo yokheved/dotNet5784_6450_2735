@@ -1,4 +1,5 @@
 ﻿using BlApi;
+
 namespace BlImplementation;
 
 internal class MilestoneImplementation : IMilestone
@@ -90,17 +91,25 @@ internal class MilestoneImplementation : IMilestone
                                              : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                                              : 3)
                                      }).ToList();
-            task.Milestone = new BO.MilestoneInTask()
-            {
-                Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                    d.DependsOnTask == task.Id && _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null
-                                )!.DependentTask)!.Id,
-                Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
-                    d.DependsOnTask == task.Id && (_dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null)
-                                )!.DependentTask)?.Alias
-            };
+            task.Milestone = GetMilstoneForProjectCreate(task.Id);
         }
         return mileStoneList;
+    }
+    private BO.MilestoneInTask? GetMilstoneForProjectCreate(int taskId)
+    {
+        try
+        {
+            return new BO.MilestoneInTask()
+            {
+                Id = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                    d.DependsOnTask == taskId && _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null
+                                    )!.DependentTask)!.Id,
+                Alias = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+                    d.DependsOnTask == taskId && (_dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask) is not null)
+                                    )!.DependentTask)?.Alias
+            };
+        }
+        catch { return null; }
     }
     public void UpdateMilestone(int id)
     {
@@ -128,17 +137,17 @@ internal class MilestoneImplementation : IMilestone
                 .ToList().ForEach(d => _dal.Dependency!.Delete(d.Id));
             milestone.DependenciesList!.ForEach(d =>
             {
-                if (_dal.Dependency!.Read(de => de.DependentTask == milestone.Id && de.DependsOnTask == d.Id) is null)
-                    _dal.Dependency!.Create(new DO.Dependency(0, milestone.Id, d.Id));
+                try { _dal.Dependency!.Read(de => de.DependentTask == milestone.Id && de.DependsOnTask == d.Id); }
+                catch { _dal.Dependency!.Create(new DO.Dependency(0, milestone.Id, d.Id)); }
             });
         }
         catch (Exception ex)
         {
             if (ex is DO.DalDoesNotExistException)
-                throw new BO.BlDoesNotExistException(ex.Message);
+                throw new BO.BlDoesNotExistException(ex.Message, ex);
             if (ex is BO.BlCirclingDependenciesExeption)
-                throw new BO.BlCirclingDependenciesExeption(ex.Message);
-            else throw new Exception(ex.Message);
+                throw new BO.BlCirclingDependenciesExeption(ex.Message, ex);
+            else throw new Exception(ex.Message, ex);
         }
     }
     public void CreateProjectSchedule(DateTime startDate, DateTime endDate, IEnumerable<BO.Task> tasksList)
@@ -206,9 +215,9 @@ internal class MilestoneImplementation : IMilestone
         catch (Exception ex)
         {
             if (ex is DO.DalDoesNotExistException || ex is BO.BlDoesNotExistException)
-                throw new BO.BlDoesNotExistException(ex.Message);
-            if (ex is DO.DalAlreadyExistsException) throw new BO.BlAlreadyExistsException(ex.Message);
-            if (ex is BO.BlCirclingDependenciesExeption) throw new BO.BlCirclingDependenciesExeption(ex.Message);
+                throw new BO.BlDoesNotExistException(ex.Message, ex);
+            if (ex is DO.DalAlreadyExistsException) throw new BO.BlAlreadyExistsException(ex.Message, ex);
+            if (ex is BO.BlCirclingDependenciesExeption) throw new BO.BlCirclingDependenciesExeption(ex.Message, ex);
             throw new Exception(ex.Message);
         }
     }

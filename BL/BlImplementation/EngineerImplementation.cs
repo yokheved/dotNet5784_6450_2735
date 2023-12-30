@@ -34,11 +34,19 @@ internal class EngineerImplementation : IEngineer
     {
         try
         {
-            int? taskId = _dal.Task!.Read(t =>
-            t.EngineerId == id && t.StartDate is not null && t.CompleteDate is null
-            )?.Id;
-            if (taskId is not null)
-                throw new BO.BlIsInTheMiddleOfTask($"engineer with id {id} is in the middle of task with id {taskId}");
+            try
+            {
+                int? taskId = _dal.Task!.Read(t =>
+                    t.EngineerId == id && t.StartDate is not null && t.CompleteDate is null
+                    )?.Id;
+                if (taskId is not null)
+                    throw new BO.BlIsInTheMiddleOfTask($"engineer with id {id} is in the middle of task with id {taskId}");
+            }
+            catch (Exception ex)
+            {
+                if (ex is BO.BlIsInTheMiddleOfTask)
+                    throw new BO.BlIsInTheMiddleOfTask(ex.Message);
+            }
             _dal.Engineer!.Delete(id);
         }
         catch (Exception ex)
