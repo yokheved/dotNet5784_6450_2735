@@ -12,9 +12,9 @@ public class Task
     public String? Alias { get; init; }
     public TimeSpan? Duration { get; init; }
     public DateTime CreatedAtDate { get; init; }
-    public DateTime ApproxStartAtDate { get; set; }
+    public DateTime? ApproxStartAtDate { get; set; }
     public DateTime? StartAtDate { get; set; }
-    public DateTime LastDateToEnd { get; set; }
+    public DateTime? LastDateToEnd { get; set; }
     public DateTime? EndAtDate { get; set; }
     public Status Status { get; set; }
     public List<TaskInList>? DependenciesList { get; set; }

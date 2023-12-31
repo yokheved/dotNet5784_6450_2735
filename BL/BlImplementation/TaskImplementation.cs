@@ -118,8 +118,8 @@ internal class TaskImplementation : ITask
                                        : start is null ? 1
                                        : completed is null ? 2
                                        : 3),
-                Engineer = GetEngineerInTask(id),
-                Milestone = GetMilestoneInTask(engineerId)
+                Engineer = GetEngineerInTask(engineerId),
+                Milestone = GetMilestoneInTask(id)
             };
         }
         catch (Exception ex)
@@ -171,8 +171,8 @@ internal class TaskImplementation : ITask
                                        : t.StartDate is null ? 1
                                        : t.CompleteDate is null ? 2
                                        : 3),
-                            Engineer = GetEngineerInTask(t.Id),
-                            Milestone = GetMilestoneInTask(t.EngineerId)
+                            Engineer = GetEngineerInTask(t.EngineerId),
+                            Milestone = GetMilestoneInTask(t.Id)
                         });
                     };
                 return from t in _dal.Task!.ReadAll()
@@ -206,8 +206,8 @@ internal class TaskImplementation : ITask
                                        : t.StartDate is null ? 1
                                        : t.CompleteDate is null ? 2
                                        : 3),
-                           Engineer = GetEngineerInTask(t.Id),
-                           Milestone = GetMilestoneInTask(t.EngineerId)
+                           Engineer = GetEngineerInTask(t.EngineerId),
+                           Milestone = GetMilestoneInTask(t.Id)
                        };
             }
             else
@@ -241,8 +241,8 @@ internal class TaskImplementation : ITask
                                        : t.StartDate is null ? 1
                                        : t.CompleteDate is null ? 2
                                        : 3),
-                           Engineer = GetEngineerInTask(t.Id),
-                           Milestone = GetMilestoneInTask(t.EngineerId)
+                           Engineer = GetEngineerInTask(t.EngineerId),
+                           Milestone = GetMilestoneInTask(t.Id)
                        };
         }
         catch (Exception ex)

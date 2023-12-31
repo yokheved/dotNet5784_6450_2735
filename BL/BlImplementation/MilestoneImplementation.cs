@@ -1,5 +1,4 @@
 ﻿using BlApi;
-
 namespace BlImplementation;
 
 internal class MilestoneImplementation : IMilestone
@@ -8,13 +7,14 @@ internal class MilestoneImplementation : IMilestone
 
     private List<BO.Milestone> CreateMilestonesList(List<BO.Task> tasksList)
     {
-        var dict = _dal.Dependency!.ReadAll(d => tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependsOnTask))
+        var dict = _dal.Dependency!.ReadAll(d =>
+        tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependsOnTask))
             .GroupBy(d => d.DependentTask).ToDictionary(
                 group => group.Key,//dependent task
                 group => group.Select(d => d.DependentTask)//all dependencies for task
             ).OrderBy(pair => pair.Key)
                              .ToDictionary(pair => pair.Key, pair => pair.Value);
-        var distinctDict = dict.Distinct();
+        var distinctDict = dict.Count == 1 ? dict : dict.Distinct();
         _dal.Dependency!.Reset();
         int idStart = _dal.Task!.Create(new DO.Task(//create start milestone
                 0,
@@ -34,6 +34,7 @@ internal class MilestoneImplementation : IMilestone
         int i = 1;
         List<BO.Milestone> mileStoneList = new List<BO.Milestone>();
         List<int> keys = new List<int>();
+        int lastKey = distinctDict?.First().Key - 1 ?? -1;
         foreach (var item in distinctDict)//add all milestones
         {
             int id = _dal.Task!.Create(new DO.Task(
@@ -53,46 +54,64 @@ internal class MilestoneImplementation : IMilestone
                 0));
             item.Value.ToList().ForEach(d =>//create dependencies for this milstone
             {
-                if (_dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == d) is null)
-                    _dal.Dependency!.Create(new DO.Dependency(0, id, d));
+                try { _dal.Dependency!.Read(de => de.DependentTask == d && de.DependsOnTask == id); }
+                catch { _dal.Dependency!.Create(new DO.Dependency(0, d, id)); }
             });
-            mileStoneList.Add(this.GetMilestone(id));
             //get all dependencies from dict that are supposed to depened on current milestone
-            keys = keys.Concat(from d in dict
-                               where d.Key == item.Key
-                               select d.Key).ToList();
-            keys.ForEach(k =>//for all milestones dependent on this milestone creat dependency
-             {
-                 if (_dal.Dependency!.Read(de => de.DependentTask == k && de.DependsOnTask == id) is null)
-                 {
-                     _dal.Dependency!.Create(new DO.Dependency(0, k, id));
-                     dict.Remove(k);
-                 }
-             });
+            if (lastKey != -1)
+            {
+                keys = keys.Concat(from d in dict
+                                   where d.Key == lastKey
+                                   select d.Key).ToList();
+                //for all milestones dependent on this milestone creat dependency
+                keys.ForEach(k =>
+                {
+                    try { _dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == k); }
+                    catch
+                    {
+                        _dal.Dependency!.Create(new DO.Dependency(0, id, k));
+                        dict.Remove(k);
+                    }
+                });
+            }
+            lastKey = item.Key;
+            mileStoneList.Add(this.GetMilestone(id));
         }
         foreach (var k in dict)//for each task that does not have dependencies - dependent on start
         {
-            if (_dal.Dependency!.Read(de => de.DependentTask == k.Key && de.DependsOnTask == idStart) is null)
-                _dal.Dependency!.Create(new DO.Dependency(0, k.Key, idStart));
-            dict.Remove(k.Key);
+            try
+            {
+                _dal.Dependency!.Read(de => de.DependentTask == k.Key && de.DependsOnTask == idStart);
+                dict.Remove(k.Key);
+            }
+            catch { _dal.Dependency!.Create(new DO.Dependency(0, k.Key, idStart)); }
         };
         mileStoneList.Insert(0, this.GetMilestone(idStart));//add start milestone to the beggining of milestones 
-        foreach (var task in tasksList)//update dependency and milestone property for all tasks
-        {
-            task.DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == task.Id)
-                                     where true
-                                     select new BO.TaskInList()
-                                     {
-                                         Id = d.DependsOnTask,
-                                         Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
-                                         Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
-                                         Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
-                                             : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
-                                             : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
-                                             : 3)
-                                     }).ToList();
-            task.Milestone = GetMilstoneForProjectCreate(task.Id);
-        }
+        int idEnd = _dal.Task!.Create(new DO.Task(//create start milestone
+                0,
+                null,
+                $"M {i} : END",
+                true,
+                null,
+                DateTime.Now,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0));
+        (from t in tasksList
+         where (from milestone in mileStoneList
+                where milestone.DependenciesList!.Any(d => d.Id == t.Id)
+                select milestone.Id).ToList().Count() == 0
+         select t).ToList().ForEach(d =>//create dependencies for this milstone
+         {
+             try { _dal.Dependency!.Read(de => de.DependentTask == idEnd && de.DependsOnTask == d.Id); }
+             catch { _dal.Dependency!.Create(new DO.Dependency(0, idEnd, d.Id)); }
+         });
+        mileStoneList.Add(this.GetMilestone(idEnd));//add end milestone to the end of milestones 
         return mileStoneList;
     }
     private BO.MilestoneInTask? GetMilstoneForProjectCreate(int taskId)
@@ -154,8 +173,8 @@ internal class MilestoneImplementation : IMilestone
     {
         try
         {
-            List<BO.Task> tasks = tasksList.ToList();
-            List<BO.Milestone> milestones = this.CreateMilestonesList(tasks);
+            List<BO.Milestone> milestones = this.CreateMilestonesList(tasksList.ToList());
+            List<BO.Task> tasks = Factory.Get.Task.GetTasks(t => t.Id > tasksList.ToList()!.First().Id).ToList();
             milestones.First().ApproxStartAtDate = startDate;
             milestones.Last().LastDateToEnd = endDate;
             for (int i = 1; i < milestones.Count; i++)//ApproxStartAtDate calculation for all milestones
@@ -275,18 +294,17 @@ internal class MilestoneImplementation : IMilestone
                 ApproxStartAtDate = scheduled ?? DateTime.MinValue,
                 LastDateToEnd = deadline ?? DateTime.MinValue,
                 EndAtDate = completed,
-                DependenciesList = (from d in _dal.Dependency!.ReadAll(d => d.DependentTask == id)
-                                    where true
-                                    select new BO.TaskInList()
-                                    {
-                                        Id = d.DependsOnTask,
-                                        Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
-                                        Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
-                                        Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
+                DependenciesList = _dal.Dependency!.ReadAll(d => d.DependentTask == id).Select(d =>
+                new BO.TaskInList()
+                {
+                    Id = d.DependsOnTask,
+                    Alias = _dal.Task!.Read(d.DependsOnTask)?.Alias,
+                    Description = _dal.Task!.Read(d.DependsOnTask)?.Discription,
+                    Status = (BO.Status)(_dal.Task!.Read(d.DependsOnTask)?.ScheduledDate is null ? 0
                                             : _dal.Task!.Read(d.DependsOnTask)?.StartDate is null ? 1
                                             : _dal.Task!.Read(d.DependsOnTask)?.CompleteDate is null ? 2
                                             : 3)
-                                    }).ToList(),
+                }).ToList(),
                 CompletionPercentage = complex
             };
         }

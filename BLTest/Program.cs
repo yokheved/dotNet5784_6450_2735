@@ -80,7 +80,7 @@ internal class Program
                 break;
         }
     }
-    private static Task TaskCreate()///creates a new task by receiving details from the user such as a description, alias and whether or not it is a milestone.
+    private static Task TaskCreate(bool isProjectCreate = false)///creates a new task by receiving details from the user such as a description, alias and whether or not it is a milestone.
     {
         Console.WriteLine("Enter Task Description:");
         string? description = Console.ReadLine();
@@ -94,9 +94,12 @@ internal class Program
         TimeSpan? duration = TimeSpan.FromDays(days);
 
         // For DateTime properties
-        DateTime createdAtDate = DateTime.Now; // You can set the creation date based on your logic
-        GetDateTimeFromUser("Enter Scheduled Date:", false, out DateTime scheduledDate);
-        GetDateTimeFromUser("Enter Deadline Date:", false, out DateTime deadlineDate);
+        DateTime createdAtDate = DateTime.Now, scheduledDate = DateTime.MinValue, deadlineDate = DateTime.MinValue; // You can set the creation date based on your logic
+        if (!isProjectCreate)
+        {
+            GetDateTimeFromUser("Enter Scheduled Date:", false, out scheduledDate);
+            GetDateTimeFromUser("Enter Deadline Date:", false, out deadlineDate);
+        }
 
         Console.WriteLine("Enter Deliverables:");
         string? deliverables = Console.ReadLine();
@@ -112,27 +115,49 @@ internal class Program
         Enum.TryParse(Console.ReadLine(), out EngineerExperience complexityLevel);
 
         List<int> dependencies = new List<int>();
-        int dependencyId = -1;
-        do
-        {
-            Console.WriteLine("enter task dependencyid (if non. enter -1):");
-            int.TryParse(Console.ReadLine(), out dependencyId);
-            if (dependencyId <= 0) break;
-            dependencies.Add(dependencyId);
-        } while (true);
         List<TaskInList> dependenciesTask = new List<TaskInList>();
-        foreach (var t in s_bl.Task!.GetTasks())
+        int dependencyId = -1;
+        if (isProjectCreate)
         {
-            if (dependencies.Contains(t.Id))
-                dependenciesTask.Add(new TaskInList()
-                {
-                    Id = t.Id,
-                    Alias = t.Alias,
-                });
+            do
+            {
+                Console.WriteLine("enter task dependencyid:");
+                int.TryParse(Console.ReadLine(), out dependencyId);
+                if (dependencyId <= 0) break;
+                dependencies.Add(dependencyId);
+            } while (true);
+            foreach (var t in s_bl.Task!.GetTasks())
+            {
+                if (dependencies.Contains(t.Id))
+                    dependenciesTask.Add(new TaskInList()
+                    {
+                        Id = t.Id,
+                        Alias = t.Alias,
+                    });
+            }
         }
         Task task = new Task()
         {
             Id = 1,
+            Description = description,
+            Alias = alias,
+            Duration = duration,
+            CreatedAtDate = createdAtDate,
+            ApproxStartAtDate = scheduledDate == DateTime.MinValue ? scheduledDate : null,
+            StartAtDate = null,
+            LastDateToEnd = deadlineDate == DateTime.MinValue ? deadlineDate : null,
+            EndAtDate = null,
+            Status = 0,
+            DependenciesList = dependenciesTask,
+            Milestone = null,
+            Deliverables = deliverables,
+            Remarks = remarks,
+            Engineer = new EngineerInTask() { Id = engineerId, Name = s_bl.Engineer!.GetEngineer(engineerId).Name },
+            Level = complexityLevel
+        };
+        task = new Task()
+        {
+            Id = s_bl.Task!.AddTask(task),
             Description = description,
             Alias = alias,
             Duration = duration,
@@ -148,25 +173,6 @@ internal class Program
             Remarks = remarks,
             Engineer = new EngineerInTask() { Id = engineerId, Name = s_bl.Engineer!.GetEngineer(engineerId).Name },
             Level = complexityLevel
-        };
-        task = new Task()
-        {
-            Id = s_bl.Task!.AddTask(task),
-            Description = task.Description,
-            Alias = task.Alias,
-            Duration = task.Duration,
-            CreatedAtDate = task.CreatedAtDate,
-            ApproxStartAtDate = task.ApproxStartAtDate,
-            StartAtDate = null,
-            LastDateToEnd = task.LastDateToEnd,
-            EndAtDate = null,
-            Status = 0,
-            DependenciesList = dependenciesTask,
-            Milestone = null,
-            Deliverables = task.Deliverables,
-            Remarks = remarks,
-            Engineer = task.Engineer,
-            Level = task.Level
         };
         return task;
     }
@@ -482,7 +488,7 @@ internal class Program
             string? ans = Console.ReadLine() ?? throw new BlNotValidValueExeption("non valid value");
             if (ans == "Y")
             {
-                Task task = TaskCreate();
+                Task task = TaskCreate(true);
                 tasks.Add(task);
                 Console.WriteLine($"task with id {task.Id} was added successfully");
             }
