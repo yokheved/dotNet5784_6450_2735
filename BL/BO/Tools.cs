@@ -30,7 +30,19 @@ public static class Tools<T>
                     result += "\n";
                 }
             }
-            else // For non-enumerable properties
+            else if (property.PropertyType == typeof(DateTime) && property != null)
+            {
+                DateTime dateTimeValue = (DateTime)property.GetValue(obj);
+                if (dateTimeValue == DateTime.MinValue)
+                {
+                    result += $"{property.Name}: DateTime.MinValue\n";
+                }
+                else
+                {
+                    result += $"{property.Name}: {dateTimeValue}\n";
+                }
+            }
+            else if (property != null) // For non-enumerable properties
             {
                 object? value = property.GetValue(obj);
                 result += value != null ? $"{property.Name}: {value.ToString()}\n" : "";
