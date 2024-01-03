@@ -1,4 +1,5 @@
 ﻿using BlApi;
+
 namespace BlImplementation;
 
 internal class MilestoneImplementation : IMilestone
@@ -7,13 +8,14 @@ internal class MilestoneImplementation : IMilestone
 
     private List<BO.Milestone> CreateMilestonesList(List<BO.Task> tasksList)
     {
-        var dict = _dal.Dependency!.ReadAll(d =>
-        tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependsOnTask))
-            .GroupBy(d => d.DependentTask).ToDictionary(
-                group => group.Key,//dependent task
-                group => group.Select(d => d.DependentTask)//all dependencies for task
-            ).OrderBy(pair => pair.Key)
-                             .ToDictionary(pair => pair.Key, pair => pair.Value);
+        var dependencies = _dal.Dependency!.ReadAll().ToList();
+        var dict = (
+           from d in dependencies
+           where tasksList.Any(t => t.Id == d.DependentTask) && tasksList.Any(t => t.Id == d.DependsOnTask)
+           group d by d.DependentTask into newList
+           let depList = (from dep in newList
+                          select dep.DependsOnTask)
+           select new { Key = newList.Key, Value = depList.Order() }).ToList();
         var distinctDict = dict.Count == 1 ? dict : dict.Distinct();
         _dal.Dependency!.Reset();
         int idStart = _dal.Task!.Create(new DO.Task(//create start milestone
@@ -52,39 +54,28 @@ internal class MilestoneImplementation : IMilestone
                 null,
                 null,
                 0));
-            item.Value.ToList().ForEach(d =>//create dependencies for this milstone
+            List<int> deptList = new List<int>();
+            //create dependency: tasks that are dependent on current milestone
+            foreach (var task in item.Value)
             {
-                try { _dal.Dependency!.Read(de => de.DependentTask == d && de.DependsOnTask == id); }
-                catch { _dal.Dependency!.Create(new DO.Dependency(0, d, id)); }
-            });
-            //get all dependencies from dict that are supposed to depened on current milestone
-            if (lastKey != -1)
-            {
-                keys = keys.Concat(from d in dict
-                                   where d.Key == lastKey
-                                   select d.Key).ToList();
-                //for all milestones dependent on this milestone creat dependency
-                keys.ForEach(k =>
-                {
-                    try { _dal.Dependency!.Read(de => de.DependentTask == id && de.DependsOnTask == k); }
-                    catch
-                    {
-                        _dal.Dependency!.Create(new DO.Dependency(0, id, k));
-                        dict.Remove(k);
-                    }
-                });
+                deptList.Add(task);
+                _dal.Dependency!.Create(new DO.Dependency(0, id, task));
             }
-            lastKey = item.Key;
+            //create dependency: milestone dependent on tasks
+            foreach (var task in dict)
+            {
+                if (task.Value.SequenceEqual(deptList))
+                    _dal.Dependency!.Create(new DO.Dependency(0, task.Key, id));
+            }
             mileStoneList.Add(this.GetMilestone(id));
         }
-        foreach (var k in dict)//for each task that does not have dependencies - dependent on start
+        foreach (var k in tasksList)//for each task that does not have dependencies - dependent on start
         {
             try
             {
-                _dal.Dependency!.Read(de => de.DependentTask == k.Key && de.DependsOnTask == idStart);
-                dict.Remove(k.Key);
+                _dal.Dependency!.Read(de => de.DependentTask == k.Id);
             }
-            catch { _dal.Dependency!.Create(new DO.Dependency(0, k.Key, idStart)); }
+            catch { _dal.Dependency!.Create(new DO.Dependency(0, k.Id, idStart)); }
         };
         mileStoneList.Insert(0, this.GetMilestone(idStart));//add start milestone to the beggining of milestones 
         int idEnd = _dal.Task!.Create(new DO.Task(//create start milestone
@@ -106,9 +97,9 @@ internal class MilestoneImplementation : IMilestone
          where (from milestone in mileStoneList
                 where milestone.DependenciesList!.Any(d => d.Id == t.Id)
                 select milestone.Id).ToList().Count() == 0
-         select t).ToList().ForEach(d =>//create dependencies for this milstone
+         select t).ToList().ForEach(d =>//create dependencies for END milstone
          {
-             try { _dal.Dependency!.Read(de => de.DependentTask == idEnd && de.DependsOnTask == d.Id); }
+             try { _dal.Dependency!.Read(de => de.DependsOnTask == d.Id); }
              catch { _dal.Dependency!.Create(new DO.Dependency(0, idEnd, d.Id)); }
          });
         mileStoneList.Add(this.GetMilestone(idEnd));//add end milestone to the end of milestones 
@@ -151,7 +142,7 @@ internal class MilestoneImplementation : IMilestone
                 null,
                 milestone.Remarks,
                 null,
-                (DO.EngineerExperience)0));
+                0));
             _dal.Dependency!.ReadAll(d => d.DependentTask == milestone.Id && milestone.DependenciesList!.Any(de => d.DependsOnTask != de.Id))
                 .ToList().ForEach(d => _dal.Dependency!.Delete(d.Id));
             milestone.DependenciesList!.ForEach(d =>
@@ -173,8 +164,13 @@ internal class MilestoneImplementation : IMilestone
     {
         try
         {
-            List<BO.Milestone> milestones = this.CreateMilestonesList(tasksList.ToList());
-            List<BO.Task> tasks = Factory.Get.Task.GetTasks(t => t.Id > tasksList.ToList()!.First().Id).ToList();
+            List<BO.Milestone> milestones = CreateMilestonesList(tasksList.ToList());
+            for (int i = 1; i < milestones.Count; i++)//ApproxStartAtDate calculation for all milestones
+            {
+                milestones[i] = GetMilestone(milestones[i].Id);
+            }
+            List<BO.Task> tasks = Factory.Get.Task.GetTasks()
+                .Where(t => tasksList.Any(ta => ta.Id == t.Id)).Select(t => t).ToList();
             milestones.First().ApproxStartAtDate = startDate;
             milestones.Last().LastDateToEnd = endDate;
             for (int i = 1; i < milestones.Count; i++)//ApproxStartAtDate calculation for all milestones
@@ -185,12 +181,12 @@ internal class MilestoneImplementation : IMilestone
             for (int i = milestones.Count - 2; i == 0; i++)//LastDateToEnd calculation for all milestones
             {
                 milestones[i].LastDateToEnd =
-                    milestones[i - 1].LastDateToEnd - tasks.Max(t => t.Duration) ?? DateTime.Now;
+                    milestones[i + 1].ApproxStartAtDate;
             }
             tasks.ForEach(t =>//update new data in DAL
             {
                 t.ApproxStartAtDate = GetMilestone(t.Milestone!.Id).ApproxStartAtDate;
-                t.LastDateToEnd = (from m in milestones where m.DependenciesList!.Any(d => d.Id == m.Id) select m).First().ApproxStartAtDate;
+                t.LastDateToEnd = (from m in milestones where m.DependenciesList!.Any(d => t.Id == d.Id) select m).First().ApproxStartAtDate;
                 _dal.Task!.Update(new DO.Task(
                     t.Id,
                     t.Description,
@@ -209,7 +205,6 @@ internal class MilestoneImplementation : IMilestone
             });
             milestones.ForEach(t =>//update new data in DAL
             {
-                t.Alias = "";
                 t.DependenciesList?.ForEach(d =>
                 {
                     t.Alias += $"{d.Alias}";
@@ -218,7 +213,7 @@ internal class MilestoneImplementation : IMilestone
                     t.Id,
                     null,
                     t.Alias,
-                    false,
+                    true,
                     null,
                     t.CreateAtDate,
                     t.StartAtDate,
@@ -228,7 +223,7 @@ internal class MilestoneImplementation : IMilestone
                     null,
                     t.Remarks,
                     null,
-                    (DO.EngineerExperience)0));
+                    0));
             });
         }
         catch (Exception ex)
@@ -237,7 +232,7 @@ internal class MilestoneImplementation : IMilestone
                 throw new BO.BlDoesNotExistException(ex.Message, ex);
             if (ex is DO.DalAlreadyExistsException) throw new BO.BlAlreadyExistsException(ex.Message, ex);
             if (ex is BO.BlCirclingDependenciesExeption) throw new BO.BlCirclingDependenciesExeption(ex.Message, ex);
-            throw new Exception(ex.Message);
+            throw new Exception(ex.Message, ex);
         }
     }
     public BO.Milestone GetMilestone(int id)
@@ -250,8 +245,8 @@ internal class MilestoneImplementation : IMilestone
         DateTime created = DateTime.MinValue;
         DateTime? start = null, scheduled = null, deadline = null, completed = null;
         try
-        {
-            _dal.Task!.Deconstruct(
+        {//פה יש שגיאת ריצה, לבדוק
+            _dal.Task!.Deconstruct(//WORKES
                 _dal.Task!.Read(t => t.Id == id && t.IsMilestone),
                 out id,
                 out description,
@@ -311,7 +306,7 @@ internal class MilestoneImplementation : IMilestone
         catch (Exception ex)
         {
             if (ex is DO.DalDoesNotExistException)
-                throw new BO.BlDoesNotExistException(ex.Message);
+                throw new BO.BlDoesNotExistException(ex.Message, ex);
             else throw new Exception(ex.Message);
         }
     }

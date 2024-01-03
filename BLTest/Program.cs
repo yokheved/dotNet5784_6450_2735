@@ -482,6 +482,7 @@ internal class Program
     private static void ProjectCreate()
     {
         List<Task> tasks = new List<Task>();
+        s_bl.Reset("dependency");
         while (true)
         {
             Console.WriteLine("To enter task for project: (Y/N)");

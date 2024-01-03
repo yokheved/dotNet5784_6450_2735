@@ -10,8 +10,11 @@ internal class Bl : IBl
 
     public IMilestone Milestone => new MilestoneImplementation();
 
-    public void Reset()
+    public void Reset(string? entity = "")
     {
-        DO.Factory.Get.Reset();
+        if (entity == "dependency")
+            DO.Factory.Get.Dependency!.Reset();
+        else
+            DO.Factory.Get.Reset();
     }
 }

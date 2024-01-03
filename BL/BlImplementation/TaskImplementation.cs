@@ -89,6 +89,7 @@ internal class TaskImplementation : ITask
                 out remarks,
                 out engineerId,
                 out level);
+            BO.MilestoneInTask? m = GetMilestoneInTask(id);
             return new BO.Task()
             {
                 Id = id,
@@ -119,7 +120,7 @@ internal class TaskImplementation : ITask
                                        : completed is null ? 2
                                        : 3),
                 Engineer = GetEngineerInTask(engineerId),
-                Milestone = GetMilestoneInTask(id)
+                Milestone = m
             };
         }
         catch (Exception ex)
@@ -308,11 +309,11 @@ internal class TaskImplementation : ITask
     {
         try
         {
-            int? milestoneId = _dal.Task!.Read(_dal.Dependency!.Read(d =>
+            int? milestoneId = _dal.Dependency!.Read(d =>
             {
-                _dal.Task!.Read(ta => ta.IsMilestone && ta.Id == d.DependentTask);
-                return d.DependsOnTask == taskId;
-            })!.DependentTask)!.Id;
+                var list = _dal.Task!.ReadAll(ta => ta.IsMilestone && ta.Id == d.DependentTask);
+                return list.Count() > 0 && d.DependsOnTask == taskId;
+            })?.DependentTask;
             if (milestoneId != null)
             {
                 string? milestoneAlias = Factory.Get.Milestone.GetMilestone((int)milestoneId).Alias;
@@ -323,7 +324,7 @@ internal class TaskImplementation : ITask
                 };
             }
         }
-        catch (Exception ex) { }
+        catch { }
         return null;
     }
     private BO.EngineerInTask? GetEngineerInTask(int? engineerId)

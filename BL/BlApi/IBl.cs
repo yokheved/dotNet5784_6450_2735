@@ -6,5 +6,5 @@ public interface IBl
     public ITask Task { get; }
     public IMilestone Milestone { get; }
 
-    public void Reset();
+    public void Reset(string? entity = "");
 }

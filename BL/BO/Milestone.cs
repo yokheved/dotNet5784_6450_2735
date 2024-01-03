@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-namespace BO;
+﻿namespace BO;
 /// <summary>
 /// milestone: id, alias, create at date, status, start at date,
 /// approx end at date, last date to end, end at date, completion percentage,
@@ -23,17 +22,5 @@ public class Milestone
     /// converts object to name of object and properties
     /// </summary>
     /// <returns> a string like: "objType:\n propName: propVal\n.....</returns>
-    public override string ToString()
-    {
-        Type type = this.GetType();//reflection
-        PropertyInfo[] properties = type.GetProperties();
-        string result = $"{type.Name} Properties:\n";
-        foreach (PropertyInfo property in properties)
-        {
-            object? value = property.GetValue(this);
-            result += value != null ? $"{property.Name}: {value.ToString()}\n" : "";
-        }
-
-        return result;
-    }
+    public override string ToString() => Tools<Milestone>.PrintProperties(this);
 }
