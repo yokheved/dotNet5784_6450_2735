@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Stage0
-build_property.ProjectDir = C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\Stage0\
+build_property.ProjectDir = C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\Stage0\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
