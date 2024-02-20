@@ -39,3 +39,17 @@ C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\DalList\obj\Debug\DalList.dll
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\DalList\obj\Debug\refint\DalList.dll
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\DalList\obj\Debug\DalList.pdb
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\DalList\obj\Debug\ref\DalList.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\bin\DalList.deps.json
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\bin\DalList.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\bin\DalList.pdb
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.csproj.AssemblyReference.cache
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.AssemblyInfoInputs.cache
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.AssemblyInfo.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.csproj.CoreCompileInputs.cache
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.sourcelink.json
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.csproj.CopyComplete
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\refint\DalList.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\DalList.pdb
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalList\obj\Debug\ref\DalList.dll

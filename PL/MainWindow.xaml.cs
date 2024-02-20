@@ -1,4 +1,5 @@
-﻿using PL.Manager;
+﻿using BlApi;
+using PL.Manager;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,13 +21,26 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            EngineerList = s_bl?.EngineerImplementation.ReadAll()!;
         }
         private void btnEngineers_Click(object sender, RoutedEventArgs e)
         { new EngineerListWindow().Show(); }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnResetDB_Click(object sender, RoutedEventArgs e)
         {
 
+            //BL.BlApi.IBl.Reset();
         }
+        static readonly BlApi.IBl s_bl = BlApi.IEngineer.Get();
+
+        public IEnumerable<BO.EngineerInTask> EngineerList
+        {
+            get { return (IEnumerable<BO.EngineerInTask>)GetValue(EngineerListProperty); }
+            set { SetValue(EngineerListProperty, value); }
+        }
+        public static readonly DependencyProperty EngineerListProperty =
+        DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.EngineerInTask>),
+        typeof(EngineerListWindow), new PropertyMetadata(null));
+
     }
 }

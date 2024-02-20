@@ -8,6 +8,7 @@
         "dependencies": {
           "DalFacade": "1.0.0",
           "DalList": "1.0.0",
+          "DalTest": "1.0.0",
           "DalXml": "1.0.0"
         },
         "compile": {
@@ -38,6 +39,21 @@
         },
         "runtime": {
           "bin/placeholder/DalList.dll": {}
+        }
+      },
+      "DalTest/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DalFacade": "1.0.0",
+          "DalList": "1.0.0",
+          "DalXml": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DalTest.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DalTest.dll": {}
         }
       },
       "DalXml/1.0.0": {
@@ -72,6 +88,11 @@
       "path": "../DalList/DalList.csproj",
       "msbuildProject": "../DalList/DalList.csproj"
     },
+    "DalTest/1.0.0": {
+      "type": "project",
+      "path": "../DalTest/DalTest.csproj",
+      "msbuildProject": "../DalTest/DalTest.csproj"
+    },
     "DalXml/1.0.0": {
       "type": "project",
       "path": "../DalXml/DalXml.csproj",
@@ -81,7 +102,9 @@
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
       "BL >= 1.0.0",
-      "DalList >= 1.0.0"
+      "DalFacade >= 1.0.0",
+      "DalList >= 1.0.0",
+      "DalTest >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -91,11 +114,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\יעל\\Source\\Repos\\dotNet5784_6450_2735\\PL\\PL.csproj",
+      "projectUniqueName": "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\PL\\PL.csproj",
       "projectName": "PL",
-      "projectPath": "C:\\Users\\יעל\\Source\\Repos\\dotNet5784_6450_2735\\PL\\PL.csproj",
+      "projectPath": "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\PL\\PL.csproj",
       "packagesPath": "C:\\Users\\יעל\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\יעל\\Source\\Repos\\dotNet5784_6450_2735\\PL\\obj\\",
+      "outputPath": "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\PL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -116,11 +139,17 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "C:\\Users\\יעל\\Source\\Repos\\dotNet5784_6450_2735\\BL\\BL.csproj": {
-              "projectPath": "C:\\Users\\יעל\\Source\\Repos\\dotNet5784_6450_2735\\BL\\BL.csproj"
+            "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\BL\\BL.csproj"
             },
-            "C:\\Users\\יעל\\Source\\Repos\\dotNet5784_6450_2735\\DalList\\DalList.csproj": {
-              "projectPath": "C:\\Users\\יעל\\Source\\Repos\\dotNet5784_6450_2735\\DalList\\DalList.csproj"
+            "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\DalFacade\\DalFacade.csproj": {
+              "projectPath": "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\DalFacade\\DalFacade.csproj"
+            },
+            "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\DalList\\DalList.csproj": {
+              "projectPath": "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\DalList\\DalList.csproj"
+            },
+            "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\DalTest\\DalTest.csproj": {
+              "projectPath": "C:\\Users\\יעל\\Desktop\\projectYochi&Yael\\dotNet5784_6450_2735\\DalTest\\DalTest.csproj"
             }
           }
         }
