@@ -39,3 +39,17 @@ C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.dll
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\DalXml\obj\Debug\refint\DalXml.dll
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.pdb
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\DalXml\obj\Debug\ref\DalXml.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\bin\DalXml.deps.json
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\bin\DalXml.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\bin\DalXml.pdb
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.sourcelink.json
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.csproj.CopyComplete
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\refint\DalXml.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\DalXml.pdb
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\DalXml\obj\Debug\ref\DalXml.dll

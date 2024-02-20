@@ -25,29 +25,13 @@ C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\PL\obj\Debug\refint\PL.dll
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\PL\obj\Debug\PL.pdb
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\PL\obj\Debug\PL.genruntimeconfig.cache
 C:\Users\יעל\Source\Repos\dotNet5784_6450_2735\PL\obj\Debug\ref\PL.dll
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\PL.exe
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\PL.deps.json
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\PL.runtimeconfig.json
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\PL.dll
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\bin\PL.pdb
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.csproj.AssemblyReference.cache
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\MainWindow.g.cs
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\Manager\EngineerListWindow.g.cs
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\Manager\EngineerWindow.g.cs
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\App.g.cs
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL_MarkupCompile.cache
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL_MarkupCompile.lref
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\MainWindow.baml
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\Manager\EngineerListWindow.baml
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\Manager\EngineerWindow.baml
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.g.resources
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.AssemblyInfoInputs.cache
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.AssemblyInfo.cs
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.csproj.CoreCompileInputs.cache
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.csproj.CopyComplete
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.dll
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\refint\PL.dll
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.pdb
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\PL.genruntimeconfig.cache
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\ref\PL.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\PL.csproj.AssemblyReference.cache
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\MainWindow.g.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\Manager\EngineerListWindow.g.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\Manager\EngineerWindow.g.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\App.g.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\PL_MarkupCompile.cache
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\PL_MarkupCompile.lref
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\PL.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\refint\PL.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\PL.pdb

@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\PL",
+    "\\PL\\Manager"
   ],
-  "SelectedNode": "\\doNet5784_6450_2735.sln",
+  "SelectedNode": "\\PL\\Manager\\EngineerListWindow.xaml",
   "PreviewInSolutionExplorer": false
 }
