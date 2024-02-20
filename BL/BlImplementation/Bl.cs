@@ -4,7 +4,7 @@ namespace BlImplementation;
 
 internal class Bl : IBl
 {
-    public IEngineer EngineerImplementation => new EngineerImplementation();
+    public IEngineer Engineer => new EngineerImplementation();
 
     public ITask Task => new TaskImplementation();
 

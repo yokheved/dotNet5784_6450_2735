@@ -1,15 +1,6 @@
 ﻿using BlApi;
 using PL.Manager;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PL
 {
@@ -21,7 +12,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            EngineerList = s_bl?.EngineerImplementation.ReadAll()!;
+            EngineerList = s_bl?.Engineer.ReadAll()!;
         }
         private void btnEngineers_Click(object sender, RoutedEventArgs e)
         { new EngineerListWindow().Show(); }
@@ -29,9 +20,9 @@ namespace PL
         private void btnResetDB_Click(object sender, RoutedEventArgs e)
         {
 
-            //BL.BlApi.IBl.Reset();
+            IBl.Reset();
         }
-        static readonly BlApi.IBl s_bl = BlApi.IEngineer.Get();
+        static readonly IEngineer s_bl = IBl.Engineer;
 
         public IEnumerable<BO.EngineerInTask> EngineerList
         {
