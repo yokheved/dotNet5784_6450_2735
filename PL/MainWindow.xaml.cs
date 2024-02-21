@@ -12,7 +12,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            EngineerList = s_bl?.GetEngineerList()!;
+            EngineerList = s_bl.Engineer?.GetEngineerList()!;
         }
         private void btnEngineers_Click(object sender, RoutedEventArgs e)
         { new EngineerListWindow().Show(); }
@@ -20,9 +20,9 @@ namespace PL
         private void btnResetDB_Click(object sender, RoutedEventArgs e)
         {
 
-            //IBl.Reset();
+            s_bl.Reset();
         }
-        static readonly IEngineer? s_bl = IBl.Engineer;
+        static readonly IBl s_bl = Factory.Get;
 
         public IEnumerable<BO.Engineer> EngineerList
         {
