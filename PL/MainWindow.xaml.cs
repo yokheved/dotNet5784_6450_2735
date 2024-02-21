@@ -12,7 +12,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            EngineerList = s_bl?.Engineer.ReadAll()!;
+            EngineerList = s_bl?.GetEngineerList()!;
         }
         private void btnEngineers_Click(object sender, RoutedEventArgs e)
         { new EngineerListWindow().Show(); }
@@ -20,17 +20,17 @@ namespace PL
         private void btnResetDB_Click(object sender, RoutedEventArgs e)
         {
 
-            IBl.Reset();
+            //IBl.Reset();
         }
-        static readonly IEngineer s_bl = IBl.Engineer;
+        static readonly IEngineer? s_bl = IBl.Engineer;
 
-        public IEnumerable<BO.EngineerInTask> EngineerList
+        public IEnumerable<BO.Engineer> EngineerList
         {
-            get { return (IEnumerable<BO.EngineerInTask>)GetValue(EngineerListProperty); }
+            get { return (IEnumerable<BO.Engineer>)GetValue(EngineerListProperty); }
             set { SetValue(EngineerListProperty, value); }
         }
         public static readonly DependencyProperty EngineerListProperty =
-        DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.EngineerInTask>),
+        DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>),
         typeof(EngineerListWindow), new PropertyMetadata(null));
 
     }
