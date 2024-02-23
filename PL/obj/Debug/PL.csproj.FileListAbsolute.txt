@@ -84,3 +84,9 @@ C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\AddU
 C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\AddUpdateEngineer.baml
 C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\Admin.g.cs
 C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\Admin.baml
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\AddUpdateEngineer.g.cs
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\Admin.g.cs
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\App.baml
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\AddUpdateEngineer.baml
+C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\Admin.baml

@@ -152,7 +152,7 @@ internal class Program
             Milestone = null,
             Deliverables = deliverables,
             Remarks = remarks,
-            Engineer = new EngineerInTask() { Id = engineerId, Name = s_bl.EngineerImplementation!.GetEngineer(engineerId).Name },
+            Engineer = new EngineerInTask() { Id = engineerId, Name = s_bl.Engineer!.GetEngineer(engineerId).Name },
             Level = complexityLevel
         };
         task = new Task()
@@ -171,7 +171,7 @@ internal class Program
             Milestone = null,
             Deliverables = deliverables,
             Remarks = remarks,
-            Engineer = new EngineerInTask() { Id = engineerId, Name = s_bl.EngineerImplementation!.GetEngineer(engineerId).Name },
+            Engineer = new EngineerInTask() { Id = engineerId, Name = s_bl.Engineer!.GetEngineer(engineerId).Name },
             Level = complexityLevel
         };
         return task;
@@ -260,7 +260,7 @@ internal class Program
             DependenciesList = dependencies,
             Deliverables = deliverables ?? task.Deliverables,
             Remarks = remarks ?? task.Remarks,
-            Engineer = succidedId ? new EngineerInTask() { Id = engineerId, Name = s_bl.EngineerImplementation!.GetEngineer(engineerId).Name } : task.Engineer,
+            Engineer = succidedId ? new EngineerInTask() { Id = engineerId, Name = s_bl.Engineer!.GetEngineer(engineerId).Name } : task.Engineer,
             Level = levelSucceeded ? complexityLevel : task.Level
         };
 
@@ -321,7 +321,7 @@ internal class Program
         double cost = double.Parse(Console.ReadLine());
 
         Engineer engineer = new Engineer() { Id = engineerId, Name = name, Email = email, Level = level, Cost = cost };
-        s_bl.EngineerImplementation.AddEngineer(engineer);
+        s_bl.Engineer!.AddEngineer(engineer);
     }
     private static void EngineerRead()
     {
@@ -329,13 +329,13 @@ internal class Program
         int engineerId = int.Parse(Console.ReadLine());
 
         // Assuming s_dalEngineer.Read(engineerId) method exists to read the engineer from your data source
-        Engineer? engineer = s_bl!.EngineerImplementation!.GetEngineer(engineerId);
+        Engineer? engineer = s_bl!.Engineer!.GetEngineer(engineerId);
 
         Console.WriteLine(engineer);
     }
     private static void EngineerReadAll()
     {
-        List<Engineer> engineers = s_bl!.EngineerImplementation!.GetEngineerList().ToList();
+        List<Engineer> engineers = s_bl!.Engineer!.GetEngineerList().ToList();
 
         foreach (var engineer in engineers)
         {
@@ -348,7 +348,7 @@ internal class Program
         Console.WriteLine("Enter Engineer ID to update:");
         int engineerId = int.Parse(Console.ReadLine());
 
-        Engineer? engineer = s_bl!.EngineerImplementation!.GetEngineer(engineerId);
+        Engineer? engineer = s_bl!.Engineer!.GetEngineer(engineerId);
         Console.WriteLine("Current Engineer Details:");
         Console.WriteLine(engineer);
 
@@ -374,7 +374,7 @@ internal class Program
         };
 
         // Update the engineer using s_blEngineer.Update(engineer)
-        s_bl!.EngineerImplementation!.UpdateEngineer(engineerUpdate);
+        s_bl!.Engineer!.UpdateEngineer(engineerUpdate);
     }
     private static void EngineerDelete()
     {
@@ -382,7 +382,7 @@ internal class Program
         int engineerId = int.Parse(Console.ReadLine());
 
         // Delete the engineer using s_dalEngineer.Delete(engineerId)
-        s_bl!.EngineerImplementation!.DeleteEgineer(engineerId);
+        s_bl!.Engineer!.DeleteEgineer(engineerId);
         Console.WriteLine("Engineer deleted successfully.");
     }
 

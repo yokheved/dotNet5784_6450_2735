@@ -53,7 +53,7 @@ namespace PL {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PL;V1.0.0.0;component/manager/engineerwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PL;component/manager/engineerwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Manager\EngineerWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

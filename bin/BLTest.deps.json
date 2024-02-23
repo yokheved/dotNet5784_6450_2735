@@ -19,6 +19,7 @@
         "dependencies": {
           "DalFacade": "1.0.0",
           "DalList": "1.0.0",
+          "DalTest": "1.0.0",
           "DalXml": "1.0.0"
         },
         "runtime": {

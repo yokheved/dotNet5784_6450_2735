@@ -23,11 +23,11 @@ public partial class EngineerListWindow : Window
         get { return (IEnumerable<BO.Engineer>)GetValue(EngineerListProperty); }
         set { SetValue(EngineerListProperty, value); }
     }
-   
-        /// <summary>
-        /// initialize the window
-        /// </summary>
-        public EngineerListWindow()
+
+    /// <summary>
+    /// initialize the window
+    /// </summary>
+    public EngineerListWindow()
     {
         InitializeComponent();
         EngineerList = s_bl?.Engineer!.GetEngineerList();
@@ -52,7 +52,7 @@ public partial class EngineerListWindow : Window
     /// <param name="e"></param>
     private void AddEngineer(object sender, RoutedEventArgs e)
     {
-        
+
         AddUpdateEngineer addUpdateEngineer = new();
         addUpdateEngineer.CloseWindow += (s, e) =>
         {
@@ -83,7 +83,7 @@ public partial class EngineerListWindow : Window
     private void UpdateEngineersList()
     {
         EngineerList = (SearchLevelSelectedValue == BO.EngineerExperience.None) ?
-           s_bl?.Engineer.GetEngineerList()! : s_bl?.Engineer.GetEngineerList(item => item.Level == (BO.EngineerExperience)SearchLevelSelectedValue)!;
+           s_bl?.Engineer!.GetEngineerList()! : s_bl?.Engineer!.GetEngineerList(item => item.Level == (BO.EngineerExperience)SearchLevelSelectedValue)!;
     }
 }
 
