@@ -28,9 +28,8 @@
                 <ColumnDefinition Width="400"/>
             </Grid.ColumnDefinitions>
             <Label Content="Level" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding Source={StaticResource LevelsCollectionKey}}"
-                      SelectedValue="{Binding Path=SearchLevelSelectedValue, Mode=TwoWay}"
-                      SelectionChanged="LevelSelectionChanged" 
+            <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding Path=EngineerList}"
+                SelectedValue="{Binding Path=SearchLevelSelectedValue, Mode=TwoWay}"
                       Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                       FontWeight="Bold" FontSize="18" />
         </Grid>
@@ -41,6 +40,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Add" Background="White" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="AddEngineer" FontWeight="UltraBold"/>
+        <ComboBox ItemsSource="{Binding Source={StaticResource LevelsCollectionKey}}"
+           SelectedValue="{Binding Path=SearchLevelSelectedValue, Mode=TwoWay}"
+           SelectionChanged="LevelSelectionChanged" 
+           Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+           FontWeight="Bold" FontSize="18" />
+        <Button Content="Add" Background="White" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100"  FontWeight="UltraBold" Click="AddEngineer"/>
     </Grid>
 </Window>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\App.xaml
-3-2124038049
+5-268180716
 
-6969237326
+9212092853
 203146936220
-MainWindow.xaml;Manager\EngineerListWindow.xaml;Manager\EngineerWindow.xaml;
+AddUpdateEngineer.xaml;Admin.xaml;MainWindow.xaml;Manager\EngineerListWindow.xaml;Manager\EngineerWindow.xaml;
 
 False
 

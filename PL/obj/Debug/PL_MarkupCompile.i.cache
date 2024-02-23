@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\obj\Debug\
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\
 PL
 none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
-C:\Users\yokhe\OneDrive\מסמכים\עבודות\סמינר\תשפד\סמסטר א\c#\project git\doNet5784_6450_2735\PL\App.xaml
-3-2124038049
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\App.xaml
+5-268180716
 
-8-1283062342
-203-1105524474
-MainWindow.xaml;Manager\EngineerListWindow.xaml;Manager\EngineerWindow.xaml;
+11-2040206815
+203146936220
+AddUpdateEngineer.xaml;Admin.xaml;MainWindow.xaml;Manager\EngineerListWindow.xaml;Manager\EngineerWindow.xaml;
 
 False
 
