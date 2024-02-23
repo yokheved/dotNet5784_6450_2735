@@ -78,3 +78,9 @@ C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\PL.s
 C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\PL.csproj.CopyComplete
 C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\PL.genruntimeconfig.cache
 C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\ref\PL.dll
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\App.baml
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\AddUpdateEngineer.g.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\AddUpdateEngineer.baml
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\Admin.g.cs
+C:\Users\יעל\Desktop\projectYochi&Yael\dotNet5784_6450_2735\PL\obj\Debug\Admin.baml

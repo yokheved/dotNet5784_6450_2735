@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+        DataContext="{Binding  RelativeSource={RelativeSource Mode=Self}}">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="FontFamily" Value="Consolas" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Background" Value="LightSeaGreen" />
+            <Setter Property="Background" Value="HotPink" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Width" Value="150" />
@@ -29,11 +29,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Yael &amp; Yokheved!!" FontWeight="Bold" FontStyle="Oblique"  FontSize="50" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <!--<Button Grid.Column="0" Content="Admin" Click="Admin"/>-->
+        <Button Grid.Column="0" Content="Admin" Click="Admin"/>
         <Button Grid.Column="1" Content="Engineer" Click="Engineer"/>
-        <!--<Button Grid.Column="2" Content="Init DB" Click="InitDB"/>-->
+        <Button Grid.Column="2" Content="Init DB" Click="InitDB"/>
         <Button Grid.Column="3" Content="Reset" Click="ResetDB"/>
-        <!--<Button Grid.Column="4" Content="Date" Click="Date"/>-->
 
     </Grid>
 </Window>

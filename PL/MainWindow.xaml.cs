@@ -1,5 +1,7 @@
 ﻿using BlApi;
-using PL.Manager;
+using DalTest;
+using PL.Engineer;
+
 using System.Windows;
 
 namespace PL;
@@ -27,22 +29,25 @@ public partial class MainWindow : Window
             s_bl.Reset();
     }
 
-    //private void InitDB(object sender, RoutedEventArgs e)
-    //{
-    //    MessageBoxResult mbResult = MessageBox.Show(
-    //   "Are you sure?", "reset",
-    //   MessageBoxButton.YesNo,
-    //   MessageBoxImage.Question,
-    //   MessageBoxResult.Yes,
-    //   MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
-    //    if (mbResult == MessageBoxResult.Yes)
-    //        s_bl.Do.Initialization.createEngineers();
-    //}
+    private void InitDB(object sender, RoutedEventArgs e)
+    {
+        MessageBoxResult mbResult = MessageBox.Show(
+       "Are you sure?", "reset",
+       MessageBoxButton.YesNo,
+       MessageBoxImage.Question,
+       MessageBoxResult.Yes,
+       MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
+        //if (mbResult == MessageBoxResult.Yes)
+        //    Initialization.creatEngineer(this, s_bl);
+        new EngineerListWindow().Show();
 
-    //private void Admin(object sender, RoutedEventArgs e)
-    //{
-    //    new AdminWindow().Show();
-    //}
+    }
+
+    private void Admin(object sender, RoutedEventArgs e)
+    {
+        new AdminWindow().Show();
+        new AddUpdateEngineer().ShowDialog();
+    }
 
     private void Engineer(object sender, RoutedEventArgs e)
     {
