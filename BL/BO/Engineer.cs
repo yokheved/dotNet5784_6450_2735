@@ -12,4 +12,3 @@ public class Engineer
     public TaskInEngineer? Task { get; set; }
     public override string ToString() => Tools<Engineer>.PrintProperties(this);
 }
-

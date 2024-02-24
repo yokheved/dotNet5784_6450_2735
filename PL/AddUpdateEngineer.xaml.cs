@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using DalTest;
 using System.Windows;
 
 namespace PL.Engineer
@@ -18,6 +19,9 @@ namespace PL.Engineer
         {
             //update engineer, that exists already
             InitializeComponent();
+                
+
+
             try
             {
                 CurrentEngineer = currentEngineerId == 0 ? new BO.Engineer()
@@ -47,6 +51,8 @@ namespace PL.Engineer
         /// <param name="e"></param>
         private void AddUpdateEngineerSubmit(object sender, RoutedEventArgs e)
         {
+
+
             try
             {
                 if (addOrUpdate == "add")
