@@ -3,7 +3,7 @@
 namespace DalTest;
 public static class Initialization
 {
-    private static IDal? s_dal; //stage 2 
+    private static IDal? s_dal = Factory.Get; //stage 2 
 
     private static Random s_rand = new();
 
@@ -95,7 +95,7 @@ public static class Initialization
     /// <summary>
     /// creates and initializes an array of 5 engineer names. It then generates a unique ID number for each engineer and creates a new Engineer object with the ID number, name, and email address.
     /// </summary>
-    private static void createEngineers()
+    public static void createEngineers()
     {
         string[] names = {
             "Alice",
@@ -111,7 +111,7 @@ public static class Initialization
             do
             {
                 id = s_rand.Next(150000000, 400000000);
-                try { s_dal!.Engineer!.Read(id); } catch (Exception e) { break; }
+                try { s_dal!.Engineer?.Read(id); } catch (Exception e) { break; }
             }
             while (true);
             Engineer engineer = new Engineer(
@@ -121,7 +121,7 @@ public static class Initialization
                 (DO.EngineerExperience)s_rand.Next(1, 6),
                 (double)s_rand.Next(50, 200)
                 );
-            s_dal!.Engineer.Create(engineer);
+            s_dal!.Engineer!.Create(engineer);
         }
     }
 

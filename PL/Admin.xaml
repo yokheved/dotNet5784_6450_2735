@@ -21,20 +21,22 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="289*"/>
+            <RowDefinition Height="145*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0*" />
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="182*" />
+            <ColumnDefinition Width="182*" />
+            <ColumnDefinition Width="182*" />
+            <ColumnDefinition Width="182*" />
+            <ColumnDefinition Width="182*" />
+            <ColumnDefinition Width="45*" />
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="1" Grid.Row="1" Content="Handle Engineers" Click="BtnEngineer_Click"/>
-        <Button Grid.Column="4" Grid.Row="1" Content="Reset" Click="Reset"/>
+        <Button Grid.Column="2" Grid.Row="2" Content="Handle Engineers" Click="BtnEngineer_Click" Margin="0,55,0,0" VerticalAlignment="Top"/>
+        <Button Grid.Column="5" Grid.Row="2" Content="Reset" Click="Reset" Margin="0,55,0,0" VerticalAlignment="Top"/>
         <!--<Button Grid.Column="5" Grid.Row="1" Content="InitDB" Click="InitDB"/>-->
     </Grid>
 </Window>

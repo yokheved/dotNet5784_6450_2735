@@ -1,20 +1,7 @@
-﻿using PL.Engineer;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using BlApi;
+﻿using BlApi;
 using DalTest;
+using PL.Engineer;
+using System.Windows;
 
 namespace PL
 {
@@ -43,8 +30,8 @@ namespace PL
             new EngineerListWindow().Show();
         }
 
-       
-      
+
+
 
 
         private void Reset(object sender, RoutedEventArgs e)
@@ -60,17 +47,17 @@ namespace PL
 
         }
 
-        //private void InitDB(object sender, RoutedEventArgs e)
-        //{
-        //    MessageBoxResult mbResult = MessageBox.Show(
-        //   "Are you sure?", "reset",
-        //   MessageBoxButton.YesNo,
-        //   MessageBoxImage.Question,
-        //   MessageBoxResult.Yes,
-        //   MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
-        //    if (mbResult == MessageBoxResult.Yes)
-        //        s_bl.in
+        private void InitDB(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult mbResult = MessageBox.Show(
+           "Are you sure?", "reset",
+           MessageBoxButton.YesNo,
+           MessageBoxImage.Question,
+           MessageBoxResult.Yes,
+           MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
+            if (mbResult == MessageBoxResult.Yes)
+                Initialization.Do();
 
-        //}
+        }
     }
 }

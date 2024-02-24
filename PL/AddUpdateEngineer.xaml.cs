@@ -1,18 +1,5 @@
 ﻿using BlApi;
-using BO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL.Engineer
 {
@@ -29,18 +16,19 @@ namespace PL.Engineer
 
         public AddUpdateEngineer(int currentEngineerId = 0)
         {
-            //InitializeComponent();
-            //try
-            //{
-            //    CurrentEngineer = currentEngineerId == 0 ? new BO.Engineer()
-            //    : s_bl.Engineer.GetEngineerList(currentEngineerId);
-            //    addOrUpdate = currentEngineerId == 0 ? "add"
-            //    : "update";
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Engineer with id {currentEngineerId} doesn't exist");
-            //}
+            //update engineer, that exists already
+            InitializeComponent();
+            try
+            {
+                CurrentEngineer = currentEngineerId == 0 ? new BO.Engineer()
+                : s_bl.Engineer!.GetEngineerList(e => e.Id == currentEngineerId).First();
+                addOrUpdate = currentEngineerId == 0 ? "add"
+                : "update";
+            }
+            catch
+            {
+                MessageBox.Show($"Engineer with id {currentEngineerId} doesn't exist");
+            }
         }
 
         public static readonly DependencyProperty CurrentEngineerProperty =
@@ -65,14 +53,14 @@ namespace PL.Engineer
                 {
                     try
                     {
-                        s_bl.Engineer.AddEngineer(CurrentEngineer);
+                        s_bl.Engineer!.AddEngineer(CurrentEngineer);
                         MessageBox.Show("Engineer created successfully", "add engineer",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                         if (CloseWindow is not null)
                             CloseWindow(this, e);
                         this.Close();
                     }
-                   
+
                     catch (BO.BlAlreadyExistsException)
                     {
                         MessageBox.Show("Engineer already exist", "exist", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -87,7 +75,7 @@ namespace PL.Engineer
                 {
                     try
                     {
-                        s_bl.Engineer.UpdateEngineer(CurrentEngineer);
+                        s_bl.Engineer!.UpdateEngineer(CurrentEngineer);
 
                         MessageBox.Show("Engineer updated successfully", "add engineer",
                                 MessageBoxButton.OK, MessageBoxImage.Information);
@@ -96,14 +84,14 @@ namespace PL.Engineer
                             CloseWindow(this, e);
                         this.Close();
                     }
-                   
+
                     catch
                     {
                         MessageBox.Show("Unexpected error", "error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
-           
+
             catch (Exception)
             {
                 MessageBox.Show("can't save the changes");

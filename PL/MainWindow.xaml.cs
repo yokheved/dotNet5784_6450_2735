@@ -37,8 +37,8 @@ public partial class MainWindow : Window
        MessageBoxImage.Question,
        MessageBoxResult.Yes,
        MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
-        //if (mbResult == MessageBoxResult.Yes)
-        //    Initialization.creatEngineer(this, s_bl);
+        if (mbResult == MessageBoxResult.Yes)
+            Initialization.createEngineers();
         new EngineerListWindow().Show();
 
     }
@@ -51,11 +51,11 @@ public partial class MainWindow : Window
 
     private void Engineer(object sender, RoutedEventArgs e)
     {
-        new EngineerWindow().Show();
+        new EngineerListWindow().Show();
     }
 
-    //private void Date(object sender, RoutedEventArgs e)
-    //{
-    //    new DateWindow().Show();
-    //}
+    /*private void Date(object sender, RoutedEventArgs e)
+    {
+        new DateWindow().Show();
+    }*/
 }

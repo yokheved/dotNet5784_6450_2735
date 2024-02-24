@@ -30,7 +30,7 @@ public partial class EngineerListWindow : Window
     public EngineerListWindow()
     {
         InitializeComponent();
-        EngineerList = s_bl?.Engineer!.GetEngineerList();
+        EngineerList = s_bl?.Engineer!.GetEngineerList() ?? new List<BO.Engineer>();
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public partial class EngineerListWindow : Window
     private void LevelSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         EngineerList = (SearchLevelSelectedValue == BO.EngineerExperience.None) ?
-            s_bl?.Engineer.GetEngineerList()! : s_bl?.Engineer.GetEngineerList(item => item.Level == (BO.EngineerExperience)SearchLevelSelectedValue)!;
+            s_bl?.Engineer!.GetEngineerList()! : s_bl?.Engineer!.GetEngineerList(item => item.Level == (BO.EngineerExperience)SearchLevelSelectedValue)!;
     }
 
 
